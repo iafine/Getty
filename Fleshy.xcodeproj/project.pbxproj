@@ -74,6 +74,7 @@
 		68BCC4E31FA0296600C145DA /* Fleshy */ = {
 			isa = PBXGroup;
 			children = (
+				68BCC5051FA030A200C145DA /* Components */,
 				68BCC5001FA02ADB00C145DA /* Model */,
 				68BCC4FF1FA02AD100C145DA /* ViewController */,
 				68BCC4FE1FA02AC500C145DA /* View */,
@@ -120,6 +121,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		68BCC5051FA030A200C145DA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		9CCB5B5F53FA98495C5AD72E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +166,7 @@
 		68BCC4D91FA0296600C145DA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HY;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Hyyy;
 				TargetAttributes = {

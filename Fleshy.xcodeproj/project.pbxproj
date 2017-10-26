@@ -13,6 +13,7 @@
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
 		68BCC5031FA02B0900C145DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC5021FA02B0900C145DA /* ViewController.m */; };
+		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,9 @@
 		68BCC5011FA02B0900C145DA /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		68BCC5021FA02B0900C145DA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Prefix.pch"; sourceTree = "<group>"; };
+		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
+		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
+		68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTimelineCollectionCell.m; sourceTree = "<group>"; };
 		7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fleshy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD49F4BC31CF4987BF54A4F /* Pods-Fleshy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleshy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fleshy/Pods-Fleshy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +78,7 @@
 		68BCC4E31FA0296600C145DA /* Fleshy */ = {
 			isa = PBXGroup;
 			children = (
+				68FFA6AD1FA1D4760015ED30 /* Constants */,
 				68BCC5051FA030A200C145DA /* Components */,
 				68BCC5001FA02ADB00C145DA /* Model */,
 				68BCC4FF1FA02AD100C145DA /* ViewController */,
@@ -101,6 +106,8 @@
 		68BCC4FE1FA02AC500C145DA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */,
+				68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -126,6 +133,14 @@
 			children = (
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		68FFA6AD1FA1D4760015ED30 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		9CCB5B5F53FA98495C5AD72E /* Pods */ = {
@@ -264,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68BCC5031FA02B0900C145DA /* ViewController.m in Sources */,
+				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 			);

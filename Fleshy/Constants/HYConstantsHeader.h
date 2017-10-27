@@ -33,7 +33,7 @@
 #define kTextSizeSmall 15
 #define kTextSizeMedium 16
 #define kTextSizeBig 18
-#define kTextSizeLarge 25
+#define kTextSizeLarge 20
 #define kTextSizeHuge 35
 
 #endif /* HYConstantsHeader_h */

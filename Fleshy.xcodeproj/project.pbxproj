@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */; };
 		683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B521FA309980010F0A0 /* HYHomeViewController.m */; };
+		683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */; };
+		683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */; };
 		68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4ED1FA0296700C145DA /* Assets.xcassets */; };
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
@@ -24,6 +26,10 @@
 		683A6B501FA307650010F0A0 /* HYComponentHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYComponentHeader.h; sourceTree = "<group>"; };
 		683A6B511FA309980010F0A0 /* HYHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomeViewController.h; sourceTree = "<group>"; };
 		683A6B521FA309980010F0A0 /* HYHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYHomeViewController.m; sourceTree = "<group>"; };
+		683A6B561FA31DC30010F0A0 /* HYGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideViewController.h; sourceTree = "<group>"; };
+		683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideViewController.m; sourceTree = "<group>"; };
+		683A6B5B1FA31F3A0010F0A0 /* HYGuideGenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideGenderView.h; sourceTree = "<group>"; };
+		683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideGenderView.m; sourceTree = "<group>"; };
 		68BCC4E11FA0296600C145DA /* Fleshy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleshy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BCC4ED1FA0296700C145DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68BCC4F01FA0296700C145DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,6 +72,42 @@
 				683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		683A6B541FA31D800010F0A0 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				683A6B561FA31DC30010F0A0 /* HYGuideViewController.h */,
+				683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		683A6B551FA31D9B0010F0A0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				683A6B511FA309980010F0A0 /* HYHomeViewController.h */,
+				683A6B521FA309980010F0A0 /* HYHomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		683A6B591FA31DFC0010F0A0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */,
+				68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		683A6B5A1FA31E030010F0A0 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				683A6B5B1FA31F3A0010F0A0 /* HYGuideGenderView.h */,
+				683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */,
+			);
+			path = Guide;
 			sourceTree = "<group>";
 		};
 		68BCC4D81FA0296600C145DA = {
@@ -116,8 +158,8 @@
 		68BCC4FE1FA02AC500C145DA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */,
-				68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */,
+				683A6B5A1FA31E030010F0A0 /* Guide */,
+				683A6B591FA31DFC0010F0A0 /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,8 +167,8 @@
 		68BCC4FF1FA02AD100C145DA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				683A6B511FA309980010F0A0 /* HYHomeViewController.h */,
-				683A6B521FA309980010F0A0 /* HYHomeViewController.m */,
+				683A6B551FA31D9B0010F0A0 /* Home */,
+				683A6B541FA31D800010F0A0 /* Guide */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -293,6 +335,8 @@
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
 				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,
+				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
+				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,7 +470,7 @@
 				GCC_PREFIX_HEADER = "Fleshy/Fleshy-Prefix.pch";
 				INFOPLIST_FILE = Fleshy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshy.Fleshy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -443,7 +487,7 @@
 				GCC_PREFIX_HEADER = "Fleshy/Fleshy-Prefix.pch";
 				INFOPLIST_FILE = Fleshy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshy.Fleshy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HYHomeViewController.h"
+#import "HYGuideViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    self.window.rootViewController = [HYHomeViewController new];
+//    self.window.rootViewController = [HYHomeViewController new];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController: [HYGuideViewController new]];
     [self.window makeKeyAndVisible];
     return YES;
 }

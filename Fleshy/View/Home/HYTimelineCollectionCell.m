@@ -82,7 +82,7 @@
 - (UIView *)radiusBgView {
     if (!_radiusBgView) {
         _radiusBgView = [[UIView alloc] init];
-        _radiusBgView.layer.cornerRadius = 6;
+        _radiusBgView.layer.cornerRadius = 10;
     }
     return _radiusBgView;
 }

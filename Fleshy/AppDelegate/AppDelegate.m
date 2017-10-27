@@ -21,6 +21,10 @@
     // Override point for customization after application launch.
 //    self.window.rootViewController = [HYHomeViewController new];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController: [HYGuideViewController new]];
+    
+    // 设置基本导航栏属性
+    [UINavigationBar hy_basicAppearance];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

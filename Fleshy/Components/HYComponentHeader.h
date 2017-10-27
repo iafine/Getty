@@ -11,5 +11,6 @@
 
 // Category
 #import "UICollectionView+HYAdd.h"
+#import "UINavigationBar+HYAdd.h"
 
 #endif /* HYComponentHeader_h */

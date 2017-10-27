@@ -11,6 +11,7 @@
 		683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B521FA309980010F0A0 /* HYHomeViewController.m */; };
 		683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */; };
 		683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */; };
+		683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */; };
 		68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4ED1FA0296700C145DA /* Assets.xcassets */; };
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
@@ -30,6 +31,8 @@
 		683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideViewController.m; sourceTree = "<group>"; };
 		683A6B5B1FA31F3A0010F0A0 /* HYGuideGenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideGenderView.h; sourceTree = "<group>"; };
 		683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideGenderView.m; sourceTree = "<group>"; };
+		683A6B5E1FA3309F0010F0A0 /* UINavigationBar+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+HYAdd.h"; sourceTree = "<group>"; };
+		683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+HYAdd.m"; sourceTree = "<group>"; };
 		68BCC4E11FA0296600C145DA /* Fleshy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleshy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BCC4ED1FA0296700C145DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68BCC4F01FA0296700C145DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +73,8 @@
 			children = (
 				683A6B4C1FA305280010F0A0 /* UICollectionView+HYAdd.h */,
 				683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */,
+				683A6B5E1FA3309F0010F0A0 /* UINavigationBar+HYAdd.h */,
+				683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */,
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */; };
 		68BCC4EC1FA0296700C145DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EA1FA0296700C145DA /* Main.storyboard */; };
 		68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4ED1FA0296700C145DA /* Assets.xcassets */; };
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
@@ -19,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleshy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fleshy/Pods-Fleshy.release.xcconfig"; sourceTree = "<group>"; };
+		683A6B4C1FA305280010F0A0 /* UICollectionView+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+HYAdd.h"; sourceTree = "<group>"; };
+		683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+HYAdd.m"; sourceTree = "<group>"; };
+		683A6B501FA307650010F0A0 /* HYComponentHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYComponentHeader.h; sourceTree = "<group>"; };
 		68BCC4E11FA0296600C145DA /* Fleshy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleshy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BCC4EB1FA0296700C145DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68BCC4ED1FA0296700C145DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +59,15 @@
 				7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		683A6B4B1FA304EF0010F0A0 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				683A6B4C1FA305280010F0A0 /* UICollectionView+HYAdd.h */,
+				683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		68BCC4D81FA0296600C145DA = {
@@ -131,6 +144,8 @@
 		68BCC5051FA030A200C145DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				683A6B4B1FA304EF0010F0A0 /* Category */,
+				683A6B501FA307650010F0A0 /* HYComponentHeader.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -281,6 +296,7 @@
 				68BCC5031FA02B0900C145DA /* ViewController.m in Sources */,
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
+				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

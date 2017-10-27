@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "HYTimelineCollectionCell.h"
 
+
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -24,6 +25,9 @@
     self.view.backgroundColor = kPageBgColor;
     
     [self.view addSubview:self.collectionView];
+    
+    // 滚动到最后一个item
+    [self.collectionView hy_scrollToHorizontalEnd:NO];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -37,7 +41,7 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HYTimelineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYTimelineCollectionCell cellID] forIndexPath:indexPath];
-    cell.backgroundColor = kRandomColor;
+    cell.cellData = [NSDictionary dictionary];
     return cell;
 }
 
@@ -79,6 +83,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[HYTimelineCollectionCell class] forCellWithReuseIdentifier:[HYTimelineCollectionCell cellID]];
     }

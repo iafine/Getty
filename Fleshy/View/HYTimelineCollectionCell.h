@@ -12,6 +12,6 @@
 
 + (NSString *)cellID;
 
-@property (nonatomic, strong) NSDictionary *cellData;
+@property (nonatomic, copy) NSDictionary *cellData;
 
 @end

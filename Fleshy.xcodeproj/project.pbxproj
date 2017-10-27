@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */; };
+		683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B521FA309980010F0A0 /* HYHomeViewController.m */; };
 		68BCC4EC1FA0296700C145DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EA1FA0296700C145DA /* Main.storyboard */; };
 		68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4ED1FA0296700C145DA /* Assets.xcassets */; };
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
-		68BCC5031FA02B0900C145DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC5021FA02B0900C145DA /* ViewController.m */; };
 		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
@@ -23,6 +23,8 @@
 		683A6B4C1FA305280010F0A0 /* UICollectionView+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+HYAdd.h"; sourceTree = "<group>"; };
 		683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+HYAdd.m"; sourceTree = "<group>"; };
 		683A6B501FA307650010F0A0 /* HYComponentHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYComponentHeader.h; sourceTree = "<group>"; };
+		683A6B511FA309980010F0A0 /* HYHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomeViewController.h; sourceTree = "<group>"; };
+		683A6B521FA309980010F0A0 /* HYHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYHomeViewController.m; sourceTree = "<group>"; };
 		68BCC4E11FA0296600C145DA /* Fleshy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleshy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BCC4EB1FA0296700C145DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68BCC4ED1FA0296700C145DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,8 +33,6 @@
 		68BCC4F31FA0296700C145DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		68BCC4FB1FA02A9D00C145DA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		68BCC5011FA02B0900C145DA /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		68BCC5021FA02B0900C145DA /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Prefix.pch"; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
 		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
@@ -128,8 +128,8 @@
 		68BCC4FF1FA02AD100C145DA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				68BCC5011FA02B0900C145DA /* ViewController.h */,
-				68BCC5021FA02B0900C145DA /* ViewController.m */,
+				683A6B511FA309980010F0A0 /* HYHomeViewController.h */,
+				683A6B521FA309980010F0A0 /* HYHomeViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -293,10 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68BCC5031FA02B0900C145DA /* ViewController.m in Sources */,
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
+				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

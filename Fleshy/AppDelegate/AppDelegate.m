@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HYHomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window.rootViewController = [HYHomeViewController new];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -47,5 +50,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - Setter and Getter
+- (UIWindow *)window {
+    if (!_window) {
+        _window = [[UIWindow alloc] initWithFrame:kScreenBounds];
+        _window.backgroundColor = [UIColor whiteColor];
+    }
+    return _window;
+}
 
 @end

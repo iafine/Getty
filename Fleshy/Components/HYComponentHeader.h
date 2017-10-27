@@ -9,6 +9,7 @@
 #ifndef HYComponentHeader_h
 #define HYComponentHeader_h
 
+// Category
 #import "UICollectionView+HYAdd.h"
 
 #endif /* HYComponentHeader_h */

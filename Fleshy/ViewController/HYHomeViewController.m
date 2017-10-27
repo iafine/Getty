@@ -1,22 +1,21 @@
 //
-//  ViewController.m
+//  HYHomeViewController.m
 //  Fleshy
 //
-//  Created by Hyyy on 2017/10/25.
+//  Created by Hyyy on 2017/10/27.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "HYHomeViewController.h"
 #import "HYTimelineCollectionCell.h"
 
-
-@interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface HYHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 
-@implementation ViewController
+@implementation HYHomeViewController
 
 #pragma mark - LifeCycle
 - (void)viewDidLoad {

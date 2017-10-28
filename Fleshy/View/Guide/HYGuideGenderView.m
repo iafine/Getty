@@ -13,6 +13,9 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *tipLabel;
 
+@property (nonatomic, strong) UIImageView *maleImageView;
+@property (nonatomic, strong) UIImageView *femaleImageView;
+
 @end
 
 @implementation HYGuideGenderView
@@ -30,6 +33,8 @@
 - (void)initUI {
     [self addSubview:self.titleLabel];
     [self addSubview:self.tipLabel];
+    [self addSubview:self.maleImageView];
+    [self addSubview:self.femaleImageView];
 }
 
 - (void)initLayout {
@@ -42,6 +47,16 @@
         make.left.equalTo(self.mas_left).offset(15);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(@30);
+    }];
+    [self.maleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tipLabel.mas_bottom).offset(40);
+        make.centerX.equalTo(self.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(150, 150));
+    }];
+    [self.femaleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.maleImageView.mas_bottom).offset(40);
+        make.centerX.equalTo(self.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(150, 150));
     }];
 }
 
@@ -66,6 +81,20 @@
         _tipLabel.text = @"配合性别，可以获取更好的展示体验";
     }
     return _tipLabel;
+}
+
+- (UIImageView *)maleImageView {
+    if (!_maleImageView) {
+        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_male"]];
+    }
+    return _maleImageView;
+}
+
+- (UIImageView *)femaleImageView {
+    if (!_femaleImageView) {
+        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_female"]];
+    }
+    return _femaleImageView;
 }
 
 @end

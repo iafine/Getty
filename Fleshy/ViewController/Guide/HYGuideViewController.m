@@ -23,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav_icon"]];
+//    titleImageView.contentMode = UIViewContentModeScaleAspectFit;
+//    self.navigationItem.titleView = titleImageView;
+    
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.guideGenderView];
 }

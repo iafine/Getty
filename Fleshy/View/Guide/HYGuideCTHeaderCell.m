@@ -37,5 +37,9 @@
 }
 
 #pragma mark - Setter and Getter
+- (void)setCellData:(NSDictionary *)cellData {
+    _cellData = cellData;
+    
+}
 
 @end

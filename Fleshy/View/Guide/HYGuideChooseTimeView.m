@@ -60,6 +60,10 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HYGuideCTHeaderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYGuideCTHeaderCell cellID] forIndexPath:indexPath];
+    cell.cellData = [NSDictionary dictionary];
+    if (indexPath.row == 1) {
+        cell.backgroundColor = kMaleColor;
+    }
     return cell;
 }
 

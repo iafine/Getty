@@ -18,6 +18,11 @@
 #define kBlackColor  [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1.0]
 #define kRandomColor [UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1.0]
 
+#define kFemaleColor [UIColor colorWithRed:239.0 / 255.0 green:144.0 / 255.0 blue:141.0 / 255.0 alpha:1.0]
+#define kMaleColor [UIColor colorWithRed:239.0 / 255.0 green:144.0 / 255.0 blue:141.0 / 255.0 alpha:1.0]
+
+
+
 // 尺寸相关
 #define kScreenBounds [UIScreen mainScreen].bounds
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width

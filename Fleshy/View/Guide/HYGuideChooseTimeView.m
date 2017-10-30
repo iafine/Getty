@@ -31,18 +31,19 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    // 使头部居中显示
-    [self.collectionHeaderView setContentOffset:CGPointMake(160, 0)];
+    // 顶部居中
+    CGFloat offsetX = (self.collectionHeaderView.collectionViewLayout.collectionViewContentSize.width - CGRectGetWidth(self.collectionHeaderView.frame))/2;
+    [self.collectionHeaderView setContentOffset:CGPointMake(offsetX, 0)];
 }
 
 - (void)initUI {
     [self addSubview:self.collectionHeaderView];
-    [self.collectionHeaderView setContentOffset:CGPointMake(self.collectionHeaderView.contentSize.width/2, 0)];
+    [self.collectionHeaderView setContentInset:UIEdgeInsetsMake(0, (kScreenWidth - 200)/2, 0, (kScreenWidth - 200)/2)];
 }
 
 - (void)initLayout {
     [self.collectionHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(50);
+        make.top.equalTo(self.mas_top).offset(5);
         make.left.right.equalTo(self);
         make.height.mas_equalTo(@180);
     }];
@@ -76,7 +77,7 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(30, 30, 30, 30);
+    return UIEdgeInsetsMake(20, 0, 20, 0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,22 +85,22 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 30;
+    return 15;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 30;
+    return 0;
 }
 
 #pragma mark - Setter and Getter
 - (UICollectionView *)collectionHeaderView {
     if (!_collectionHeaderView) {
-        HYCollectionViewScaleLayout *scaleLayout = [[HYCollectionViewScaleLayout alloc] init];
-        scaleLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionHeaderView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:scaleLayout];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _collectionHeaderView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionHeaderView.delegate = self;
         _collectionHeaderView.dataSource = self;
-        _collectionHeaderView.backgroundColor = [UIColor whiteColor];
+        _collectionHeaderView.backgroundColor = kBgGrayColor;
         _collectionHeaderView.showsHorizontalScrollIndicator = NO;
         [_collectionHeaderView registerClass:[HYGuideCTHeaderCell class] forCellWithReuseIdentifier:[HYGuideCTHeaderCell cellID]];
     }

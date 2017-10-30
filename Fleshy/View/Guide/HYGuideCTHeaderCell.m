@@ -24,7 +24,8 @@
 }
 
 - (void)initUI {
-    self.backgroundColor = kRandomColor;
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.cornerRadius = 5;
 }
 
 - (void)initLayout {

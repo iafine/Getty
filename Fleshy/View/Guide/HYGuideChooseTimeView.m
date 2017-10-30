@@ -38,7 +38,7 @@
 
 - (void)initUI {
     [self addSubview:self.collectionHeaderView];
-    [self.collectionHeaderView setContentInset:UIEdgeInsetsMake(0, (kScreenWidth - 200)/2, 0, (kScreenWidth - 200)/2)];
+    [self.collectionHeaderView setContentInset:UIEdgeInsetsMake(0, (CGRectGetWidth(self.collectionHeaderView.frame) - 200)/2, 0, (CGRectGetWidth(self.collectionHeaderView.frame) - 200)/2)];
 }
 
 - (void)initLayout {

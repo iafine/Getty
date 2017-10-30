@@ -16,6 +16,9 @@
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
+		68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */; };
+		68C2263E1FA6D65A0037B963 /* HYGuideCTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263D1FA6D65A0037B963 /* HYGuideCTHeaderCell.m */; };
+		68C226411FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C226401FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m */; };
 		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
@@ -41,6 +44,12 @@
 		68BCC4FB1FA02A9D00C145DA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Prefix.pch"; sourceTree = "<group>"; };
+		68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideChooseTimeView.h; sourceTree = "<group>"; };
+		68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideChooseTimeView.m; sourceTree = "<group>"; };
+		68C2263C1FA6D65A0037B963 /* HYGuideCTHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideCTHeaderCell.h; sourceTree = "<group>"; };
+		68C2263D1FA6D65A0037B963 /* HYGuideCTHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideCTHeaderCell.m; sourceTree = "<group>"; };
+		68C2263F1FA6FBAE0037B963 /* HYCollectionViewScaleLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCollectionViewScaleLayout.h; sourceTree = "<group>"; };
+		68C226401FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCollectionViewScaleLayout.m; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
 		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
 		68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTimelineCollectionCell.m; sourceTree = "<group>"; };
@@ -111,6 +120,12 @@
 			children = (
 				683A6B5B1FA31F3A0010F0A0 /* HYGuideGenderView.h */,
 				683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */,
+				68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */,
+				68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */,
+				68C2263C1FA6D65A0037B963 /* HYGuideCTHeaderCell.h */,
+				68C2263D1FA6D65A0037B963 /* HYGuideCTHeaderCell.m */,
+				68C2263F1FA6FBAE0037B963 /* HYCollectionViewScaleLayout.h */,
+				68C226401FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -339,9 +354,12 @@
 				683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */,
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
+				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
 				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
+				68C2263E1FA6D65A0037B963 /* HYGuideCTHeaderCell.m in Sources */,
+				68C226411FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 			);
@@ -469,7 +487,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDD49F4BC31CF4987BF54A4F /* Pods-Fleshy.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WUJ6929DVQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -486,7 +503,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WUJ6929DVQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

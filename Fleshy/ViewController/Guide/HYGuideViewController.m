@@ -8,12 +8,14 @@
 
 #import "HYGuideViewController.h"
 #import "HYGuideGenderView.h"
+#import "HYGuideChooseTimeView.h"
 
 @interface HYGuideViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) HYGuideGenderView *guideGenderView;   // 性别引导页面
+@property (nonatomic, strong) HYGuideChooseTimeView *chooseTimeView;    // 时间选择页面
 
 @end
 
@@ -29,6 +31,8 @@
     
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.guideGenderView];
+    [self.scrollView addSubview:self.chooseTimeView];
+    [self.scrollView setContentOffset:CGPointMake(kScreenWidth, 0)];
 }
 
 #pragma mark - Setter and Getter
@@ -52,6 +56,13 @@
         _guideGenderView = [[HYGuideGenderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64)];
     }
     return _guideGenderView;
+}
+
+- (HYGuideChooseTimeView *)chooseTimeView {
+    if (!_chooseTimeView) {
+        _chooseTimeView = [[HYGuideChooseTimeView alloc] initWithFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight - 64)];
+    }
+    return _chooseTimeView;
 }
 
 @end

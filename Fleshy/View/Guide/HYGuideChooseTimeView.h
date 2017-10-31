@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const HYGuideChooseTimeNextEvent;
+
 @interface HYGuideChooseTimeView : UIView
 
 @end

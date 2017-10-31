@@ -12,6 +12,7 @@
 		683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */; };
 		683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */; };
 		683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */; };
+		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
 		68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4ED1FA0296700C145DA /* Assets.xcassets */; };
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
@@ -36,6 +37,8 @@
 		683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideGenderView.m; sourceTree = "<group>"; };
 		683A6B5E1FA3309F0010F0A0 /* UINavigationBar+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+HYAdd.h"; sourceTree = "<group>"; };
 		683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+HYAdd.m"; sourceTree = "<group>"; };
+		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
+		68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+HYAdd.m"; sourceTree = "<group>"; };
 		68BCC4E11FA0296600C145DA /* Fleshy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleshy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BCC4ED1FA0296700C145DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68BCC4F01FA0296700C145DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				683A6B4D1FA305280010F0A0 /* UICollectionView+HYAdd.m */,
 				683A6B5E1FA3309F0010F0A0 /* UINavigationBar+HYAdd.h */,
 				683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */,
+				68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */,
+				68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				68C226411FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
+				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

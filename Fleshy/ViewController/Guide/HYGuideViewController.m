@@ -32,7 +32,17 @@
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.guideGenderView];
     [self.scrollView addSubview:self.chooseTimeView];
-    [self.scrollView setContentOffset:CGPointMake(kScreenWidth, 0)];
+}
+
+#pragma mark - Events
+- (void)hy_routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo {
+    if ([HYGuideGenderNextEvent isEqualToString:eventName]) {
+        [self.scrollView setContentOffset:CGPointMake(kScreenWidth, 0) animated:YES];
+    }else if ([HYGuideChooseTimeNextEvent isEqualToString:eventName]) {
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    }else {
+        [super hy_routerEventWithName:eventName userInfo:userInfo];
+    }
 }
 
 #pragma mark - Setter and Getter

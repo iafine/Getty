@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const HYGuideGenderNextEvent;
+
 @interface HYGuideGenderView : UIView
 
 @end

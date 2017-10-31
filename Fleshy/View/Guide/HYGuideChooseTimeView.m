@@ -10,9 +10,13 @@
 #import "HYGuideCTHeaderCell.h"
 #import "HYCollectionViewScaleLayout.h"
 
+NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
+
 @interface HYGuideChooseTimeView ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionHeaderView;
+
+@property (nonatomic, strong) UIButton *nextBtn;
 
 @end
 
@@ -38,6 +42,8 @@
 
 - (void)initUI {
     [self addSubview:self.collectionHeaderView];
+    [self addSubview:self.nextBtn];
+    
     [self.collectionHeaderView setContentInset:UIEdgeInsetsMake(0, (CGRectGetWidth(self.collectionHeaderView.frame) - 200)/2, 0, (CGRectGetWidth(self.collectionHeaderView.frame) - 200)/2)];
 }
 
@@ -46,6 +52,11 @@
         make.top.equalTo(self.mas_top).offset(5);
         make.left.right.equalTo(self);
         make.height.mas_equalTo(@180);
+    }];
+    [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(-30);
+        make.centerX.equalTo(self.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(200, 40));
     }];
 }
 
@@ -96,6 +107,10 @@
     return 0;
 }
 
+- (void)clickedNextBtnHandler {
+    [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
+}
+
 #pragma mark - Setter and Getter
 - (UICollectionView *)collectionHeaderView {
     if (!_collectionHeaderView) {
@@ -109,6 +124,20 @@
         [_collectionHeaderView registerClass:[HYGuideCTHeaderCell class] forCellWithReuseIdentifier:[HYGuideCTHeaderCell cellID]];
     }
     return _collectionHeaderView;
+}
+
+- (UIButton *)nextBtn {
+    if (!_nextBtn) {
+        _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _nextBtn.backgroundColor = kMaleColor;
+        [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [_nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _nextBtn.titleLabel.font = [UIFont systemFontOfSize:kTextSizeBig];
+        _nextBtn.layer.cornerRadius = 20;
+        _nextBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [_nextBtn addTarget:self action:@selector(clickedNextBtnHandler) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextBtn;
 }
 
 @end

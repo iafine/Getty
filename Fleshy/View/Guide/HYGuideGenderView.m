@@ -8,6 +8,8 @@
 
 #import "HYGuideGenderView.h"
 
+NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
+
 @interface HYGuideGenderView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -15,6 +17,8 @@
 
 @property (nonatomic, strong) UIImageView *maleImageView;
 @property (nonatomic, strong) UIImageView *femaleImageView;
+
+@property (nonatomic, strong) UIButton *nextBtn;
 
 @end
 
@@ -35,6 +39,7 @@
     [self addSubview:self.tipLabel];
     [self addSubview:self.maleImageView];
     [self addSubview:self.femaleImageView];
+    [self addSubview:self.nextBtn];
 }
 
 - (void)initLayout {
@@ -58,6 +63,16 @@
         make.centerX.equalTo(self.mas_centerX);
         make.size.mas_equalTo(CGSizeMake(150, 150));
     }];
+    [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(-30);
+        make.centerX.equalTo(self.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(200, 40));
+    }];
+}
+
+#pragma mark - Events
+- (void)clickedNextBtnHandler {
+    [self hy_routerEventWithName:HYGuideGenderNextEvent userInfo:nil];
 }
 
 #pragma mark - Setter and Getter
@@ -85,16 +100,32 @@
 
 - (UIImageView *)maleImageView {
     if (!_maleImageView) {
-        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_male"]];
+//        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_male"]];
+        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
     }
     return _maleImageView;
 }
 
 - (UIImageView *)femaleImageView {
     if (!_femaleImageView) {
-        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_female"]];
+//        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_female"]];
+        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
     }
     return _femaleImageView;
+}
+
+- (UIButton *)nextBtn {
+    if (!_nextBtn) {
+        _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _nextBtn.backgroundColor = kMaleColor;
+        [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [_nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _nextBtn.titleLabel.font = [UIFont systemFontOfSize:kTextSizeBig];
+        _nextBtn.layer.cornerRadius = 20;
+        _nextBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [_nextBtn addTarget:self action:@selector(clickedNextBtnHandler) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nextBtn;
 }
 
 @end

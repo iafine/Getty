@@ -14,4 +14,6 @@
 #import "UINavigationBar+HYAdd.h"
 #import "UIResponder+HYAdd.h"
 
+#import "HYCacheHelper.h"
+
 #endif /* HYComponentHeader_h */

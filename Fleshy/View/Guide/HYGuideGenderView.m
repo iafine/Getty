@@ -10,6 +10,8 @@
 
 NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
 
+// 选中性别的缓存key
+static NSString *const kHYGuideGenderCacheKey = @"kHYGuideGenderCacheKey";
 @interface HYGuideGenderView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -75,6 +77,18 @@ NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
     [self hy_routerEventWithName:HYGuideGenderNextEvent userInfo:nil];
 }
 
+- (void)clickedMaleImageViewHandler {
+    self.nextBtn.backgroundColor = kMaleColor;
+    
+    [HYCacheHelper setCacheValue:@"male" cacheKey:kHYGuideGenderCacheKey cacheType:HYCacheDisk];
+}
+
+- (void)clickedFemaleImageViewHandler {
+    self.nextBtn.backgroundColor = kFemaleColor;
+    
+    [HYCacheHelper setCacheValue:@"female" cacheKey:kHYGuideGenderCacheKey cacheType:HYCacheDisk];
+}
+
 #pragma mark - Setter and Getter
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
@@ -102,6 +116,12 @@ NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
     if (!_maleImageView) {
 //        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_male"]];
         _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+        _maleImageView.layer.cornerRadius = 150/2;
+        _maleImageView.backgroundColor = kMaleColor;
+        _maleImageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedMaleImageViewHandler)];
+        [_maleImageView addGestureRecognizer:tapGR];
     }
     return _maleImageView;
 }
@@ -110,6 +130,12 @@ NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
     if (!_femaleImageView) {
 //        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"guide_gender_female"]];
         _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+        _femaleImageView.layer.cornerRadius = 150/2;
+        _femaleImageView.backgroundColor = kFemaleColor;
+        _femaleImageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedFemaleImageViewHandler)];
+        [_femaleImageView addGestureRecognizer:tapGR];
     }
     return _femaleImageView;
 }
@@ -117,7 +143,7 @@ NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
 - (UIButton *)nextBtn {
     if (!_nextBtn) {
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _nextBtn.backgroundColor = kMaleColor;
+        _nextBtn.backgroundColor = [UIColor clearColor];
         [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [_nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _nextBtn.titleLabel.font = [UIFont systemFontOfSize:kTextSizeBig];

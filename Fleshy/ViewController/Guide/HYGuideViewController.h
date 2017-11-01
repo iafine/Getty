@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+// 更改颜色事件名
+extern NSString *const HYGuideChangeColorEvent;
+
 @interface HYGuideViewController : UIViewController
 
 @end

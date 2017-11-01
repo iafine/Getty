@@ -10,6 +10,8 @@
 #import "HYGuideGenderView.h"
 #import "HYGuideChooseTimeView.h"
 
+NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
+
 @interface HYGuideViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -38,11 +40,19 @@
 - (void)hy_routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo {
     if ([HYGuideGenderNextEvent isEqualToString:eventName]) {
         [self.scrollView setContentOffset:CGPointMake(kScreenWidth, 0) animated:YES];
+        
+        [self refreshView];
     }else if ([HYGuideChooseTimeNextEvent isEqualToString:eventName]) {
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        
     }else {
         [super hy_routerEventWithName:eventName userInfo:userInfo];
     }
+}
+
+#pragma mark - Private Methods
+- (void)refreshView {
+    [self.chooseTimeView refreshView];
 }
 
 #pragma mark - Setter and Getter

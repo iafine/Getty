@@ -60,6 +60,11 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
     }];
 }
 
+#pragma mark - Public Methods
+- (void)refreshView {
+    self.nextBtn.backgroundColor = kMainColor;
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -107,6 +112,7 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
     return 0;
 }
 
+#pragma mark - Events
 - (void)clickedNextBtnHandler {
     [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
 }
@@ -129,7 +135,7 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
 - (UIButton *)nextBtn {
     if (!_nextBtn) {
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _nextBtn.backgroundColor = kMaleColor;
+        _nextBtn.backgroundColor = kMainColor;
         [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [_nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _nextBtn.titleLabel.font = [UIFont systemFontOfSize:kTextSizeBig];

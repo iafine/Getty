@@ -23,8 +23,6 @@
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
 		68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */; };
-		68C2263E1FA6D65A0037B963 /* HYGuideCTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263D1FA6D65A0037B963 /* HYGuideCTHeaderCell.m */; };
-		68C226411FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C226401FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m */; };
 		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
@@ -64,10 +62,6 @@
 		68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Prefix.pch"; sourceTree = "<group>"; };
 		68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideChooseTimeView.h; sourceTree = "<group>"; };
 		68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideChooseTimeView.m; sourceTree = "<group>"; };
-		68C2263C1FA6D65A0037B963 /* HYGuideCTHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideCTHeaderCell.h; sourceTree = "<group>"; };
-		68C2263D1FA6D65A0037B963 /* HYGuideCTHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideCTHeaderCell.m; sourceTree = "<group>"; };
-		68C2263F1FA6FBAE0037B963 /* HYCollectionViewScaleLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCollectionViewScaleLayout.h; sourceTree = "<group>"; };
-		68C226401FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCollectionViewScaleLayout.m; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
 		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
 		68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTimelineCollectionCell.m; sourceTree = "<group>"; };
@@ -142,10 +136,6 @@
 				683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */,
 				68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */,
 				68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */,
-				68C2263C1FA6D65A0037B963 /* HYGuideCTHeaderCell.h */,
-				68C2263D1FA6D65A0037B963 /* HYGuideCTHeaderCell.m */,
-				68C2263F1FA6FBAE0037B963 /* HYCollectionViewScaleLayout.h */,
-				68C226401FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -414,10 +404,8 @@
 				68AE5BBD1FA99C05007C6FCE /* YYCache.m in Sources */,
 				68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */,
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
-				68C2263E1FA6D65A0037B963 /* HYGuideCTHeaderCell.m in Sources */,
 				68AE5BBF1FA99C05007C6FCE /* YYMemoryCache.m in Sources */,
 				68AE5BBE1FA99C05007C6FCE /* YYKVStorage.m in Sources */,
-				68C226411FA6FBAE0037B963 /* HYCollectionViewScaleLayout.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,

@@ -7,14 +7,22 @@
 //
 
 #import "HYGuideChooseTimeView.h"
-#import "HYGuideCTHeaderCell.h"
-#import "HYCollectionViewScaleLayout.h"
 
 NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
 
-@interface HYGuideChooseTimeView ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+// tableView标示
+static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
-@property (nonatomic, strong) UICollectionView *collectionHeaderView;
+@interface HYGuideChooseTimeView ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *tipLabel;
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSArray *dataArray;
+
+// 计划名称
+@property (nonatomic, strong) UITextField *nameField;
 
 @property (nonatomic, strong) UIButton *nextBtn;
 
@@ -32,26 +40,29 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    // 顶部居中
-    CGFloat offsetX = (self.collectionHeaderView.collectionViewLayout.collectionViewContentSize.width - CGRectGetWidth(self.collectionHeaderView.frame))/2;
-    [self.collectionHeaderView setContentOffset:CGPointMake(offsetX, 0)];
-}
-
 - (void)initUI {
-    [self addSubview:self.collectionHeaderView];
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.tipLabel];
+    [self addSubview:self.tableView];
     [self addSubview:self.nextBtn];
-    
-    [self.collectionHeaderView setContentInset:UIEdgeInsetsMake(0, (CGRectGetWidth(self.collectionHeaderView.frame) - 200)/2, 0, (CGRectGetWidth(self.collectionHeaderView.frame) - 200)/2)];
 }
 
 - (void)initLayout {
-    [self.collectionHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(5);
-        make.left.right.equalTo(self);
-        make.height.mas_equalTo(@180);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(15);
+        make.top.equalTo(self.mas_top).offset(15);
+        make.height.mas_equalTo(@44);
+    }];
+    [self.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(15);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
+        make.height.mas_equalTo(@30);
+    }];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.tipLabel.mas_bottom).offset(20);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.nextBtn.mas_top).offset(5);
     }];
     [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.mas_bottom).offset(-30);
@@ -60,56 +71,47 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
     }];
 }
 
-#pragma mark - Public Methods
-- (void)refreshView {
-    self.nextBtn.backgroundColor = kMainColor;
-}
-
-#pragma mark - UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 3;
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    HYGuideCTHeaderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYGuideCTHeaderCell cellID] forIndexPath:indexPath];
-    cell.cellData = [NSDictionary dictionary];
-    if (indexPath.row == 1) {
-        cell.backgroundColor = kMaleColor;
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+    return 60;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewIdentify];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kTableViewIdentify];
+        cell.textLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if (kind == UICollectionElementKindSectionHeader) {
-        return nil;
-    }else {
-        return nil;
-    }
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.1f;
 }
 
-#pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1f;
 }
 
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(20, 0, 20, 0);
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(200, 120);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 15;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
+#pragma mark - Public Methods
+- (void)refreshView {
+    self.nextBtn.backgroundColor = kMainColor;
 }
 
 #pragma mark - Events
@@ -118,18 +120,44 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
 }
 
 #pragma mark - Setter and Getter
-- (UICollectionView *)collectionHeaderView {
-    if (!_collectionHeaderView) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionHeaderView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        _collectionHeaderView.delegate = self;
-        _collectionHeaderView.dataSource = self;
-        _collectionHeaderView.backgroundColor = kBgGrayColor;
-        _collectionHeaderView.showsHorizontalScrollIndicator = NO;
-        [_collectionHeaderView registerClass:[HYGuideCTHeaderCell class] forCellWithReuseIdentifier:[HYGuideCTHeaderCell cellID]];
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = [UIFont systemFontOfSize:kTextSizeLarge weight:UIFontWeightBold];
+        _titleLabel.textColor = kBlackColor;
+        _titleLabel.adjustsFontSizeToFitWidth = YES;
+        _titleLabel.text = @"制定计划";
     }
-    return _collectionHeaderView;
+    return _titleLabel;
+}
+
+- (UILabel *)tipLabel {
+    if (!_tipLabel) {
+        _tipLabel = [[UILabel alloc] init];
+        _tipLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
+        _tipLabel.textColor = kDeepGrayColor;
+        _tipLabel.adjustsFontSizeToFitWidth = YES;
+        _tipLabel.text = @"一滴滴的坚持努力，才造就最后的蜕变";
+    }
+    return _tipLabel;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.scrollEnabled = NO;
+        _tableView.tableFooterView = [UIView new];
+    }
+    return _tableView;
+}
+
+- (NSArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray =@[@"计划名称", @"开始时间", @"结束时间", @"持续时间"];
+    }
+    return _dataArray;
 }
 
 - (UIButton *)nextBtn {

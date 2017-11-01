@@ -266,7 +266,7 @@
 				TargetAttributes = {
 					68BCC4E01FA0296600C145DA = {
 						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -493,14 +493,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDD49F4BC31CF4987BF54A4F /* Pods-Fleshy.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WUJ6929DVQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2DXV7QR3FC;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fleshy/Fleshy-Prefix.pch";
 				INFOPLIST_FILE = Fleshy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshyios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "68240a1c-efeb-4f4a-bc4e-b43df2de7cb2";
+				PROVISIONING_PROFILE_SPECIFIER = Fleshy_Development;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -509,14 +512,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WUJ6929DVQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2DXV7QR3FC;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fleshy/Fleshy-Prefix.pch";
 				INFOPLIST_FILE = Fleshy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshyios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "09ff8363-11de-4e64-a976-53bcddceff08";
+				PROVISIONING_PROFILE_SPECIFIER = Fleshy_Distribution;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

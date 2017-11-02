@@ -107,6 +107,11 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 0) {
+        // 计划名称
+        [self openEditNameAlert];
+    }
 }
 
 #pragma mark - Public Methods
@@ -117,6 +122,21 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 #pragma mark - Events
 - (void)clickedNextBtnHandler {
     [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
+}
+
+- (void)openEditNameAlert {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.borderStyle = UITextBorderStyleNone;
+        textField.placeholder = @"请输入一个满意的名称";
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    UIAlertAction *finishAction = [UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:finishAction];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVC animated:YES completion:nil];
 }
 
 #pragma mark - Setter and Getter

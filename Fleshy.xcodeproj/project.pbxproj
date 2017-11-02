@@ -89,6 +89,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		68392CEE1FAAB646004C548D /* HYAlertView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HYAlertView;
+			sourceTree = "<group>";
+		};
 		683A6B4B1FA304EF0010F0A0 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +253,7 @@
 		68BCC5051FA030A200C145DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				68392CEE1FAAB646004C548D /* HYAlertView */,
 				68AE5BC01FA99EEF007C6FCE /* HYCacheHelper */,
 				683A6B4B1FA304EF0010F0A0 /* Category */,
 				683A6B501FA307650010F0A0 /* HYComponentHeader.h */,

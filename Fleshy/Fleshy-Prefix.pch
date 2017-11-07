@@ -15,7 +15,7 @@
 // 第三方库
 #import "Masonry.h"
 #import "AFNetworking.h"
-#import "YYCache.h"
+#import <YYKit/YYKit.h>
 
 // 常量头文件
 #import "HYConstantsHeader.h"

@@ -7,6 +7,7 @@ target 'Fleshy' do
 
 pod 'Masonry'
 pod 'AFNetworking', '~> 3.0'
+pod 'YYKit'
 
 end
 

@@ -14,10 +14,6 @@
 		683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */; };
 		6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841ECD11FB1635A008645E5 /* HYDatePickerView.m */; };
 		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
-		68AE5BBC1FA99C05007C6FCE /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BB41FA99C05007C6FCE /* YYDiskCache.m */; };
-		68AE5BBD1FA99C05007C6FCE /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BB61FA99C05007C6FCE /* YYCache.m */; };
-		68AE5BBE1FA99C05007C6FCE /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BBA1FA99C05007C6FCE /* YYKVStorage.m */; };
-		68AE5BBF1FA99C05007C6FCE /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BBB1FA99C05007C6FCE /* YYMemoryCache.m */; };
 		68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BC21FA99F17007C6FCE /* HYCacheHelper.m */; };
 		68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4ED1FA0296700C145DA /* Assets.xcassets */; };
 		68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */; };
@@ -45,14 +41,6 @@
 		6841ECD11FB1635A008645E5 /* HYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDatePickerView.m; sourceTree = "<group>"; };
 		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
 		68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+HYAdd.m"; sourceTree = "<group>"; };
-		68AE5BB41FA99C05007C6FCE /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
-		68AE5BB51FA99C05007C6FCE /* YYKVStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKVStorage.h; sourceTree = "<group>"; };
-		68AE5BB61FA99C05007C6FCE /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
-		68AE5BB71FA99C05007C6FCE /* YYMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMemoryCache.h; sourceTree = "<group>"; };
-		68AE5BB81FA99C05007C6FCE /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
-		68AE5BB91FA99C05007C6FCE /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
-		68AE5BBA1FA99C05007C6FCE /* YYKVStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYKVStorage.m; sourceTree = "<group>"; };
-		68AE5BBB1FA99C05007C6FCE /* YYMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMemoryCache.m; sourceTree = "<group>"; };
 		68AE5BC11FA99F17007C6FCE /* HYCacheHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCacheHelper.h; sourceTree = "<group>"; };
 		68AE5BC21FA99F17007C6FCE /* HYCacheHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCacheHelper.m; sourceTree = "<group>"; };
 		68BCC4E11FA0296600C145DA /* Fleshy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleshy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,24 +151,8 @@
 		68AE5BB21FA99B9E007C6FCE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				68AE5BB31FA99C05007C6FCE /* YYCache */,
 			);
 			path = Vendor;
-			sourceTree = "<group>";
-		};
-		68AE5BB31FA99C05007C6FCE /* YYCache */ = {
-			isa = PBXGroup;
-			children = (
-				68AE5BB41FA99C05007C6FCE /* YYDiskCache.m */,
-				68AE5BB51FA99C05007C6FCE /* YYKVStorage.h */,
-				68AE5BB61FA99C05007C6FCE /* YYCache.m */,
-				68AE5BB71FA99C05007C6FCE /* YYMemoryCache.h */,
-				68AE5BB81FA99C05007C6FCE /* YYDiskCache.h */,
-				68AE5BB91FA99C05007C6FCE /* YYCache.h */,
-				68AE5BBA1FA99C05007C6FCE /* YYKVStorage.m */,
-				68AE5BBB1FA99C05007C6FCE /* YYMemoryCache.m */,
-			);
-			path = YYCache;
 			sourceTree = "<group>";
 		};
 		68AE5BC01FA99EEF007C6FCE /* HYCacheHelper */ = {
@@ -422,16 +394,12 @@
 				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
 				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,
-				68AE5BBD1FA99C05007C6FCE /* YYCache.m in Sources */,
 				68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */,
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
-				68AE5BBF1FA99C05007C6FCE /* YYMemoryCache.m in Sources */,
-				68AE5BBE1FA99C05007C6FCE /* YYKVStorage.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,
-				68AE5BBC1FA99C05007C6FCE /* YYDiskCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

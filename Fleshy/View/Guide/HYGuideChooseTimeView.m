@@ -14,7 +14,7 @@ NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
 // tableView标示
 static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
-@interface HYGuideChooseTimeView ()<UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface HYGuideChooseTimeView ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate>
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *tipLabel;
@@ -114,21 +114,16 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         [self showEditNameAlert];
     }else if (indexPath.row == 1) {
         // 开始时间
-        [self showDatePickerAlert];
+        [self showDatePickerAlert:@"请选择开始时间" tag:1001];
+    }else if (indexPath.row == 2) {
+        // 结束时间
+        [self showDatePickerAlert:@"请选择结束时间" tag:1002];
     }
 }
 
-#pragma mark - UIPickerViewDelegate
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 10;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return 10;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return @"测试";
+#pragma mark - HYDatePickerViewDelegate
+- (void)didSelectdDate:(NSDate *)date {
+    NSLog(@"%@", date);
 }
 
 #pragma mark - Public Methods
@@ -170,8 +165,10 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }
 }
 
-- (void)showDatePickerAlert {
-    HYDatePickerView *pickerView = [[HYDatePickerView alloc] initWithTitle:@"请选择开始时间"];
+- (void)showDatePickerAlert:(NSString *)title tag:(NSInteger)tag  {
+    HYDatePickerView *pickerView = [[HYDatePickerView alloc] initWithTitle:title];
+    pickerView.delegate = self;
+    pickerView.tag = tag;
     [pickerView show];
 }
 

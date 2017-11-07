@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HYDatePickerViewDelegate <NSObject>
+
+- (void)didSelectdDate:(NSDate *)date;
+
+@end
+
 @interface HYDatePickerView : UIView
+
+@property (nonatomic, weak) id<HYDatePickerViewDelegate> delegate;
 
 - (instancetype)initWithTitle:(NSString *)title;
 

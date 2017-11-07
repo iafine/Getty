@@ -33,6 +33,7 @@
         [self.contentView addSubview:self.okBtn];
         
         self.contentView.center = self.center;
+        self.titleLabel.text = title;
     }
     return self;
 }
@@ -59,22 +60,18 @@
 }
 
 #pragma mark - Events
-- (void)clickedCancelBtnHandler {
-    [self dismiss];
-}
-
 - (void)clickedOKBtnHandler {
+    if ([self.delegate respondsToSelector:@selector(didSelectdDate:)]) {
+        [self.delegate didSelectdDate:self.pickerView.date];
+    }
     [self dismiss];
 }
 
 - (void)pickerViewValueChange {
-    //创建一个日期格式
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    //设置日期的显示格式
-    fmt.dateFormat = @"hh-mm-ss";
-    //将日期转为指定格式显示
-    NSString *dateStr = [fmt stringFromDate:self.pickerView.date];
-    self.titleLabel.text = dateStr;
+//    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+//    fmt.dateFormat = @"HH:mm";
+//    NSString *dateStr = [fmt stringFromDate:self.pickerView.date];
+//    self.titleLabel.text = dateStr;
 }
 
 #pragma mark - Setter and Getter
@@ -82,6 +79,8 @@
     if (!_contentView) {
         _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kHYContentWidth, kHYContentHeight)];
         _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.layer.cornerRadius = 6;
+        _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
 }

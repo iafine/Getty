@@ -213,8 +213,8 @@
 		68BCC4FE1FA02AC500C145DA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				683A6B5A1FA31E030010F0A0 /* Guide */,
 				683A6B591FA31DFC0010F0A0 /* Home */,
+				683A6B5A1FA31E030010F0A0 /* Guide */,
 			);
 			path = View;
 			sourceTree = "<group>";

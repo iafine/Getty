@@ -41,12 +41,22 @@
 #pragma mark - Public Methods
 - (void)show {
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
-    self.contentView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+    
+    CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    popAnimation.duration = 0.4;
+    popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f, 1.1f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9f, 0.9f, 1.0f)],
+                            [NSValue valueWithCATransform3D:CATransform3DIdentity]];
+    popAnimation.keyTimes = @[@0.0f, @0.5f, @0.75f, @1.0f];
+    popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [self.contentView.layer addAnimation:popAnimation forKey:nil];
+    
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.contentView.transform = CGAffineTransformIdentity;
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     } completion:^(BOOL finished){
-        // do something once the animation finishes, put it here
     }];
 }
 

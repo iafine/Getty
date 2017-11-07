@@ -12,6 +12,7 @@
 		683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */; };
 		683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */; };
 		683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */; };
+		6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841ECD11FB1635A008645E5 /* HYDatePickerView.m */; };
 		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
 		68AE5BBC1FA99C05007C6FCE /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BB41FA99C05007C6FCE /* YYDiskCache.m */; };
 		68AE5BBD1FA99C05007C6FCE /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BB61FA99C05007C6FCE /* YYCache.m */; };
@@ -40,6 +41,8 @@
 		683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideGenderView.m; sourceTree = "<group>"; };
 		683A6B5E1FA3309F0010F0A0 /* UINavigationBar+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+HYAdd.h"; sourceTree = "<group>"; };
 		683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+HYAdd.m"; sourceTree = "<group>"; };
+		6841ECD01FB1635A008645E5 /* HYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDatePickerView.h; sourceTree = "<group>"; };
+		6841ECD11FB1635A008645E5 /* HYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDatePickerView.m; sourceTree = "<group>"; };
 		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
 		68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+HYAdd.m"; sourceTree = "<group>"; };
 		68AE5BB41FA99C05007C6FCE /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		68392CEE1FAAB646004C548D /* HYAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				6841ECCF1FB1633C008645E5 /* HYDatePickView */,
 			);
 			path = HYAlertView;
 			sourceTree = "<group>";
@@ -145,6 +149,15 @@
 				68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */,
 			);
 			path = Guide;
+			sourceTree = "<group>";
+		};
+		6841ECCF1FB1633C008645E5 /* HYDatePickView */ = {
+			isa = PBXGroup;
+			children = (
+				6841ECD01FB1635A008645E5 /* HYDatePickerView.h */,
+				6841ECD11FB1635A008645E5 /* HYDatePickerView.m */,
+			);
+			path = HYDatePickView;
 			sourceTree = "<group>";
 		};
 		68AE5BB21FA99B9E007C6FCE /* Vendor */ = {
@@ -415,6 +428,7 @@
 				68AE5BBF1FA99C05007C6FCE /* YYMemoryCache.m in Sources */,
 				68AE5BBE1FA99C05007C6FCE /* YYKVStorage.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
+				6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,
 				68AE5BBC1FA99C05007C6FCE /* YYDiskCache.m in Sources */,

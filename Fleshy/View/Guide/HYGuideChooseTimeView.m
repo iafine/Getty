@@ -7,13 +7,14 @@
 //
 
 #import "HYGuideChooseTimeView.h"
+#import "HYDatePickerView.h"
 
 NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
 
 // tableView标示
 static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
-@interface HYGuideChooseTimeView ()<UITableViewDelegate, UITableViewDataSource>
+@interface HYGuideChooseTimeView ()<UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *tipLabel;
@@ -110,8 +111,24 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     
     if (indexPath.row == 0) {
         // 计划名称
-        [self openEditNameAlert];
+        [self showEditNameAlert];
+    }else if (indexPath.row == 1) {
+        // 开始时间
+        [self showDatePickerAlert];
     }
+}
+
+#pragma mark - UIPickerViewDelegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 10;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return 10;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return @"测试";
 }
 
 #pragma mark - Public Methods
@@ -124,11 +141,14 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
 }
 
-- (void)openEditNameAlert {
+#pragma mark - Private Methods
+- (void)showEditNameAlert {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     [alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.borderStyle = UITextBorderStyleNone;
         textField.placeholder = @"请输入一个满意的名称";
+        textField.textAlignment = NSTextAlignmentCenter;
+        textField.font = [UIFont systemFontOfSize:kTextSizeMedium];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
@@ -137,6 +157,22 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     [alertVC addAction:cancelAction];
     [alertVC addAction:finishAction];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVC animated:YES completion:nil];
+    
+    // 去掉输入框边框
+    for (UIView *textfield in alertVC.textFields) {
+        UIView *container = textfield.superview;
+        UIView *effectView = container.superview.subviews[0];
+        
+        if (effectView && [effectView class] == [UIVisualEffectView class]){
+            container.backgroundColor = [UIColor clearColor];
+            [effectView removeFromSuperview];
+        }
+    }
+}
+
+- (void)showDatePickerAlert {
+    HYDatePickerView *pickerView = [[HYDatePickerView alloc] initWithTitle:@"请选择开始时间"];
+    [pickerView show];
 }
 
 #pragma mark - Setter and Getter

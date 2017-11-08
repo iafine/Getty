@@ -71,8 +71,8 @@
 
 #pragma mark - Events
 - (void)clickedOKBtnHandler {
-    if ([self.delegate respondsToSelector:@selector(didSelectdDate:)]) {
-        [self.delegate didSelectdDate:self.pickerView.date];
+    if ([self.delegate respondsToSelector:@selector(datePicker:didSelectdDate:)]) {
+        [self.delegate datePicker:self didSelectdDate:self.pickerView.date];
     }
     [self dismiss];
 }

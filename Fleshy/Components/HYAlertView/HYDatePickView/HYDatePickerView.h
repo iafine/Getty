@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HYDatePickerView;
 @protocol HYDatePickerViewDelegate <NSObject>
 
-- (void)didSelectdDate:(NSDate *)date;
+- (void)datePicker:(HYDatePickerView *)pickerView didSelectdDate:(NSDate *)date;
 
 @end
 

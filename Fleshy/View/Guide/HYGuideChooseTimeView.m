@@ -22,10 +22,13 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSArray *dataArray;
 
-// 计划名称
-@property (nonatomic, strong) UITextField *nameField;
-
 @property (nonatomic, strong) UIButton *nextBtn;
+
+// 数据源
+@property (nonatomic, copy) NSString *planName;
+@property (nonatomic, copy) NSString *startDateStr;
+@property (nonatomic, copy) NSString *endDateStr;
+@property (nonatomic, copy) NSString *durationDays;
 
 @end
 
@@ -94,6 +97,16 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        cell.detailTextLabel.text = self.planName;
+    }else if (indexPath.row == 1) {
+        cell.detailTextLabel.text = self.startDateStr;
+    }else if (indexPath.row == 2) {
+        cell.detailTextLabel.text = self.endDateStr;
+    }else if (indexPath.row == 3) {
+        cell.detailTextLabel.text = self.durationDays;
+    }else {
+    }
     return cell;
 }
 
@@ -125,8 +138,16 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 }
 
 #pragma mark - HYDatePickerViewDelegate
-- (void)didSelectdDate:(NSDate *)date {
-    NSLog(@"%@", date);
+- (void)datePicker:(HYDatePickerView *)pickerView didSelectdDate:(NSDate *)date {
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"HH:mm";
+    //    NSString *dateStr = [fmt stringFromDate:self.pickerView.date];
+    if (pickerView.tag == 1001) {
+        self.startDateStr = [fmt stringFromDate:date];
+    }else {
+        self.endDateStr = [fmt stringFromDate:date];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Public Methods
@@ -136,6 +157,11 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
 #pragma mark - Events
 - (void)clickedNextBtnHandler {
+    if (self.startDateStr.length == 0) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [cell shakeAnimation];
+        return;
+    }
     [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
 }
 

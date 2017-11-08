@@ -118,6 +118,9 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else if (indexPath.row == 2) {
         // 结束时间
         [self showDatePickerAlert:@"请选择结束时间" tag:1002];
+    }else {
+        // 持续时间
+        [self showPlanDurationAlert];
     }
 }
 
@@ -170,6 +173,27 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     pickerView.delegate = self;
     pickerView.tag = tag;
     [pickerView show];
+}
+
+- (void)showPlanDurationAlert {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择持续期间" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *fifteenAction = [UIAlertAction actionWithTitle:@"15天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *thirtyAction = [UIAlertAction actionWithTitle:@"30天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *sixtyAction = [UIAlertAction actionWithTitle:@"60天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertVC addAction:fifteenAction];
+    [alertVC addAction:thirtyAction];
+    [alertVC addAction:sixtyAction];
+    [alertVC addAction:cancelAction];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVC animated:YES completion:nil];
 }
 
 #pragma mark - Setter and Getter

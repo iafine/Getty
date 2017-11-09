@@ -14,6 +14,7 @@
 #import "UINavigationBar+HYAdd.h"
 #import "UIResponder+HYAdd.h"
 #import "UIView+HYAdd.h"
+#import "NSDate+HYAdd.h"
 
 
 #import "HYCacheHelper.h"

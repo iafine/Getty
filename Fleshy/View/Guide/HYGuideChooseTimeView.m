@@ -79,7 +79,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -129,6 +129,8 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else if (indexPath.row == 2) {
         // 结束时间  (先判断开始时间是否已经确定)
         if (self.plan.startTime == nil) {
+            [self showToast:@"请先选择开始时间"];
+            [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] shakeAnimation];
             return;
         }
         [self showDatePickerAlert:@"请选择结束时间" tag:1002];
@@ -143,6 +145,11 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     if (pickerView.tag == 1001) {
         self.plan.startTime = date;
     }else {
+        // 如果结束时间小于开始时间，弹出提示
+        if ([date earlierDate:self.plan.startTime] == date) {
+            [self showToast:@"结束时间不能大于开始时间"];
+            return;
+        }
         self.plan.endTime = date;
     }
     [self.tableView reloadData];
@@ -175,7 +182,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] shakeAnimation];
         return;
     }
-    [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
+    [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:self.plan];
 }
 
 - (void)planNameDidiChange:(UITextField *)textField {

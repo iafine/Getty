@@ -10,7 +10,7 @@
 
 @implementation UIResponder (HYAdd)
 
-- (void)hy_routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo {
+- (void)hy_routerEventWithName:(NSString *)eventName userInfo:(id)userInfo {
     [[self nextResponder] hy_routerEventWithName:eventName userInfo:userInfo];
 }
 

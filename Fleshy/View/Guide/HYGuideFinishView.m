@@ -7,15 +7,25 @@
 //
 
 #import "HYGuideFinishView.h"
+#import "HYPlan.h"
 
 NSString *const HYGuideFinishBtnEvent = @"HYGuideFinishBtnEvent";
 
-@interface HYGuideFinishView ()
+// tableView标示
+static NSString *const kTableViewIdentify = @"HYGuideFinishTableCell";
+
+@interface HYGuideFinishView ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *tipLabel;
 
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSArray *dataArray;
+
 @property (nonatomic, strong) UIButton *finishBtn;
+
+// 数据源
+@property (nonatomic, strong) HYPlan *plan;
 
 @end
 
@@ -34,6 +44,7 @@ self = [super initWithFrame:frame];
 - (void)initUI {
     [self addSubview:self.titleLabel];
     [self addSubview:self.tipLabel];
+    [self addSubview:self.tableView];
     [self addSubview:self.finishBtn];
 }
 
@@ -48,6 +59,12 @@ self = [super initWithFrame:frame];
         make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(@30);
     }];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.tipLabel.mas_bottom).offset(20);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.finishBtn.mas_top).offset(5);
+    }];
     [self.finishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.mas_bottom).offset(-30);
         make.centerX.equalTo(self.mas_centerX);
@@ -58,6 +75,61 @@ self = [super initWithFrame:frame];
 #pragma mark - Public Methods
 - (void)refreshView {
     self.finishBtn.backgroundColor = kMainColor;
+}
+
+- (void)reloadData:(HYPlan *)plan {
+    self.plan = plan;
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+    return 60;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewIdentify];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kTableViewIdentify];
+        cell.textLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        cell.detailTextLabel.text = self.plan.planName;
+    }else if (indexPath.row == 1) {
+        cell.detailTextLabel.text = [self.plan.startTime stringWithFormat:@"HH:mm"];
+    }else if (indexPath.row == 2) {
+        cell.detailTextLabel.text = [self.plan.endTime stringWithFormat:@"HH:mm"];
+    }else if (indexPath.row == 3) {
+        cell.detailTextLabel.text = [self.plan.endTime hy_timeintervalWithBeforeDate:self.plan.startTime];
+    }else if (indexPath.row == 4) {
+        cell.detailTextLabel.text = [self.plan stringDuration];
+    }else {
+    }
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.1f;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1f;
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark Events
@@ -86,6 +158,24 @@ self = [super initWithFrame:frame];
         _tipLabel.text = @"计划已制定，点击完成开启一条新征程吧";
     }
     return _tipLabel;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.scrollEnabled = NO;
+        _tableView.tableFooterView = [UIView new];
+    }
+    return _tableView;
+}
+
+- (NSArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray =@[@"计划名称", @"计划开始时间", @"计划结束时间", @"计划每天持续时间", @"计划持续天数"];
+    }
+    return _dataArray;
 }
 
 - (UIButton *)finishBtn {

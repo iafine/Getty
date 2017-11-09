@@ -15,4 +15,11 @@
  */
 - (void)shakeAnimation;
 
+/************************* MBProgressHUD扩展 *****************************/
+
+/**
+ 类似安卓Toast，显示在底部
+ */
+- (void)showToast:(NSString *)message;
+
 @end

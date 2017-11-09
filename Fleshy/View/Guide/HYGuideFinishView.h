@@ -11,8 +11,11 @@
 // 下一步按钮事件名
 extern NSString *const HYGuideFinishBtnEvent;
 
+@class HYPlan;
 @interface HYGuideFinishView : UIView
 
 - (void)refreshView;
+
+- (void)reloadData:(HYPlan *)plan;
 
 @end

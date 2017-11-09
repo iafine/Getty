@@ -15,6 +15,7 @@
 		6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841ECD11FB1635A008645E5 /* HYDatePickerView.m */; };
 		687A78681FB3EE2400E95957 /* HYGuideFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78671FB3EE2400E95957 /* HYGuideFinishView.m */; };
 		687A786B1FB429A100E95957 /* HYPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A786A1FB429A100E95957 /* HYPlan.m */; };
+		687A78711FB4414500E95957 /* NSDate+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78701FB4414500E95957 /* NSDate+HYAdd.m */; };
 		6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 688735491FB3410100A135FC /* UIView+HYAdd.m */; };
 		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
 		68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BC21FA99F17007C6FCE /* HYCacheHelper.m */; };
@@ -46,6 +47,8 @@
 		687A78671FB3EE2400E95957 /* HYGuideFinishView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideFinishView.m; sourceTree = "<group>"; };
 		687A78691FB429A100E95957 /* HYPlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlan.h; sourceTree = "<group>"; };
 		687A786A1FB429A100E95957 /* HYPlan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlan.m; sourceTree = "<group>"; };
+		687A786F1FB4414500E95957 /* NSDate+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+HYAdd.h"; sourceTree = "<group>"; };
+		687A78701FB4414500E95957 /* NSDate+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HYAdd.m"; sourceTree = "<group>"; };
 		688735481FB3410100A135FC /* UIView+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HYAdd.h"; sourceTree = "<group>"; };
 		688735491FB3410100A135FC /* UIView+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYAdd.m"; sourceTree = "<group>"; };
 		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */,
 				688735481FB3410100A135FC /* UIView+HYAdd.h */,
 				688735491FB3410100A135FC /* UIView+HYAdd.m */,
+				687A786F1FB4414500E95957 /* NSDate+HYAdd.h */,
+				687A78701FB4414500E95957 /* NSDate+HYAdd.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
+				687A78711FB4414500E95957 /* NSDate+HYAdd.m in Sources */,
 				687A786B1FB429A100E95957 /* HYPlan.m in Sources */,
 				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,
 			);

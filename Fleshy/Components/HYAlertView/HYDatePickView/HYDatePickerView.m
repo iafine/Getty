@@ -71,8 +71,9 @@
 
 #pragma mark - Events
 - (void)clickedOKBtnHandler {
+    NSDate *newDate = [self.pickerView.date hy_newDateBySecondZero];
     if ([self.delegate respondsToSelector:@selector(datePicker:didSelectdDate:)]) {
-        [self.delegate datePicker:self didSelectdDate:self.pickerView.date];
+        [self.delegate datePicker:self didSelectdDate:newDate];
     }
     [self dismiss];
 }

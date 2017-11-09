@@ -18,4 +18,9 @@
  */
 - (NSString *)hy_timeintervalWithBeforeDate:(NSDate *)beforeDate;
 
+/**
+ 将秒数归零，替换成一个新的NSDate对象
+ */
+- (NSDate *)hy_newDateBySecondZero;
+
 @end

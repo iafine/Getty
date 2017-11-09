@@ -27,4 +27,12 @@
     }
 }
 
+- (NSDate *)hy_newDateBySecondZero {
+    NSString *date = [self stringWithFormat:@"yyyy-MM-dd"];
+    NSString *hour = [self stringWithFormat:@"HH"];
+    NSString *minutes = [self stringWithFormat:@"mm"];
+    NSString *newDateStr = [NSString stringWithFormat:@"%@ %@:%@:00", date, hour, minutes];
+    return [NSDate dateWithString:newDateStr format:@"yyyy-MM-dd HH:mm:ss"];
+}
+
 @end

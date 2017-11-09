@@ -109,7 +109,6 @@
 - (UIDatePicker *)pickerView {
     if (!_pickerView) {
         _pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 60, kHYContentWidth, kHYContentHeight - 40 - 40)];
-        _pickerView.locale = [NSLocale localeWithLocaleIdentifier:@"zh"];
         _pickerView.datePickerMode = UIDatePickerModeTime;
         [_pickerView addTarget:self action:@selector(pickerViewValueChange) forControlEvents:UIControlEventValueChanged];
     }

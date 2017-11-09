@@ -8,6 +8,7 @@
 
 #import "HYGuideChooseTimeView.h"
 #import "HYDatePickerView.h"
+#import "HYPlan.h"
 
 NSString *const HYGuideChooseTimeNextEvent = @"HYGuideChooseTimeNextEvent";
 
@@ -25,10 +26,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 @property (nonatomic, strong) UIButton *nextBtn;
 
 // 数据源
-@property (nonatomic, copy) NSString *planName;
-@property (nonatomic, copy) NSString *startDateStr;
-@property (nonatomic, copy) NSString *endDateStr;
-@property (nonatomic, copy) NSString *durationDays;
+@property (nonatomic, strong) HYPlan *plan;
 
 @end
 
@@ -98,13 +96,13 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }
     cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
-        cell.detailTextLabel.text = self.planName;
+        cell.detailTextLabel.text = self.plan.planName;
     }else if (indexPath.row == 1) {
-        cell.detailTextLabel.text = self.startDateStr;
+        cell.detailTextLabel.text = [self.plan.startTime stringWithFormat:@"HH:mm"];
     }else if (indexPath.row == 2) {
-        cell.detailTextLabel.text = self.endDateStr;
+        cell.detailTextLabel.text = [self.plan.endTime stringWithFormat:@"HH:mm"];
     }else if (indexPath.row == 3) {
-        cell.detailTextLabel.text = self.durationDays.length > 0 ? [NSString stringWithFormat:@"%@天", self.durationDays] : @"";
+        cell.detailTextLabel.text = [self.plan stringDuration];
     }else {
     }
     return cell;
@@ -129,7 +127,10 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         // 开始时间
         [self showDatePickerAlert:@"请选择开始时间" tag:1001];
     }else if (indexPath.row == 2) {
-        // 结束时间
+        // 结束时间  (先判断开始时间是否已经确定)
+        if (self.plan.startTime == nil) {
+            return;
+        }
         [self showDatePickerAlert:@"请选择结束时间" tag:1002];
     }else {
         // 持续时间
@@ -139,13 +140,10 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
 #pragma mark - HYDatePickerViewDelegate
 - (void)datePicker:(HYDatePickerView *)pickerView didSelectdDate:(NSDate *)date {
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"HH:mm";
-    //    NSString *dateStr = [fmt stringFromDate:self.pickerView.date];
     if (pickerView.tag == 1001) {
-        self.startDateStr = [fmt stringFromDate:date];
+        self.plan.startTime = date;
     }else {
-        self.endDateStr = [fmt stringFromDate:date];
+        self.plan.endTime = date;
     }
     [self.tableView reloadData];
 }
@@ -158,22 +156,22 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 #pragma mark - Events
 - (void)clickedNextBtnHandler {
     // 计划名称不匹配
-    if (self.planName.length == 0) {
+    if (self.plan.planName.length == 0) {
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] shakeAnimation];
         return;
     }
     // 开始时间不匹配
-    if (self.startDateStr.length == 0) {
+    if (self.plan.startTime == nil) {
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] shakeAnimation];
         return;
     }
     // 结束时间不匹配
-    if (self.startDateStr.length == 0) {
+    if (self.plan.endTime == nil) {
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] shakeAnimation];
         return;
     }
     // 持续时间不匹配
-    if (self.startDateStr.length == 0) {
+    if (self.plan.durationType == HYDurationNone) {
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] shakeAnimation];
         return;
     }
@@ -181,7 +179,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 }
 
 - (void)planNameDidiChange:(UITextField *)textField {
-    self.planName = textField.text;
+    self.plan.planName = textField.text;
 }
 
 #pragma mark - Private Methods
@@ -225,15 +223,15 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 - (void)showPlanDurationAlert {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择持续期间" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *fifteenAction = [UIAlertAction actionWithTitle:@"15天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.durationDays = @"15";
+        self.plan.durationType = HYDurationFifteen;
         [self.tableView reloadData];
     }];
     UIAlertAction *thirtyAction = [UIAlertAction actionWithTitle:@"30天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.durationDays = @"30";
+        self.plan.durationType = HYDurationThirty;
         [self.tableView reloadData];
     }];
     UIAlertAction *sixtyAction = [UIAlertAction actionWithTitle:@"60天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.durationDays = @"60";
+        self.plan.durationType = HYDurationSixty;
         [self.tableView reloadData];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -299,6 +297,13 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         [_nextBtn addTarget:self action:@selector(clickedNextBtnHandler) forControlEvents:UIControlEventTouchUpInside];
     }
     return _nextBtn;
+}
+
+- (HYPlan *)plan {
+    if (!_plan) {
+        _plan = [[HYPlan alloc] init];
+    }
+    return _plan;
 }
 
 @end

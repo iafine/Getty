@@ -16,6 +16,7 @@
 #import "Masonry.h"
 #import "AFNetworking.h"
 #import <YYKit/YYKit.h>
+#import "MBProgressHUD.h"
 
 // 常量头文件
 #import "HYConstantsHeader.h"

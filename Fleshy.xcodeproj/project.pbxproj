@@ -13,6 +13,7 @@
 		683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */; };
 		683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */; };
 		6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841ECD11FB1635A008645E5 /* HYDatePickerView.m */; };
+		687A78681FB3EE2400E95957 /* HYGuideFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78671FB3EE2400E95957 /* HYGuideFinishView.m */; };
 		6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 688735491FB3410100A135FC /* UIView+HYAdd.m */; };
 		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
 		68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BC21FA99F17007C6FCE /* HYCacheHelper.m */; };
@@ -40,6 +41,8 @@
 		683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+HYAdd.m"; sourceTree = "<group>"; };
 		6841ECD01FB1635A008645E5 /* HYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDatePickerView.h; sourceTree = "<group>"; };
 		6841ECD11FB1635A008645E5 /* HYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDatePickerView.m; sourceTree = "<group>"; };
+		687A78661FB3EE2400E95957 /* HYGuideFinishView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideFinishView.h; sourceTree = "<group>"; };
+		687A78671FB3EE2400E95957 /* HYGuideFinishView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideFinishView.m; sourceTree = "<group>"; };
 		688735481FB3410100A135FC /* UIView+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HYAdd.h"; sourceTree = "<group>"; };
 		688735491FB3410100A135FC /* UIView+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYAdd.m"; sourceTree = "<group>"; };
 		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */,
 				68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */,
 				68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */,
+				687A78661FB3EE2400E95957 /* HYGuideFinishView.h */,
+				687A78671FB3EE2400E95957 /* HYGuideFinishView.m */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
 				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,
 				6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */,
+				687A78681FB3EE2400E95957 /* HYGuideFinishView.m in Sources */,
 				68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */,
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,

@@ -16,9 +16,9 @@
     [basicAnimation setRepeatCount:4];
     [basicAnimation setAutoreverses:YES];
     [basicAnimation setFromValue:[NSValue valueWithCGPoint:
-                             CGPointMake([self center].x, [self center].y - 10.0f)]];
+                             CGPointMake([self center].x - 10.0f, [self center].y)]];
     [basicAnimation setToValue:[NSValue valueWithCGPoint:
-                           CGPointMake([self center].x, [self center].y + 10.0f)]];
+                           CGPointMake([self center].x + 10.0f, [self center].y)]];
     [[self layer] addAnimation:basicAnimation forKey:@"position"];
 }
 

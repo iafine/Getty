@@ -9,6 +9,7 @@
 #import "HYGuideViewController.h"
 #import "HYGuideGenderView.h"
 #import "HYGuideChooseTimeView.h"
+#import "HYGuideFinishView.h"
 
 NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
@@ -18,6 +19,7 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
 @property (nonatomic, strong) HYGuideGenderView *guideGenderView;   // 性别引导页面
 @property (nonatomic, strong) HYGuideChooseTimeView *chooseTimeView;    // 时间选择页面
+@property (nonatomic, strong) HYGuideFinishView *finishView;        // 完成页面
 
 @end
 
@@ -34,6 +36,7 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.guideGenderView];
     [self.scrollView addSubview:self.chooseTimeView];
+    [self.scrollView addSubview:self.finishView];
 }
 
 #pragma mark - Events
@@ -43,8 +46,8 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         
         [self refreshView];
     }else if ([HYGuideChooseTimeNextEvent isEqualToString:eventName]) {
-        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-        
+        [self.scrollView setContentOffset:CGPointMake(kScreenWidth * 2, 0) animated:YES];
+    }else if ([HYGuideFinishBtnEvent isEqualToString:eventName]) {
     }else {
         [super hy_routerEventWithName:eventName userInfo:userInfo];
     }
@@ -83,6 +86,13 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         _chooseTimeView = [[HYGuideChooseTimeView alloc] initWithFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight - 64)];
     }
     return _chooseTimeView;
+}
+
+- (HYGuideFinishView *)finishView {
+    if (!_finishView) {
+        _finishView = [[HYGuideFinishView alloc] initWithFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, kScreenHeight - 64)];
+    }
+    return _finishView;
 }
 
 @end

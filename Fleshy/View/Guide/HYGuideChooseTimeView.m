@@ -104,7 +104,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else if (indexPath.row == 2) {
         cell.detailTextLabel.text = self.endDateStr;
     }else if (indexPath.row == 3) {
-        cell.detailTextLabel.text = self.durationDays;
+        cell.detailTextLabel.text = self.durationDays.length > 0 ? [NSString stringWithFormat:@"%@天", self.durationDays] : @"";
     }else {
     }
     return cell;
@@ -157,12 +157,31 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 
 #pragma mark - Events
 - (void)clickedNextBtnHandler {
+    // 计划名称不匹配
+    if (self.planName.length == 0) {
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] shakeAnimation];
+        return;
+    }
+    // 开始时间不匹配
     if (self.startDateStr.length == 0) {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        [cell shakeAnimation];
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] shakeAnimation];
+        return;
+    }
+    // 结束时间不匹配
+    if (self.startDateStr.length == 0) {
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] shakeAnimation];
+        return;
+    }
+    // 持续时间不匹配
+    if (self.startDateStr.length == 0) {
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] shakeAnimation];
         return;
     }
     [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:nil];
+}
+
+- (void)planNameDidiChange:(UITextField *)textField {
+    self.planName = textField.text;
 }
 
 #pragma mark - Private Methods
@@ -173,10 +192,12 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         textField.placeholder = @"请输入一个满意的名称";
         textField.textAlignment = NSTextAlignmentCenter;
         textField.font = [UIFont systemFontOfSize:kTextSizeMedium];
+        [textField addTarget:self action:@selector(planNameDidiChange:) forControlEvents:UIControlEventEditingChanged];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     UIAlertAction *finishAction = [UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self.tableView reloadData];
     }];
     [alertVC addAction:cancelAction];
     [alertVC addAction:finishAction];
@@ -204,13 +225,16 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 - (void)showPlanDurationAlert {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择持续期间" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *fifteenAction = [UIAlertAction actionWithTitle:@"15天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        self.durationDays = @"15";
+        [self.tableView reloadData];
     }];
     UIAlertAction *thirtyAction = [UIAlertAction actionWithTitle:@"30天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        self.durationDays = @"30";
+        [self.tableView reloadData];
     }];
     UIAlertAction *sixtyAction = [UIAlertAction actionWithTitle:@"60天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
+        self.durationDays = @"60";
+        [self.tableView reloadData];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
     }];

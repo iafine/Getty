@@ -29,4 +29,14 @@ extern NSString *const HYDatabaseName;
  */
 - (void)closeDatabase;
 
+/**
+ 创建数据表
+ */
+- (void)createTable:(NSString *)sqlString;
+
+/**
+ 删除数据表
+ */
+- (void)deleteTable:(NSString *)tableName;
+
 @end

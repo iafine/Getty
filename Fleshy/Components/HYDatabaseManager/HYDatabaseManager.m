@@ -25,6 +25,14 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
     return manager;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self openDatabase];
+    }
+    return self;
+}
+
 - (void)openDatabase {
     NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *databasePath = [documentPath stringByAppendingPathComponent:HYDatabaseName];
@@ -47,6 +55,22 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
     }else {
         NSLog(@"数据库关闭失败");
     }
+}
+
+- (void)createTable:(NSString *)sqlString {
+    NSLog(@"开始创建数据表，SQL语句: %@", sqlString);
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        BOOL isSuccess = [db executeStatements:sqlString];
+        if (isSuccess) {
+            NSLog(@"创建表成功");
+        }else {
+            NSLog(@"创建表失败");
+        }
+    }];
+}
+
+- (void)deleteTable:(NSString *)tableName {
+    
 }
 
 @end

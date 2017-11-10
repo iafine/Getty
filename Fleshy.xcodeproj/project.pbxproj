@@ -18,6 +18,7 @@
 		687A78711FB4414500E95957 /* NSDate+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78701FB4414500E95957 /* NSDate+HYAdd.m */; };
 		687A78751FB5396400E95957 /* HYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78741FB5396400E95957 /* HYMainViewController.m */; };
 		687A78791FB5844D00E95957 /* HYDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78781FB5844D00E95957 /* HYDatabaseManager.m */; };
+		687A787E1FB5A2D500E95957 /* HYPlan+Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A787D1FB5A2D500E95957 /* HYPlan+Database.m */; };
 		6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 688735491FB3410100A135FC /* UIView+HYAdd.m */; };
 		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
 		68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BC21FA99F17007C6FCE /* HYCacheHelper.m */; };
@@ -55,6 +56,8 @@
 		687A78741FB5396400E95957 /* HYMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMainViewController.m; sourceTree = "<group>"; };
 		687A78771FB5844D00E95957 /* HYDatabaseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDatabaseManager.h; sourceTree = "<group>"; };
 		687A78781FB5844D00E95957 /* HYDatabaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDatabaseManager.m; sourceTree = "<group>"; };
+		687A787C1FB5A2D500E95957 /* HYPlan+Database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYPlan+Database.h"; sourceTree = "<group>"; };
+		687A787D1FB5A2D500E95957 /* HYPlan+Database.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HYPlan+Database.m"; sourceTree = "<group>"; };
 		688735481FB3410100A135FC /* UIView+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HYAdd.h"; sourceTree = "<group>"; };
 		688735491FB3410100A135FC /* UIView+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYAdd.m"; sourceTree = "<group>"; };
 		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
@@ -190,6 +193,15 @@
 			path = HYDatabaseManager;
 			sourceTree = "<group>";
 		};
+		687A787B1FB5A2B300E95957 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				687A787C1FB5A2D500E95957 /* HYPlan+Database.h */,
+				687A787D1FB5A2D500E95957 /* HYPlan+Database.m */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		68AE5BB21FA99B9E007C6FCE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +286,7 @@
 		68BCC5001FA02ADB00C145DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				687A787B1FB5A2B300E95957 /* Database */,
 				687A78691FB429A100E95957 /* HYPlan.h */,
 				687A786A1FB429A100E95957 /* HYPlan.m */,
 			);
@@ -438,6 +451,7 @@
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,
+				687A787E1FB5A2D500E95957 /* HYPlan+Database.m in Sources */,
 				687A78751FB5396400E95957 /* HYMainViewController.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
 				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,

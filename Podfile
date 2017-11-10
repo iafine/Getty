@@ -9,6 +9,7 @@ pod 'Masonry'
 pod 'AFNetworking', '~> 3.0'
 pod 'YYKit'
 pod 'MBProgressHUD'
+pod 'FMDB'
 
 end
 

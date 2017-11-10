@@ -23,9 +23,6 @@
             
         case HYDurationSixty:
             return @"60天";
-            
-        default:
-            return @"";
     }
 }
 

@@ -62,7 +62,7 @@
 - (UILabel *)dateLabel {
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] init];
-        _dateLabel.font = [UIFont systemFontOfSize:kTextSizeTiny];
+        _dateLabel.font = [UIFont systemFontOfSize:kTextSizeTiny weight:UIFontWeightHeavy];
         _dateLabel.text = @"10月27日";
         _dateLabel.textColor = kDeepGrayColor;
     }

@@ -32,6 +32,8 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = kPageBgColor;
+    
 //    UIImageView *titleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav_icon"]];
 //    titleImageView.contentMode = UIViewContentModeScaleAspectFit;
 //    self.navigationItem.titleView = titleImageView;
@@ -53,6 +55,14 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         
         [self.finishView reloadData:userInfo];
     }else if ([HYGuideFinishBtnEvent isEqualToString:eventName]) {
+        // 引导页消失，刷新数据
+        [self.navigationController removeFromParentViewController];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
+            self.navigationController.view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self.navigationController.view removeFromSuperview];
+        }];
     }else {
         [super hy_routerEventWithName:eventName userInfo:userInfo];
     }

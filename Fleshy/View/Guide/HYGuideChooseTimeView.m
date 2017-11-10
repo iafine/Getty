@@ -147,7 +147,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else {
         // 如果结束时间小于开始时间，弹出提示
         if ([date earlierDate:self.plan.startTime] == date) {
-            [self showToast:@"结束时间不能大于开始时间"];
+            [self showToast:@"结束时间必须大于开始时间"];
             return;
         }
         self.plan.endTime = date;

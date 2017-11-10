@@ -102,6 +102,7 @@ self = [super initWithFrame:frame];
         cell.textLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.tintColor = kMainColor;
     }
     cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {

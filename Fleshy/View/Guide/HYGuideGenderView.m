@@ -9,9 +9,9 @@
 #import "HYGuideGenderView.h"
 
 NSString *const HYGuideGenderNextEvent = @"HYGuideGenderNextEvent";
-
 // 选中性别的缓存key
 static NSString *const kHYGuideGenderCacheKey = @"kHYGuideGenderCacheKey";
+
 @interface HYGuideGenderView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;

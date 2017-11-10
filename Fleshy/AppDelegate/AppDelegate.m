@@ -25,6 +25,9 @@
     [UINavigationBar hy_basicAppearance];
     
     [self.window makeKeyAndVisible];
+    
+    [[HYDatabaseManager sharedInstance] openDatabase];
+    [[HYDatabaseManager sharedInstance] closeDatabase];
     return YES;
 }
 

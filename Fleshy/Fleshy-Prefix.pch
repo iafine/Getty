@@ -17,9 +17,12 @@
 #import "AFNetworking.h"
 #import <YYKit/YYKit.h>
 #import "MBProgressHUD.h"
+#import <FMDB/FMDB.h>
+
 
 // 常量头文件
 #import "HYConstantsHeader.h"
+
 
 // 项目相关
 #import "HYComponentHeader.h"

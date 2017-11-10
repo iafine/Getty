@@ -8,6 +8,7 @@
 
 #import "HYDatabaseManager.h"
 
+NSString *const HYDatabaseName = @"fleshy.sqlite";
 
 @interface HYDatabaseManager ()
 
@@ -24,12 +25,28 @@
     return manager;
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        // 进行初始化操作
+- (void)openDatabase {
+    NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *databasePath = [documentPath stringByAppendingPathComponent:HYDatabaseName];
+    
+    NSLog(@"数据库地址：%@", databasePath);
+    
+    self.dateBase = [FMDatabase databaseWithPath:databasePath];
+    self.dbQueue = [FMDatabaseQueue databaseQueueWithPath:databasePath];
+    
+    if ([self.dateBase open]) {
+        NSLog(@"数据库打开成功");
+    }else{
+        NSLog(@"数据库打开失败");
     }
-    return self;
+}
+
+- (void)closeDatabase {
+    if ([self.dateBase close]) {
+        NSLog(@"数据库关闭成功");
+    }else {
+        NSLog(@"数据库关闭失败");
+    }
 }
 
 @end

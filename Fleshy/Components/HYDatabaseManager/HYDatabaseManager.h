@@ -8,8 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+// 数据库名称
+extern NSString *const HYDatabaseName;
+
 @interface HYDatabaseManager : NSObject
 
+@property (nonatomic, strong) FMDatabase *dateBase; // 数据库
+
+@property (nonatomic, strong) FMDatabaseQueue *dbQueue; //数据库队列
+
 + (instancetype)sharedInstance;
+
+/**
+ 打开数据库
+ */
+- (void)openDatabase;
+
+/**
+ 关闭数据库
+ */
+- (void)closeDatabase;
 
 @end

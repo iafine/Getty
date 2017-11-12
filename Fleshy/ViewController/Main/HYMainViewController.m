@@ -26,9 +26,8 @@
     [self.view addSubview:self.homeNavVC.view];
     
     // 如果还没有制定过计划，显示计划引导页面
-    [self addChildViewController:self.guideNavVC];
-    [self.view addSubview:self.guideNavVC.view];
-    
+//    [self addChildViewController:self.guideNavVC];
+//    [self.view addSubview:self.guideNavVC.view];    
 }
 
 #pragma mark - Setter and Getter

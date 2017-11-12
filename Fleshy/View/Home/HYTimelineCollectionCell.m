@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UILabel *weekLabel;
 @property (nonatomic, strong) UIView *radiusBgView;
 
+@property (nonatomic, strong) UILabel *titileLabel;
+
 @end
 
 @implementation HYTimelineCollectionCell
@@ -83,6 +85,9 @@
     if (!_radiusBgView) {
         _radiusBgView = [[UIView alloc] init];
         _radiusBgView.layer.cornerRadius = 10;
+        _radiusBgView.layer.borderWidth = 0.5;
+        _radiusBgView.layer.borderColor = kBorderGrayColor.CGColor;
+        _radiusBgView.layer.masksToBounds = YES;
     }
     return _radiusBgView;
 }
@@ -90,7 +95,7 @@
 - (void)setCellData:(NSDictionary *)cellData {
     _cellData = cellData;
     
-    self.radiusBgView.backgroundColor = kRandomColor;
+//    self.radiusBgView.backgroundColor = kRandomColor;
 }
 
 @end

@@ -25,14 +25,6 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
     return manager;
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self openDatabase];
-    }
-    return self;
-}
-
 - (void)openDatabase {
     NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *databasePath = [documentPath stringByAppendingPathComponent:HYDatabaseName];

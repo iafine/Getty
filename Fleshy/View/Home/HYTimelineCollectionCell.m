@@ -49,7 +49,7 @@
         make.left.equalTo(self.contentView.mas_left);
         make.top.equalTo(self.weekLabel.mas_bottom).offset(5);
         make.right.equalTo(self.contentView.mas_right);
-        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15);
     }];
 }
 

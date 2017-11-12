@@ -12,8 +12,8 @@
 
 @interface HYMainViewController ()
 
-@property (nonatomic, strong) HYHomeViewController *homeVC;
-@property (nonatomic, strong) UINavigationController *guideVC;
+@property (nonatomic, strong) UINavigationController *homeNavVC;
+@property (nonatomic, strong) UINavigationController *guideNavVC;
 
 @end
 
@@ -22,28 +22,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self addChildViewController:self.homeVC];
-    [self.view addSubview:self.homeVC.view];
+    [self addChildViewController:self.homeNavVC];
+    [self.view addSubview:self.homeNavVC.view];
     
     // 如果还没有制定过计划，显示计划引导页面
-    [self addChildViewController:self.guideVC];
-    [self.view addSubview:self.guideVC.view];
+    [self addChildViewController:self.guideNavVC];
+    [self.view addSubview:self.guideNavVC.view];
     
 }
 
 #pragma mark - Setter and Getter
-- (HYHomeViewController *)homeVC {
-    if (!_homeVC) {
-        _homeVC = [[HYHomeViewController alloc] init];
+- (UINavigationController *)homeNavVC {
+    if (!_homeNavVC) {
+        _homeNavVC = [[UINavigationController alloc] initWithRootViewController:[HYHomeViewController new]];
     }
-    return _homeVC;
+    return _homeNavVC;
 }
 
-- (UINavigationController *)guideVC {
-    if (!_guideVC) {
-        _guideVC = [[UINavigationController alloc] initWithRootViewController:[HYGuideViewController new]];
+- (UINavigationController *)guideNavVC {
+    if (!_guideNavVC) {
+        _guideNavVC = [[UINavigationController alloc] initWithRootViewController:[HYGuideViewController new]];
     }
-    return _guideVC;
+    return _guideNavVC;
 }
 
 @end

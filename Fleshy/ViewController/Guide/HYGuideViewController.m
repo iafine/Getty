@@ -61,7 +61,8 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
             self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
             self.navigationController.view.alpha = 0;
         } completion:^(BOOL finished) {
-            [self.navigationController.view removeFromSuperview];
+            [self removeFromParentViewController];
+            [self.view removeFromSuperview];
         }];
     }else {
         [super hy_routerEventWithName:eventName userInfo:userInfo];

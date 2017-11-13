@@ -11,6 +11,7 @@
 #import "HYGuideChooseTimeView.h"
 #import "HYGuideFinishView.h"
 #import "HYPlan.h"
+#import "HYDatabaseManager+Plan.h"
 
 NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
@@ -56,6 +57,8 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         [self.finishView reloadData:userInfo];
     }else if ([HYGuideFinishBtnEvent isEqualToString:eventName]) {
         // 引导页消失，刷新数据
+        [self generatePlanData];
+        
         [self.navigationController removeFromParentViewController];
         [UIView animateWithDuration:0.5 animations:^{
             self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
@@ -72,6 +75,11 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 #pragma mark - Private Methods
 - (void)refreshView {
     [self.chooseTimeView refreshView];
+}
+
+- (void)generatePlanData {
+    // 生成一条计划数据，然后创建多条执行数据与之对应
+//    [[HYDatabaseManager sharedInstance] database_insertPlan:self.plan];
 }
 
 #pragma mark - Setter and Getter

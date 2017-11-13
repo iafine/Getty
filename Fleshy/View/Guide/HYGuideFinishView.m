@@ -114,7 +114,7 @@ self = [super initWithFrame:frame];
     }else if (indexPath.row == 3) {
         cell.detailTextLabel.text = [self.plan.endTime hy_timeintervalWithBeforeDate:self.plan.startTime];
     }else if (indexPath.row == 4) {
-        cell.detailTextLabel.text = [self.plan stringDuration];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld天", self.plan.durationDays];
     }else {
     }
     return cell;

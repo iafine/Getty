@@ -69,4 +69,17 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
         }
     }];
 }
+
+- (void)executeUpdateSql:(NSString *)updateSql {
+    NSLog(@"update Sql语句: %@", updateSql);
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        BOOL isSuccess = [db executeUpdate:updateSql];
+        if (isSuccess) {
+            NSLog(@"更新sql执行成功");
+        }else {
+            NSLog(@"更新sql执行失败");
+        }
+    }];
+}
+
 @end

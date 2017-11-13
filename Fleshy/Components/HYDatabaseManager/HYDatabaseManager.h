@@ -41,4 +41,6 @@ extern NSString *const HYDatabaseName;
 
 - (void)executeSql:(NSString *)sql;
 
+- (void)executeUpdateSql:(NSString *)updateSql;
+
 @end

@@ -102,7 +102,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else if (indexPath.row == 2) {
         cell.detailTextLabel.text = [self.plan.endTime stringWithFormat:@"HH:mm"];
     }else if (indexPath.row == 3) {
-        cell.detailTextLabel.text = [self.plan stringDuration];
+        cell.detailTextLabel.text = (self.plan.durationDays == 0 ? @"" : [NSString stringWithFormat:@"%ld天", self.plan.durationDays]);
     }else {
     }
     return cell;
@@ -178,7 +178,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         return;
     }
     // 持续时间不匹配
-    if (self.plan.durationType == HYDurationNone) {
+    if (self.plan.durationDays == 0) {
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] shakeAnimation];
         return;
     }
@@ -230,15 +230,15 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 - (void)showPlanDurationAlert {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择持续期间" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *fifteenAction = [UIAlertAction actionWithTitle:@"15天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.plan.durationType = HYDurationFifteen;
+        self.plan.durationDays = 15;
         [self.tableView reloadData];
     }];
     UIAlertAction *thirtyAction = [UIAlertAction actionWithTitle:@"30天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.plan.durationType = HYDurationThirty;
+        self.plan.durationDays = 30;
         [self.tableView reloadData];
     }];
     UIAlertAction *sixtyAction = [UIAlertAction actionWithTitle:@"60天" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.plan.durationType = HYDurationSixty;
+        self.plan.durationDays = 60;
         [self.tableView reloadData];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {

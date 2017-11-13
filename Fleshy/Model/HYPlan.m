@@ -10,20 +10,4 @@
 
 @implementation HYPlan
 
-- (NSString *)stringDuration {
-    switch (self.durationType) {
-        case HYDurationNone:
-            return @"";
-        
-        case HYDurationFifteen:
-            return @"15天";
-            
-        case HYDurationThirty:
-            return @"30天";
-            
-        case HYDurationSixty:
-            return @"60天";
-    }
-}
-
 @end

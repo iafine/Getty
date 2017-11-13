@@ -36,4 +36,9 @@
  */
 - (NSArray<HYPlan *> *)database_queryAllPlans;
 
+/**
+ 根据计划名称获取计划数据
+ */
+- (HYPlan *)database_queryPlanWithPlanName:(NSString *)planName;
+
 @end

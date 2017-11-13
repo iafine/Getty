@@ -10,9 +10,9 @@
 
 @interface HYPerformance : NSObject
 
-@property (nonatomic, copy) NSString *performanceId;
+@property (nonatomic, assign) NSInteger performanceId;
 
-@property (nonatomic, copy) NSString *planId;
+@property (nonatomic, assign) NSInteger planId;
 
 @property (nonatomic, assign) BOOL isPerform;
 

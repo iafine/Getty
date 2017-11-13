@@ -57,6 +57,7 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         [self.finishView reloadData:userInfo];
     }else if ([HYGuideFinishBtnEvent isEqualToString:eventName]) {
         // 引导页消失，刷新数据
+        self.plan = (HYPlan *)userInfo;
         [self generatePlanData];
         
         [self.navigationController removeFromParentViewController];
@@ -79,7 +80,8 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
 - (void)generatePlanData {
     // 生成一条计划数据，然后创建多条执行数据与之对应
-//    [[HYDatabaseManager sharedInstance] database_insertPlan:self.plan];
+
+    [[HYDatabaseManager sharedInstance] database_insertPlan:self.plan];
 }
 
 #pragma mark - Setter and Getter

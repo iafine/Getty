@@ -7,6 +7,8 @@
 //
 
 #import "HYDatabaseManager.h"
+#import "HYDatabaseManager+Plan.h"
+#import "HYDatabaseManager+Performance.h"
 
 NSString *const HYDatabaseName = @"fleshy.sqlite";
 
@@ -23,6 +25,15 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
         manager = [[HYDatabaseManager alloc] init];
     });
     return manager;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self openDatabase];
+        [self createTables];
+    }
+    return self;
 }
 
 - (void)openDatabase {
@@ -80,6 +91,11 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
             NSLog(@"更新sql执行失败");
         }
     }];
+}
+
+- (void)createTables {
+    [self database_createPlanTable];
+    [self database_createPerformanceTable];
 }
 
 @end

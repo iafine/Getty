@@ -26,7 +26,6 @@
     
     [self.window makeKeyAndVisible];
     
-    [[HYDatabaseManager sharedInstance] openDatabase];
     return YES;
 }
 

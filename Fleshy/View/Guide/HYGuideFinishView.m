@@ -135,7 +135,8 @@ self = [super initWithFrame:frame];
 
 #pragma mark Events
 - (void)clickedFinishBtnHandler {
-    [self hy_routerEventWithName:HYGuideFinishBtnEvent userInfo:nil];
+    self.plan.createDate = [NSDate new];
+    [self hy_routerEventWithName:HYGuideFinishBtnEvent userInfo:self.plan];
 }
 
 #pragma mark - Setter and Getter

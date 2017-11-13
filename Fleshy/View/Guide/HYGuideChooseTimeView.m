@@ -182,6 +182,9 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
         [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] shakeAnimation];
         return;
     }
+    
+    // 计算每天持续时间
+    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
     [self hy_routerEventWithName:HYGuideChooseTimeNextEvent userInfo:self.plan];
 }
 

@@ -10,7 +10,7 @@
 
 @interface HYPlan : NSObject
 
-@property (nonatomic, copy) NSString *planId;
+@property (nonatomic, assign) NSInteger planId;
 @property (nonatomic, copy) NSString *planName;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;

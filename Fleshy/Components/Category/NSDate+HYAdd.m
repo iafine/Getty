@@ -11,9 +11,7 @@
 @implementation NSDate (HYAdd)
 
 - (NSString *)hy_timeintervalWithBeforeDate:(NSDate *)beforeDate {
-    NSTimeInterval timeInterval = [self timeIntervalSinceDate:beforeDate];
-    
-    NSInteger minutes = timeInterval / 60;
+    NSInteger minutes = [self hy_minutesIntervalWithBeforeDate:beforeDate];
     if (minutes < 60) {
         return [NSString stringWithFormat:@"%ld分钟", minutes];
     }else {
@@ -25,6 +23,12 @@
             return [NSString stringWithFormat:@"%ld小时%ld分钟", hour, restMinutes];
         }
     }
+}
+
+- (NSInteger)hy_minutesIntervalWithBeforeDate:(NSDate *)beforeDate {
+    NSTimeInterval timeInterval = [self timeIntervalSinceDate:beforeDate];
+    
+    return timeInterval / 60;
 }
 
 - (NSDate *)hy_newDateBySecondZero {

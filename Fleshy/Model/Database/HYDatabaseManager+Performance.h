@@ -8,8 +8,14 @@
 
 #import "HYDatabaseManager.h"
 
+@class HYPerformance;
 @interface HYDatabaseManager (Performance)
 
 - (void)database_createPerformanceTable;
+
+/**
+ 新增一条计划数据
+ */
+- (void)database_insertPerformance:(HYPerformance *)performance;
 
 @end

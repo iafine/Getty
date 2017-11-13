@@ -39,4 +39,6 @@ extern NSString *const HYDatabaseName;
  */
 - (void)deleteTable:(NSString *)tableName;
 
+- (void)executeSql:(NSString *)sql;
+
 @end

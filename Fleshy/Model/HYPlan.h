@@ -25,9 +25,12 @@ typedef NS_ENUM(NSUInteger, HYDurationType) {
 
 @interface HYPlan : NSObject
 
+@property (nonatomic, copy) NSString *planId;
 @property (nonatomic, copy) NSString *planName;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
+@property (nonatomic, strong) NSDate *createDate;
+@property (nonatomic, assign) NSInteger durationTime;
 @property (nonatomic, assign) HYDurationType durationType;
 
 /**

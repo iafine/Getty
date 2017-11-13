@@ -50,19 +50,23 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 }
 
 - (void)createTable:(NSString *)sqlString {
-    NSLog(@"开始创建数据表，SQL语句: %@", sqlString);
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        BOOL isSuccess = [db executeStatements:sqlString];
-        if (isSuccess) {
-            NSLog(@"创建表成功");
-        }else {
-            NSLog(@"创建表失败");
-        }
-    }];
+    NSLog(@"开始创建数据表。。。");
+    [self executeSql:sqlString];
 }
 
 - (void)deleteTable:(NSString *)tableName {
     
 }
 
+- (void)executeSql:(NSString *)sql {
+    NSLog(@"sql语句: %@", sql);
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        BOOL isSuccess = [db executeStatements:sql];
+        if (isSuccess) {
+            NSLog(@"sql操作成功");
+        }else {
+            NSLog(@"sql操作失败");
+        }
+    }];
+}
 @end

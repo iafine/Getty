@@ -27,8 +27,6 @@
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
 		68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */; };
 		68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F311FB92D490002FF0B /* HYPerformance.m */; };
-		68DB7F381FB931F30002FF0B /* HYDBManager+Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F371FB931F30002FF0B /* HYDBManager+Plan.m */; };
-		68DB7F3B1FB932280002FF0B /* HYDBManager+Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F3A1FB932280002FF0B /* HYDBManager+Performance.m */; };
 		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
@@ -77,10 +75,6 @@
 		68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideChooseTimeView.m; sourceTree = "<group>"; };
 		68DB7F301FB92D490002FF0B /* HYPerformance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPerformance.h; sourceTree = "<group>"; };
 		68DB7F311FB92D490002FF0B /* HYPerformance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPerformance.m; sourceTree = "<group>"; };
-		68DB7F361FB931F30002FF0B /* HYDBManager+Plan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYDBManager+Plan.h"; sourceTree = "<group>"; };
-		68DB7F371FB931F30002FF0B /* HYDBManager+Plan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HYDBManager+Plan.m"; sourceTree = "<group>"; };
-		68DB7F391FB932280002FF0B /* HYDBManager+Performance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HYDBManager+Performance.h"; sourceTree = "<group>"; };
-		68DB7F3A1FB932280002FF0B /* HYDBManager+Performance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HYDBManager+Performance.m"; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
 		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
 		68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTimelineCollectionCell.m; sourceTree = "<group>"; };
@@ -204,10 +198,6 @@
 		687A787B1FB5A2B300E95957 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				68DB7F361FB931F30002FF0B /* HYDBManager+Plan.h */,
-				68DB7F371FB931F30002FF0B /* HYDBManager+Plan.m */,
-				68DB7F391FB932280002FF0B /* HYDBManager+Performance.h */,
-				68DB7F3A1FB932280002FF0B /* HYDBManager+Performance.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -461,7 +451,6 @@
 			files = (
 				683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */,
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
-				68DB7F381FB931F30002FF0B /* HYDBManager+Plan.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,
 				687A78751FB5396400E95957 /* HYMainViewController.m in Sources */,
@@ -478,7 +467,6 @@
 				687A786B1FB429A100E95957 /* HYPlan.m in Sources */,
 				68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */,
 				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,
-				68DB7F3B1FB932280002FF0B /* HYDBManager+Performance.m in Sources */,
 				687A78791FB5844D00E95957 /* HYDBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,6 +17,13 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 
 @implementation HYDBManager
 
++ (void)load {
+    __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [HYDBManager sharedInstance];
+         [[NSNotificationCenter defaultCenter] removeObserver:observer];
+     }];
+}
+
 + (instancetype)sharedInstance {
     static HYDBManager *manager;
     static dispatch_once_t onceToken;
@@ -73,19 +80,6 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
     block(isSuccess);
 }
 
-- (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block {
-    __block BOOL isSuccess = NO;
-    for (NSString * sqlString in sqlList) {
-        isSuccess = [db executeUpdate:sqlString];
-        if ([db hadError]) {
-            block(isSuccess,[db lastErrorMessage]);
-            NSLog(@"executeSQLList error %d: %@", [db lastErrorCode], [db lastErrorMessage]);
-            break;
-        }
-    }
-    block(isSuccess,nil);
-}
-
 - (void)getCurrentDbVersion:(FMDatabase *)db withBlock:(void(^)(BOOL isSuccess,int version))block{
     NSString * sql = [NSString stringWithFormat:@"PRAGMA user_version"];
     FMResultSet * rs = [db executeQuery:sql];
@@ -102,6 +96,69 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
     block(YES,nVersion);
 }
 
+#pragma mark - Public Methods
+- (void)executeInsetSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block {
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        BOOL isSuccess = [db executeUpdate:sqlString];
+        if ([db hadError]) {
+            block(NO, [db lastErrorMessage]);
+            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
+        }else{
+            block(isSuccess, nil);
+        }
+    }];
+}
+
+- (void)executeDeleteSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block {
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        BOOL isSuccess = [db executeUpdate:sqlString];
+        if ([db hadError]) {
+            block(NO, [db lastErrorMessage]);
+            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
+        }else{
+            block(isSuccess, nil);
+        }
+    }];
+}
+
+- (void)executeUpdateSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block {
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        BOOL isSuccess = [db executeUpdate:sqlString];
+        if ([db hadError]) {
+            block(NO, [db lastErrorMessage]);
+            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
+        }else{
+            block(isSuccess, nil);
+        }
+    }];
+}
+
+- (void)executeQuerySQL:(NSString *)sqlString block:(void (^)(BOOL, FMResultSet *, NSString *))block {
+    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        FMResultSet *rs = [db executeQuery:sqlString];
+        if ([db hadError]) {
+            block(NO, rs, [db lastErrorMessage]);
+            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
+        }else {
+            block(YES, rs, nil);
+        }
+    }];
+}
+
+- (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block {
+    __block BOOL isSuccess = NO;
+    for (NSString * sqlString in sqlList) {
+        isSuccess = [db executeUpdate:sqlString];
+        if ([db hadError]) {
+            block(isSuccess,[db lastErrorMessage]);
+            NSLog(@"executeSQLList error %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+            break;
+        }
+    }
+    block(isSuccess,nil);
+}
+
+#pragma mark - Private Methods
 - (NSArray *)tableSqlArray {
     NSMutableArray *mutableArray = [NSMutableArray array];
     [mutableArray addObject:HY_CREATE_PALN];

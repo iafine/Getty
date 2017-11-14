@@ -15,6 +15,26 @@
 + (instancetype)sharedInstance;
 
 /**
+ 插入操作
+ */
+- (void)executeInsetSQL:(NSString *)sqlString block:(void(^)(BOOL isSuccess, NSString *message))block;
+
+/**
+ 删除操作
+ */
+- (void)executeDeleteSQL:(NSString *)sqlString block:(void(^)(BOOL isSuccess, NSString *message))block;
+
+/**
+ 更新操作
+ */
+- (void)executeUpdateSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block;
+
+/**
+ 查询操作
+ */
+- (void)executeQuerySQL:(NSString *)sqlString block:(void(^)(BOOL isSuccess, FMResultSet *rs, NSString *message))block;
+
+/**
  批量处理SQL语句
  */
 - (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block;

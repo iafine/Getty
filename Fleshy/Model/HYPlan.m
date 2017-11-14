@@ -10,4 +10,16 @@
 
 @implementation HYPlan
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ ",@{
+                                               @"planId" : @(_planId),
+                                               @"planName" : _planName,
+                                               @"startTime" : _startTime,
+                                               @"endTime" : _endTime,
+                                               @"createDate" : _createDate,
+                                               @"durationTime" : @(_durationTime),
+                                               @"durationDays" : @(_durationDays)
+                                               }];
+}
+            
 @end

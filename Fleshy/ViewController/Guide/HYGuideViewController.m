@@ -12,6 +12,7 @@
 #import "HYGuideFinishView.h"
 #import "HYPlan.h"
 #import "HYPerformance.h"
+#import "HYPlan+Database.h"
 
 NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
@@ -81,11 +82,18 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 - (void)generatePlanData {
     // 生成一条计划数据，然后创建多条执行数据与之对应
     [self.view hy_showLoading];
-    for (int i = 1; i <= self.plan.durationDays; i++) {
-        HYPerformance *performance = [[HYPerformance alloc] init];
-        performance.planId = self.plan.planId;
-        performance.performDate = [self.plan.startTime dateByAddingDays:i];
-    }
+    [HYPlan databasae_insertPlan:self.plan block:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            [HYPlan database_queryPlan:self.plan.planName block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
+                NSLog(@"%@", plan);
+            }];
+        }
+    }];
+//    for (int i = 1; i <= self.plan.durationDays; i++) {
+//        HYPerformance *performance = [[HYPerformance alloc] init];
+//        performance.planId = self.plan.planId;
+//        performance.performDate = [self.plan.startTime dateByAddingDays:i];
+//    }
     [self.view hy_hideLoading];
 }
 

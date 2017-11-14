@@ -42,7 +42,7 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
         if (![fmManger fileExistsAtPath:dbPath]) {
             [fmManger createFileAtPath:dbPath contents:nil attributes:nil];
         }
-        
+        self.db = [FMDatabase databaseWithPath:dbPath];
         self.dbQueue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
         [self updateDBVersion];
     }
@@ -81,6 +81,7 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 }
 
 - (void)getCurrentDbVersion:(FMDatabase *)db withBlock:(void(^)(BOOL isSuccess,int version))block{
+    
     NSString * sql = [NSString stringWithFormat:@"PRAGMA user_version"];
     FMResultSet * rs = [db executeQuery:sql];
     int nVersion = 0;
@@ -98,51 +99,56 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 
 #pragma mark - Public Methods
 - (void)executeInsetSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        BOOL isSuccess = [db executeUpdate:sqlString];
-        if ([db hadError]) {
-            block(NO, [db lastErrorMessage]);
-            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
-        }else{
-            block(isSuccess, nil);
-        }
-    }];
+    [self.db open];
+    BOOL isSuccess = [self.db executeUpdate:sqlString];
+    if ([self.db hadError]) {
+        block(NO, [self.db lastErrorMessage]);
+        NSLog(@"executeSQL error %d:  %@",[self.db lastErrorCode],[self.db lastErrorMessage]);
+    }else{
+        NSLog(@"数据插入成功，SQL语句：%@", sqlString);
+        block(isSuccess, nil);
+    }
+    [self.db close];
 }
 
 - (void)executeDeleteSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        BOOL isSuccess = [db executeUpdate:sqlString];
-        if ([db hadError]) {
-            block(NO, [db lastErrorMessage]);
-            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
-        }else{
-            block(isSuccess, nil);
-        }
-    }];
+    [self.db open];
+    BOOL isSuccess = [self.db executeUpdate:sqlString];
+    if ([self.db hadError]) {
+        block(NO, [self.db lastErrorMessage]);
+        NSLog(@"executeSQL error %d:  %@",[self.db lastErrorCode],[self.db lastErrorMessage]);
+    }else{
+        NSLog(@"数据删除成功，SQL语句：%@", sqlString);
+        block(isSuccess, nil);
+    }
+    [self.db close];
 }
 
 - (void)executeUpdateSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        BOOL isSuccess = [db executeUpdate:sqlString];
-        if ([db hadError]) {
-            block(NO, [db lastErrorMessage]);
-            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
-        }else{
-            block(isSuccess, nil);
-        }
-    }];
+    [self.db open];
+    BOOL isSuccess = [self.db executeUpdate:sqlString];
+    if ([self.db hadError]) {
+        block(NO, [self.db lastErrorMessage]);
+        NSLog(@"executeSQL error %d:  %@",[self.db lastErrorCode],[self.db lastErrorMessage]);
+    }else{
+        NSLog(@"数据更新成功，SQL语句：%@", sqlString);
+        block(isSuccess, nil);
+    }
+    [self.db close];
 }
 
 - (void)executeQuerySQL:(NSString *)sqlString block:(void (^)(BOOL, FMResultSet *, NSString *))block {
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        FMResultSet *rs = [db executeQuery:sqlString];
-        if ([db hadError]) {
-            block(NO, rs, [db lastErrorMessage]);
-            NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
-        }else {
-            block(YES, rs, nil);
-        }
-    }];
+    [self.db open];
+    FMResultSet *rs = [self.db executeQuery:sqlString];
+    if ([self.db hadError]) {
+        block(NO, rs, [self.db lastErrorMessage]);
+        NSLog(@"executeSQL error %d:  %@",[self.db lastErrorCode],[self.db lastErrorMessage]);
+    }else {
+        NSLog(@"数据查询成功，SQL语句：%@", sqlString);
+        block(YES, rs, nil);
+    }
+    [rs close];
+    [self.db close];
 }
 
 - (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block {

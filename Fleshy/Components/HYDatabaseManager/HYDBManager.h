@@ -10,6 +10,7 @@
 
 @interface HYDBManager : NSObject
 
+@property (nonatomic, strong) FMDatabase *db;   // 数据库
 @property (nonatomic, strong) FMDatabaseQueue *dbQueue; //数据库队列
 
 + (instancetype)sharedInstance;

@@ -10,7 +10,7 @@
 
 @implementation UIView (HYAdd)
 
-- (void)shakeAnimation {
+- (void)hy_shakeAnimation {
     CABasicAnimation *basicAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
     [basicAnimation setDuration:0.05];
     [basicAnimation setRepeatCount:4];
@@ -24,7 +24,7 @@
 
 /************************* MBProgressHUD扩展 *****************************/
 
-- (void)showToast:(NSString *)message {
+- (void)hy_showToast:(NSString *)message {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     
     // Set the text mode to show only text.
@@ -34,6 +34,14 @@
     hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
     
     [hud hideAnimated:YES afterDelay:3.f];
+}
+
+- (void)hy_showLoading {
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+}
+
+- (void)hy_hideLoading {
+    [MBProgressHUD hideHUDForView:self animated:YES];
 }
 
 @end

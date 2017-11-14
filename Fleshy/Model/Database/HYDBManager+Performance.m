@@ -1,15 +1,15 @@
 //
-//  HYDatabaseManager+Performance.m
+//  HYDBManager+Performance.m
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/13.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "HYDatabaseManager+Performance.h"
+#import "HYDBManager+Performance.h"
 #import "HYPerformance.h"
 
-@implementation HYDatabaseManager (Performance)
+@implementation HYDBManager (Performance)
 
 - (void)database_createPerformanceTable {
     /*
@@ -30,13 +30,13 @@
                             "PRIMARY KEY (perform_id),"
                             "FOREIGN KEY (plan_id) REFERENCES fleshy_plan(plan_id)"
                         ");";
-    [self executeUpdateSql:tableSql];
+//    [self executeUpdateSql:tableSql];
 }
 
 - (void)database_insertPerformance:(HYPerformance *)performance {
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, isPerform, perform_date) VALUES (%@, %ld);", performance.planId, 0];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, isPerform, perform_date) VALUES (%ld, %d, '%@');", performance.planId, 0, [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
     
-    [self executeSql:insertSql];
+//    [self executeSql:insertSql];
 }
 
 @end

@@ -11,7 +11,9 @@
 #import "HYGuideChooseTimeView.h"
 #import "HYGuideFinishView.h"
 #import "HYPlan.h"
-#import "HYDatabaseManager+Plan.h"
+#import "HYDBManager+Plan.h"
+#import "HYPerformance.h"
+#import "HYDBManager+Performance.h"
 
 NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
@@ -80,8 +82,15 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
 - (void)generatePlanData {
     // 生成一条计划数据，然后创建多条执行数据与之对应
-
-    [[HYDatabaseManager sharedInstance] database_insertPlan:self.plan];
+    [self.view hy_showLoading];
+    [[HYDBManager sharedInstance] database_insertPlan:self.plan];
+    for (int i = 1; i <= self.plan.durationDays; i++) {
+        HYPerformance *performance = [[HYPerformance alloc] init];
+        performance.planId = self.plan.planId;
+        performance.performDate = [self.plan.startTime dateByAddingDays:i];
+        [[HYDBManager sharedInstance] database_insertPerformance:performance];
+    }
+    [self.view hy_hideLoading];
 }
 
 #pragma mark - Setter and Getter

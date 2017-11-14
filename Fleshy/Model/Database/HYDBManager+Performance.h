@@ -1,15 +1,15 @@
 //
-//  HYDatabaseManager+Performance.h
+//  HYDBManager+Performance.h
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/13.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "HYDatabaseManager.h"
+#import "HYDBManager.h"
 
 @class HYPerformance;
-@interface HYDatabaseManager (Performance)
+@interface HYDBManager (Performance)
 
 - (void)database_createPerformanceTable;
 

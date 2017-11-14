@@ -1,15 +1,15 @@
 //
-//  HYDatabaseManager+Plan.h
+//  HYDBManager+Plan.h
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/13.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "HYDatabaseManager.h"
+#import "HYDBManager.h"
 
 @class HYPlan;
-@interface HYDatabaseManager (Plan)
+@interface HYDBManager (Plan)
 
 /**
  创建计划数据表

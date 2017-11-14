@@ -129,8 +129,8 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else if (indexPath.row == 2) {
         // 结束时间  (先判断开始时间是否已经确定)
         if (self.plan.startTime == nil) {
-            [self showToast:@"请先选择开始时间"];
-            [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] shakeAnimation];
+            [self hy_showToast:@"请先选择开始时间"];
+            [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] hy_shakeAnimation];
             return;
         }
         [self showDatePickerAlert:@"请选择结束时间" tag:1002];
@@ -147,7 +147,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else {
         // 如果结束时间小于开始时间，弹出提示
         if ([date earlierDate:self.plan.startTime] == date) {
-            [self showToast:@"结束时间必须大于开始时间"];
+            [self hy_showToast:@"结束时间必须大于开始时间"];
             return;
         }
         self.plan.endTime = date;
@@ -164,22 +164,22 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 - (void)clickedNextBtnHandler {
     // 计划名称不匹配
     if (self.plan.planName.length == 0) {
-        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] shakeAnimation];
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] hy_shakeAnimation];
         return;
     }
     // 开始时间不匹配
     if (self.plan.startTime == nil) {
-        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] shakeAnimation];
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] hy_shakeAnimation];
         return;
     }
     // 结束时间不匹配
     if (self.plan.endTime == nil) {
-        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] shakeAnimation];
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] hy_shakeAnimation];
         return;
     }
     // 持续时间不匹配
     if (self.plan.durationDays == 0) {
-        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] shakeAnimation];
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] hy_shakeAnimation];
         return;
     }
     

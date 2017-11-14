@@ -13,13 +13,17 @@
 /**
  抖动效果
  */
-- (void)shakeAnimation;
+- (void)hy_shakeAnimation;
 
 /************************* MBProgressHUD扩展 *****************************/
 
 /**
  类似安卓Toast，显示在底部
  */
-- (void)showToast:(NSString *)message;
+- (void)hy_showToast:(NSString *)message;
+
+- (void)hy_showLoading;
+
+- (void)hy_hideLoading;
 
 @end

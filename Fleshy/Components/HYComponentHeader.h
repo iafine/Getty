@@ -16,7 +16,7 @@
 #import "UIView+HYAdd.h"
 #import "NSDate+HYAdd.h"
 
-#import "HYDatabaseManager.h"
+#import "HYDBManager.h"
 #import "HYCacheHelper.h"
 
 #endif /* HYComponentHeader_h */

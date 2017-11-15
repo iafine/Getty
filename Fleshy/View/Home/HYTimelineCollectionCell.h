@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class HYPerformance;
 @interface HYTimelineCollectionCell : UICollectionViewCell
 
 + (NSString *)cellID;
 
-@property (nonatomic, copy) NSDictionary *cellData;
+@property (nonatomic, strong) HYPerformance *cellData;
 
 @end

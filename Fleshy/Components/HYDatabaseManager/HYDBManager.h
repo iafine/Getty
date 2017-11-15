@@ -36,7 +36,7 @@
 - (void)executeQuerySQL:(NSString *)sqlString block:(void(^)(BOOL isSuccess, FMResultSet *rs, NSString *message))block;
 
 /**
- 批量处理SQL语句
+ 批量处理SQL语句 (不使用事务)
  */
 - (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block;
 

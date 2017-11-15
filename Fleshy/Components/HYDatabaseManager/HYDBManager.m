@@ -42,6 +42,7 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
         if (![fmManger fileExistsAtPath:dbPath]) {
             [fmManger createFileAtPath:dbPath contents:nil attributes:nil];
         }
+        NSLog(@"数据库路径: %@", dbPath);
         self.db = [FMDatabase databaseWithPath:dbPath];
         self.dbQueue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
         [self updateDBVersion];

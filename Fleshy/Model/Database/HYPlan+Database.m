@@ -22,7 +22,7 @@
 + (void)database_queryPlan:(NSString *)planName block:(void (^)(BOOL, HYPlan *, NSString *))block {
     NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM fleshy_plan WHERE plan_name = '%@'", planName];
     [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
-        if (rs.next) {
+        while(rs.next) {
             HYPlan *plan = [[HYPlan alloc] init];
             plan.planId = [rs intForColumn:@"plan_id"];
             plan.planName = [rs stringForColumn:@"plan_name"];
@@ -34,6 +34,25 @@
             
             block(isSuccess, plan, message);
         }
+    }];
+}
+
++ (void)database_queryAllPlan:(void (^)(BOOL, NSArray<HYPlan *> *, NSString *))block {
+    NSString *querySql = @"SELECT * FROM fleshy_plan;";
+    [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        NSMutableArray *tempArrray = [NSMutableArray array];
+        while (rs.next) {
+            HYPlan *plan = [[HYPlan alloc] init];
+            plan.planId = [rs intForColumn:@"plan_id"];
+            plan.planName = [rs stringForColumn:@"plan_name"];
+            plan.startTime = [NSDate dateWithString:[rs stringForColumn:@"plan_start_time"] format:@"yyyy-MM-dd HH:mm:ss"];
+            plan.endTime = [NSDate dateWithString:[rs stringForColumn:@"plan_end_time"] format:@"yyyy-MM-dd HH:mm:ss"];
+            plan.createDate = [NSDate dateWithString:[rs stringForColumn:@"plan_create_time"] format:@"yyyy-MM-dd HH:mm:ss"];
+            plan.durationTime = [rs intForColumn:@"plan_duration_time"];
+            plan.durationDays = [rs intForColumn:@"plan_duration_days"];
+            [tempArrray addObject:plan];
+        }
+        block(isSuccess, tempArrray, message);
     }];
 }
 

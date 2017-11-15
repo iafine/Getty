@@ -8,10 +8,13 @@
 
 #import "HYHomeViewController.h"
 #import "HYTimelineCollectionCell.h"
+#import "HYPerformance+Database.h"
 
 @interface HYHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, copy) NSArray *dataArray;
 
 @end
 
@@ -26,7 +29,19 @@
     [self.view addSubview:self.collectionView];
     
     // 滚动到最后一个item
-    [self.collectionView hy_scrollToHorizontalEnd:NO];
+//    [self.collectionView hy_scrollToHorizontalEnd:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [HYPerformance database_queryAllPerformance:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
+        if (array.count > 0) {
+            // 刷新数据
+            self.dataArray = array;
+            [self.collectionView reloadData];
+        }
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -35,12 +50,12 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 5;
+    return self.dataArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HYTimelineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYTimelineCollectionCell cellID] forIndexPath:indexPath];
-    cell.cellData = [NSDictionary dictionary];
+    cell.cellData = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -87,6 +102,13 @@
         [_collectionView registerClass:[HYTimelineCollectionCell class] forCellWithReuseIdentifier:[HYTimelineCollectionCell cellID]];
     }
     return _collectionView;
+}
+
+- (NSArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSArray array];
+    }
+    return _dataArray;
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "HYTimelineCollectionCell.h"
+#import "HYPerformance.h"
 
 @interface HYTimelineCollectionCell ()
 
@@ -65,7 +66,6 @@
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] init];
         _dateLabel.font = [UIFont systemFontOfSize:kTextSizeTiny weight:UIFontWeightHeavy];
-        _dateLabel.text = @"10月27日";
         _dateLabel.textColor = kDeepGrayColor;
     }
     return _dateLabel;
@@ -92,10 +92,11 @@
     return _radiusBgView;
 }
 
-- (void)setCellData:(NSDictionary *)cellData {
+- (void)setCellData:(HYPerformance *)cellData {
     _cellData = cellData;
     
-//    self.radiusBgView.backgroundColor = kRandomColor;
+    self.dateLabel.text = [self.cellData.performDate stringWithFormat:@"MM月dd日"];
+    self.radiusBgView.backgroundColor = kRandomColor;
 }
 
 @end

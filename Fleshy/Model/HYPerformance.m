@@ -10,4 +10,13 @@
 
 @implementation HYPerformance
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ ",@{
+                                               @"performanceId" : @(_performanceId),
+                                               @"planId" : @(_planId),
+                                               @"isPerform" : @(_isPerform),
+                                               @"performDate" : _performDate
+                                               }];
+}
+
 @end

@@ -26,7 +26,7 @@
 #define HY_CREATE_PERFORMANCE   @"CREATE TABLE IF NOT EXISTS fleshy_performance(\
                                     perform_id INTEGER,\
                                     plan_id INTEGER NOT NULL,\
-                                    isPerform INTEGER NOT NULL,\
+                                    is_perform INTEGER NOT NULL,\
                                     perform_date TEXT,\
                                     PRIMARY KEY (perform_id),\
                                     FOREIGN KEY (plan_id) REFERENCES fleshy_plan(plan_id)\

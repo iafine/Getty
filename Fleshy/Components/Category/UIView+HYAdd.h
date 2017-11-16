@@ -18,9 +18,9 @@
 /************************* MBProgressHUD扩展 *****************************/
 
 /**
- 类似安卓Toast，显示在底部
+ 顶部显示警告
  */
-- (void)hy_showToast:(NSString *)message;
++ (void)hy_showToast:(NSString *)title message:(NSString *)message;
 
 - (void)hy_showLoading;
 

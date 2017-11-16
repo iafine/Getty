@@ -7,6 +7,7 @@
 //
 
 #import "UIView+HYAdd.h"
+#import "HYTopAlertView.h"
 
 @implementation UIView (HYAdd)
 
@@ -24,16 +25,9 @@
 
 /************************* MBProgressHUD扩展 *****************************/
 
-- (void)hy_showToast:(NSString *)message {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-    
-    // Set the text mode to show only text.
-    hud.mode = MBProgressHUDModeText;
-    hud.label.text = message;
-    // Move to bottm center.
-    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
-    
-    [hud hideAnimated:YES afterDelay:3.f];
++ (void)hy_showToast:(NSString *)title message:(NSString *)message {
+    HYTopAlertView *topAlert = [[HYTopAlertView alloc] initAlertWithTitle:title subTitle:message];
+    [topAlert show];
 }
 
 - (void)hy_showLoading {

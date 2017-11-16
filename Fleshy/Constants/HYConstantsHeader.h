@@ -29,6 +29,9 @@
 #define KScreenWidthScale kScreenW / 375
 #define kScreenHeightScale kScreenH/667
 
+#define kStatusBarHeight 20
+#define kNavHeight  44
+
 // 字体相关
 #define kTextSizeMini 10
 #define kTextSizeTiny 12

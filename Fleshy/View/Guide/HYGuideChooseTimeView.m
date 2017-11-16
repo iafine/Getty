@@ -129,7 +129,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else if (indexPath.row == 2) {
         // 结束时间  (先判断开始时间是否已经确定)
         if (self.plan.startTime == nil) {
-            [self hy_showToast:@"请先选择开始时间"];
+            [UIView hy_showToast:@"提示" message:@"请先选择开始时间"];
             [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] hy_shakeAnimation];
             return;
         }
@@ -147,7 +147,7 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
     }else {
         // 如果结束时间小于开始时间，弹出提示
         if ([date earlierDate:self.plan.startTime] == date) {
-            [self hy_showToast:@"结束时间必须大于开始时间"];
+            [UIView hy_showToast:@"提示" message:@"结束时间必须大于开始时间"];
             return;
         }
         self.plan.endTime = date;

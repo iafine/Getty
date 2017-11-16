@@ -11,11 +11,15 @@
 
 @implementation HYPerformance (Database)
 
-+ (void)database_insertPerformance:(HYPerformance *)performance block:(void (^)(BOOL, NSString *))block {
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, is_perform, perform_date) VALUES (%ld, %d, '%@');", performance.planId, performance.isPerform, [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
++ (void)database_insertPerformances:(NSArray<HYPerformance *> *)performances block:(void (^)(BOOL, NSString *))block {
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (HYPerformance *performance in performances) {
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, is_perform, perform_date) VALUES (%ld, %d, '%@');", performance.planId, performance.isPerform, [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
+        [tempArray addObject:insertSql];
+    }
     
-    [[HYDBManager sharedInstance] executeInsetSQL:insertSql block:^(BOOL isSuccess, NSString *message) {
-        block(isSuccess, message);
+    [[HYDBManager sharedInstance] executeSqlList:tempArray block:^(BOOL isSuccess, NSString *message) {
+        if (block) block(isSuccess, message);
     }];
 }
 

@@ -10,7 +10,7 @@
 
 @interface HYPerformance (Database)
 
-+ (void)database_insertPerformance:(HYPerformance *)performance block:(void(^)(BOOL isSuccess, NSString *message))block;
++ (void)database_insertPerformances:(NSArray<HYPerformance *> *)performances block:(void(^)(BOOL isSuccess, NSString *message))block;
 
 + (void)database_queryAllPerformance:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message))block;
 

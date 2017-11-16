@@ -61,15 +61,6 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         // 引导页消失，刷新数据
         self.plan = (HYPlan *)userInfo;
         [self generatePlanData];
-        
-        [self.navigationController removeFromParentViewController];
-        [UIView animateWithDuration:0.5 animations:^{
-            self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
-            self.navigationController.view.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self removeFromParentViewController];
-            [self.view removeFromSuperview];
-        }];
     }else {
         [super hy_routerEventWithName:eventName userInfo:userInfo];
     }
@@ -82,20 +73,35 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
 
 - (void)generatePlanData {
     // 生成一条计划数据，然后创建多条执行数据与之对应
-    [self.view hy_showLoading];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [HYPlan databasae_insertPlan:self.plan block:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
             [HYPlan database_queryPlan:self.plan.planName block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
                 NSLog(@"%@", plan);
                 if (plan) {
+                    NSMutableArray *array = [NSMutableArray array];
                     for (int i=1; i<=plan.durationDays; i++) {
                         HYPerformance *performance = [[HYPerformance alloc] init];
                         performance.planId = plan.planId;
                         performance.isPerform = NO;
                         performance.performDate = [plan.startTime dateByAddingDays:i];
-                        [HYPerformance database_insertPerformance:performance block:^(BOOL isSuccess, NSString *message) {
-                        }];
+                        [array addObject:performance];
                     }
+                    [HYPerformance database_insertPerformances:array block:^(BOOL isSuccess, NSString *message) {
+                        if (isSuccess) {
+                            [hud hideAnimated:YES];
+                            
+                            [self.navigationController removeFromParentViewController];
+                            [UIView animateWithDuration:0.5 animations:^{
+                                self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
+                                self.navigationController.view.alpha = 0;
+                            } completion:^(BOOL finished) {
+                                [self removeFromParentViewController];
+                                [self.view removeFromSuperview];
+                            }];
+                        }
+                    }];
                 }
             }];
         }

@@ -10,7 +10,6 @@
 
 @interface HYDBManager : NSObject
 
-@property (nonatomic, strong) FMDatabase *db;   // 数据库
 @property (nonatomic, strong) FMDatabaseQueue *dbQueue; //数据库队列
 
 + (instancetype)sharedInstance;
@@ -36,8 +35,8 @@
 - (void)executeQuerySQL:(NSString *)sqlString block:(void(^)(BOOL isSuccess, FMResultSet *rs, NSString *message))block;
 
 /**
- 批量处理SQL语句 (不使用事务)
+ 批量执行sql语句 (使用事务)
  */
-- (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block;
+- (void)executeSqlList:(NSArray *)sqlList block:(void(^)(BOOL isSuccess, NSString *message))block;
 
 @end

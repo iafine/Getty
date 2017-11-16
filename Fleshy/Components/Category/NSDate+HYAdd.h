@@ -31,4 +31,9 @@
  */
 - (NSDate *)hy_newDateBySecondZero;
 
+/**
+ 返回星期字符串
+ */
+- (NSString *)hy_stringWeekday;
+
 @end

@@ -76,7 +76,6 @@
         _weekLabel = [[UILabel alloc] init];
         _weekLabel.font = [UIFont systemFontOfSize:kTextSizeHuge weight:UIFontWeightHeavy];
         _weekLabel.textColor = kBlackColor;
-        _weekLabel.text = @"星期四";
     }
     return _weekLabel;
 }
@@ -95,8 +94,9 @@
 - (void)setCellData:(HYPerformance *)cellData {
     _cellData = cellData;
     
-    self.dateLabel.text = [self.cellData.performDate stringWithFormat:@"MM月dd日"];
     self.radiusBgView.backgroundColor = kRandomColor;
+    self.dateLabel.text = [self.cellData.performDate stringWithFormat:@"MM月dd日"];
+    self.weekLabel.text = [self.cellData.performDate hy_stringWeekday];
 }
 
 @end

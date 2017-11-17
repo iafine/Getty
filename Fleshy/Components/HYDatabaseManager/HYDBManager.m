@@ -189,19 +189,25 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 
 - (void)executeSqlList:(NSArray *)sqlList block:(void (^)(BOOL, NSString *))block {
     __block BOOL isSuccess = NO;
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        for (NSString *sqlString in sqlList) {
-            isSuccess = [db executeUpdate:sqlString];
-            if ([db hadError]) {
-                block(isSuccess, [db lastErrorMessage]);
-                NSLog(@"executeSQLList error %d: %@", [db lastErrorCode], [db lastErrorMessage]);
-                break;
-            }else {
-                NSLog(@"执行SQL命令成功：%@", sqlString);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+            for (NSString *sqlString in sqlList) {
+                isSuccess = [db executeUpdate:sqlString];
+                if ([db hadError]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        block(isSuccess, [db lastErrorMessage]);
+                    });
+                    NSLog(@"executeSQLList error %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+                    break;
+                }else {
+                    NSLog(@"执行SQL命令成功：%@", sqlString);
+                }
             }
-        }
-    }];
-    block(isSuccess, nil);
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, nil);
+        });
+    });
 }
 
 #pragma mark - Private Methods

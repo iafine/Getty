@@ -97,6 +97,9 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
                                 self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
                                 self.navigationController.view.alpha = 0;
                             } completion:^(BOOL finished) {
+                                // 发送计划创建完成通知
+                                [[NSNotificationCenter defaultCenter] postNotificationName:HYPlanInitialSuccessNotification object:nil];
+                                
                                 [self removeFromParentViewController];
                                 [self.view removeFromSuperview];
                             }];

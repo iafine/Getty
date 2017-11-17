@@ -31,18 +31,16 @@
     
     // 滚动到最后一个item
 //    [self.collectionView hy_scrollToHorizontalEnd:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:HYPlanInitialSuccessNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        [self refreshData];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [HYPerformance database_queryAllPerformance:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
-        if (array.count > 0) {
-            // 刷新数据
-            self.dataArray = array;
-            [self.collectionView reloadData];
-        }
-    }];
+
+    [self refreshData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -88,6 +86,17 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 15;
+}
+
+#pragma mark - Private Methods
+- (void)refreshData {
+    [HYPerformance database_queryAllPerformance:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
+        if (array.count > 0) {
+            // 刷新数据
+            self.dataArray = array;
+            [self.collectionView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Setter and Getter

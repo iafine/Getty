@@ -22,7 +22,7 @@
 
 // 常量头文件
 #import "HYConstantsHeader.h"
-
+#import "HYNotificationNames.h"
 
 // 项目相关
 #import "HYComponentHeader.h"

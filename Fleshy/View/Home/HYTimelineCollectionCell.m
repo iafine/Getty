@@ -95,8 +95,12 @@
     _cellData = cellData;
     
     self.radiusBgView.backgroundColor = kRandomColor;
-    self.dateLabel.text = [self.cellData.performDate stringWithFormat:@"MM月dd日"];
-    self.weekLabel.text = [self.cellData.performDate hy_stringWeekday];
+    self.dateLabel.text = [cellData.performDate stringWithFormat:@"MM月dd日"];
+    if ([cellData.performDate isToday]) {
+        self.weekLabel.text = @"今天";
+    }else {
+        self.weekLabel.text = [cellData.performDate hy_stringWeekday];
+    }
 }
 
 @end

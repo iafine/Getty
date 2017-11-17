@@ -24,8 +24,6 @@
 
 // 尺寸相关
 #define kScreenBounds [UIScreen mainScreen].bounds
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define KScreenWidthScale kScreenW / 375
 #define kScreenHeightScale kScreenH/667
 

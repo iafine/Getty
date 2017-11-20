@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *weekLabel;
-@property (nonatomic, strong) UIView *radiusBgView;
 
 @property (nonatomic, strong) UILabel *titileLabel;
 @property (nonatomic, strong) UILabel *startTimeLabel;
@@ -147,7 +146,7 @@
     }
     
     [HYPlan database_queryPlanWithPerformanceId:cellData.performanceId block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
-        self.titileLabel.text = plan.planName;
+//        self.titileLabel.text = plan.planName;
     }];
 }
 

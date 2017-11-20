@@ -9,7 +9,7 @@
 #import "HYHomeViewController.h"
 #import "HYTimelineCollectionCell.h"
 #import "HYPerformance+Database.h"
-#import "HYTopAlertView.h"
+#import "HYPlanDetailController.h"
 
 @interface HYHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -68,7 +68,10 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [UIView hy_showToast:@"提示" message:@"计划名称不合规。"];
+    HYTimelineCollectionCell *cell = (HYTimelineCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    HYPlanDetailController *detailVC = [[HYPlanDetailController alloc] init];
+    detailVC.bgColor = cell.radiusBgView.backgroundColor;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

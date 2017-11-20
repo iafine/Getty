@@ -11,6 +11,8 @@
 @class HYPerformance;
 @interface HYTimelineCollectionCell : UICollectionViewCell
 
+@property (nonatomic, strong) UIView *radiusBgView;
+
 + (NSString *)cellID;
 
 @property (nonatomic, strong) HYPerformance *cellData;

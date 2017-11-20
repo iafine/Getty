@@ -19,4 +19,7 @@
 #import "HYDBManager.h"
 #import "HYCacheHelper.h"
 
+// UI
+#import "HYTopAlertView.h"
+
 #endif /* HYComponentHeader_h */

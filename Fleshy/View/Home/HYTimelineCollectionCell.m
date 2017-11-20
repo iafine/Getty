@@ -13,10 +13,9 @@
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *weekLabel;
 
-@property (nonatomic, strong) UILabel *titileLabel;
 @property (nonatomic, strong) UILabel *startTimeLabel;
 @property (nonatomic, strong) UILabel *endTimeLabel;
-@property (nonatomic, strong) UILabel *durationLabel;
+@property (nonatomic, strong) UIView *seperatorView;
 
 @end
 
@@ -36,7 +35,10 @@
     [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.weekLabel];
     [self.contentView addSubview:self.radiusBgView];
-    [self.radiusBgView addSubview:self.titileLabel];
+    
+    [self.radiusBgView addSubview:self.startTimeLabel];
+    [self.radiusBgView addSubview:self.seperatorView];
+    [self.radiusBgView addSubview:self.endTimeLabel];
 }
 
 - (void)initLayout {
@@ -56,11 +58,20 @@
         make.right.equalTo(self.contentView.mas_right);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15);
     }];
-    [self.titileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.radiusBgView.mas_top).offset(15);
-        make.left.equalTo(self.radiusBgView.mas_left).offset(15);
-        make.right.equalTo(self.radiusBgView.mas_right).offset(-15);
-        make.height.mas_equalTo(35);
+    [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.seperatorView.mas_top).offset(-15);
+        make.centerX.equalTo(self.radiusBgView.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(200, 35));
+    }];
+    [self.seperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.radiusBgView.mas_centerX);
+        make.centerY.equalTo(self.radiusBgView.mas_centerY).offset(-35);
+        make.size.mas_equalTo(CGSizeMake(5, 90));
+    }];
+    [self.endTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.seperatorView.mas_bottom).offset(15);
+        make.centerX.equalTo(self.radiusBgView.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(200, 35));
     }];
 }
 
@@ -100,20 +111,12 @@
     return _radiusBgView;
 }
 
-- (UILabel *)titileLabel {
-    if (!_titileLabel) {
-        _titileLabel = [[UILabel alloc] init];
-        _titileLabel.font = [UIFont systemFontOfSize:kTextSizeHuge weight:UIFontWeightBold];
-        _titileLabel.textAlignment = NSTextAlignmentCenter;
-        _titileLabel.textColor = [UIColor whiteColor];
-    }
-    return _titileLabel;
-}
-
 - (UILabel *)startTimeLabel {
     if (!_startTimeLabel) {
         _startTimeLabel = [[UILabel alloc] init];
-        _startTimeLabel.font = [UIFont systemFontOfSize:kTextSizeMedium];
+        _startTimeLabel.font = [UIFont systemFontOfSize:kTextSizeHuge];
+        _startTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _startTimeLabel.textColor = [UIColor whiteColor];
     }
     return _startTimeLabel;
 }
@@ -121,17 +124,20 @@
 - (UILabel *)endTimeLabel {
     if (!_endTimeLabel) {
         _endTimeLabel = [[UILabel alloc] init];
-        _endTimeLabel.font = [UIFont systemFontOfSize:kTextSizeMedium];
+        _endTimeLabel.font = [UIFont systemFontOfSize:kTextSizeHuge];
+        _endTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _endTimeLabel.textColor = [UIColor whiteColor];
     }
     return _endTimeLabel;
 }
 
-- (UILabel *)durationLabel {
-    if (!_durationLabel)  {
-        _durationLabel = [[UILabel alloc] init];
-        _durationLabel.font = [UIFont systemFontOfSize:kTextSizeSmall];
+- (UIView *)seperatorView {
+    if (!_seperatorView) {
+        _seperatorView = [[UIView alloc] init];
+        _seperatorView.backgroundColor = [UIColor whiteColor];
+        _seperatorView.layer.cornerRadius = 2.5;
     }
-    return _durationLabel;
+    return _seperatorView;
 }
 
 - (void)setCellData:(HYPerformance *)cellData {
@@ -146,7 +152,8 @@
     }
     
     [HYPlan database_queryPlanWithPerformanceId:cellData.performanceId block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
-//        self.titileLabel.text = plan.planName;
+        self.startTimeLabel.text = [plan.startTime stringWithFormat:@"HH:mm"];
+        self.endTimeLabel.text = [plan.endTime stringWithFormat:@"HH:mm"];
     }];
 }
 

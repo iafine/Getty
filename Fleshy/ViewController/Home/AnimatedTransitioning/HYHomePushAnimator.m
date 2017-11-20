@@ -31,7 +31,6 @@
     // 设置目标控制器
     detailVC.view.frame = [transitionContext finalFrameForViewController:detailVC];
     detailVC.view.alpha = 0;
-    detailVC.view.backgroundColor = homeVC.selectedCell.radiusBgView.backgroundColor;
     
     [containerView addSubview:detailVC.view];
     [containerView addSubview:snapshotView];

@@ -10,8 +10,9 @@
 #import "HYTimelineCollectionCell.h"
 #import "HYPerformance+Database.h"
 #import "HYPlanDetailController.h"
+#import "HYHomePushAnimator.h"
 
-@interface HYHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface HYHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -29,6 +30,8 @@
     
     [self.view addSubview:self.collectionView];
     
+    self.navigationController.delegate = self;
+    
     // 滚动到最后一个item
 //    [self.collectionView hy_scrollToHorizontalEnd:NO];
     
@@ -41,6 +44,21 @@
     [super viewWillAppear:animated];
 
     [self refreshData];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.navigationController.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (self.navigationController.delegate == self) {
+        self.navigationController.delegate = nil;
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -69,6 +87,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     HYTimelineCollectionCell *cell = (HYTimelineCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    self.selectedCell = cell;
     HYPlanDetailController *detailVC = [[HYPlanDetailController alloc] init];
     detailVC.bgColor = cell.radiusBgView.backgroundColor;
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -89,6 +108,18 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 15;
+}
+
+#pragma mark - UINavigationControllerDelegate
+- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                            animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                         fromViewController:(UIViewController *)fromVC
+                                                           toViewController:(UIViewController *)toVC {
+    if ([toVC isKindOfClass:[HYPlanDetailController class]]) {
+        return [[HYHomePushAnimator alloc] init];
+    }else {
+        return nil;
+    }
 }
 
 #pragma mark - Private Methods

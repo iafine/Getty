@@ -16,6 +16,8 @@
 		683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5C1FA31F3A0010F0A0 /* HYGuideGenderView.m */; };
 		683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */; };
 		6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6841ECD11FB1635A008645E5 /* HYDatePickerView.m */; };
+		6850AB411FC27A6100AFCE95 /* HYHomePushAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6850AB401FC27A6100AFCE95 /* HYHomePushAnimator.m */; };
+		6850AB441FC27A7C00AFCE95 /* HYHomePopAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6850AB431FC27A7C00AFCE95 /* HYHomePopAnimator.m */; };
 		687A78681FB3EE2400E95957 /* HYGuideFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78671FB3EE2400E95957 /* HYGuideFinishView.m */; };
 		687A786B1FB429A100E95957 /* HYPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A786A1FB429A100E95957 /* HYPlan.m */; };
 		687A78711FB4414500E95957 /* NSDate+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78701FB4414500E95957 /* NSDate+HYAdd.m */; };
@@ -58,6 +60,10 @@
 		683A6B5F1FA3309F0010F0A0 /* UINavigationBar+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+HYAdd.m"; sourceTree = "<group>"; };
 		6841ECD01FB1635A008645E5 /* HYDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDatePickerView.h; sourceTree = "<group>"; };
 		6841ECD11FB1635A008645E5 /* HYDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDatePickerView.m; sourceTree = "<group>"; };
+		6850AB3F1FC27A6100AFCE95 /* HYHomePushAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomePushAnimator.h; sourceTree = "<group>"; };
+		6850AB401FC27A6100AFCE95 /* HYHomePushAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYHomePushAnimator.m; sourceTree = "<group>"; };
+		6850AB421FC27A7C00AFCE95 /* HYHomePopAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomePopAnimator.h; sourceTree = "<group>"; };
+		6850AB431FC27A7C00AFCE95 /* HYHomePopAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYHomePopAnimator.m; sourceTree = "<group>"; };
 		687A78661FB3EE2400E95957 /* HYGuideFinishView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideFinishView.h; sourceTree = "<group>"; };
 		687A78671FB3EE2400E95957 /* HYGuideFinishView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideFinishView.m; sourceTree = "<group>"; };
 		687A78691FB429A100E95957 /* HYPlan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlan.h; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		683A6B551FA31D9B0010F0A0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6850AB3B1FC26EAE00AFCE95 /* AnimatedTransitioning */,
 				683A6B511FA309980010F0A0 /* HYHomeViewController.h */,
 				683A6B521FA309980010F0A0 /* HYHomeViewController.m */,
 				6891976D1FC2638800120F07 /* HYPlanDetailController.h */,
@@ -192,6 +199,17 @@
 				6841ECD11FB1635A008645E5 /* HYDatePickerView.m */,
 			);
 			path = HYDatePickView;
+			sourceTree = "<group>";
+		};
+		6850AB3B1FC26EAE00AFCE95 /* AnimatedTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				6850AB3F1FC27A6100AFCE95 /* HYHomePushAnimator.h */,
+				6850AB401FC27A6100AFCE95 /* HYHomePushAnimator.m */,
+				6850AB421FC27A7C00AFCE95 /* HYHomePopAnimator.h */,
+				6850AB431FC27A7C00AFCE95 /* HYHomePopAnimator.m */,
+			);
+			path = AnimatedTransitioning;
 			sourceTree = "<group>";
 		};
 		687A78721FB5394D00E95957 /* Main */ = {
@@ -489,6 +507,7 @@
 				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,
 				687A78751FB5396400E95957 /* HYMainViewController.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,
+				6850AB441FC27A7C00AFCE95 /* HYHomePopAnimator.m in Sources */,
 				683204071FBB0CB600617CCF /* HYPerformance+Database.m in Sources */,
 				683A6B531FA309980010F0A0 /* HYHomeViewController.m in Sources */,
 				6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */,
@@ -499,6 +518,7 @@
 				6891976F1FC2638800120F07 /* HYPlanDetailController.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
 				6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */,
+				6850AB411FC27A6100AFCE95 /* HYHomePushAnimator.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 				682FF8C91FBE7E4E0045DC56 /* HYNotificationNames.m in Sources */,
 				687A78711FB4414500E95957 /* NSDate+HYAdd.m in Sources */,

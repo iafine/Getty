@@ -7,8 +7,10 @@
 //
 
 #import "HYPlanDetailController.h"
+#import "HYHomeViewController.h"
+#import "HYHomePopAnimator.h"
 
-@interface HYPlanDetailController ()
+@interface HYPlanDetailController ()<UINavigationControllerDelegate>
 
 @end
 
@@ -28,10 +30,32 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.navigationController.delegate = self;
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    
+    if (self.navigationController.delegate == self) {
+        self.navigationController.delegate = nil;
+    }
+}
+
+#pragma mark - UINavigationControllerDelegate
+- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                            animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                         fromViewController:(UIViewController *)fromVC
+                                                           toViewController:(UIViewController *)toVC {
+    if ([toVC isKindOfClass:[HYHomeViewController class]]) {
+        return [[HYHomePopAnimator alloc] init];
+    }else {
+        return nil;
+    }
 }
 
 @end

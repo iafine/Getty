@@ -27,5 +27,10 @@
 // 项目相关
 #import "HYComponentHeader.h"
 
+// 模型相关
+#import "HYPlan.h"
+#import "HYPerformance.h"
+#import "HYPlan+Database.h"
+#import "HYPerformance+Database.h"
 
 #endif /* Fleshy_Prefix_pch */

@@ -7,7 +7,6 @@
 //
 
 #import "HYTimelineCollectionCell.h"
-#import "HYPerformance.h"
 
 @interface HYTimelineCollectionCell ()
 
@@ -16,6 +15,9 @@
 @property (nonatomic, strong) UIView *radiusBgView;
 
 @property (nonatomic, strong) UILabel *titileLabel;
+@property (nonatomic, strong) UILabel *startTimeLabel;
+@property (nonatomic, strong) UILabel *endTimeLabel;
+@property (nonatomic, strong) UILabel *durationLabel;
 
 @end
 
@@ -35,6 +37,7 @@
     [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.weekLabel];
     [self.contentView addSubview:self.radiusBgView];
+    [self.radiusBgView addSubview:self.titileLabel];
 }
 
 - (void)initLayout {
@@ -53,6 +56,12 @@
         make.top.equalTo(self.weekLabel.mas_bottom).offset(5);
         make.right.equalTo(self.contentView.mas_right);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15);
+    }];
+    [self.titileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.radiusBgView.mas_top).offset(15);
+        make.left.equalTo(self.radiusBgView.mas_left).offset(15);
+        make.right.equalTo(self.radiusBgView.mas_right).offset(-15);
+        make.height.mas_equalTo(35);
     }];
 }
 
@@ -87,8 +96,43 @@
         _radiusBgView.layer.borderWidth = 0.5;
         _radiusBgView.layer.borderColor = kBorderGrayColor.CGColor;
         _radiusBgView.layer.masksToBounds = YES;
+        _radiusBgView.userInteractionEnabled = YES;
     }
     return _radiusBgView;
+}
+
+- (UILabel *)titileLabel {
+    if (!_titileLabel) {
+        _titileLabel = [[UILabel alloc] init];
+        _titileLabel.font = [UIFont systemFontOfSize:kTextSizeHuge weight:UIFontWeightBold];
+        _titileLabel.textAlignment = NSTextAlignmentCenter;
+        _titileLabel.textColor = [UIColor whiteColor];
+    }
+    return _titileLabel;
+}
+
+- (UILabel *)startTimeLabel {
+    if (!_startTimeLabel) {
+        _startTimeLabel = [[UILabel alloc] init];
+        _startTimeLabel.font = [UIFont systemFontOfSize:kTextSizeMedium];
+    }
+    return _startTimeLabel;
+}
+
+- (UILabel *)endTimeLabel {
+    if (!_endTimeLabel) {
+        _endTimeLabel = [[UILabel alloc] init];
+        _endTimeLabel.font = [UIFont systemFontOfSize:kTextSizeMedium];
+    }
+    return _endTimeLabel;
+}
+
+- (UILabel *)durationLabel {
+    if (!_durationLabel)  {
+        _durationLabel = [[UILabel alloc] init];
+        _durationLabel.font = [UIFont systemFontOfSize:kTextSizeSmall];
+    }
+    return _durationLabel;
 }
 
 - (void)setCellData:(HYPerformance *)cellData {
@@ -101,6 +145,10 @@
     }else {
         self.weekLabel.text = [cellData.performDate hy_stringWeekday];
     }
+    
+    [HYPlan database_queryPlanWithPerformanceId:cellData.performanceId block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
+        self.titileLabel.text = plan.planName;
+    }];
 }
 
 @end

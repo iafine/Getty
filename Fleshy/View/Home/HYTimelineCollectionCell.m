@@ -163,13 +163,20 @@
 
     self.dateLabel.text = [cellData.performDate stringWithFormat:@"MM月dd日"];
     if ([cellData.performDate isToday]) {
+        // 如果是今天的计划
         self.weekLabel.text = @"今天";
         self.radiusBgView.backgroundColor = kMainColor;
         self.radiusBgView.layer.borderColor = kMainColor.CGColor;
-    }else {
+    } else if ([cellData.performDate hy_isBeforeToday]) {
+        // 如果是之前的计划
         self.weekLabel.text = [cellData.performDate hy_stringWeekday];
         self.radiusBgView.backgroundColor = kBgGrayColor;
         self.radiusBgView.layer.borderColor = kBgGrayColor.CGColor;
+    } else {
+        // 如果是之后的计划
+        self.weekLabel.text = [cellData.performDate hy_stringWeekday];
+        self.radiusBgView.backgroundColor = kMainColor;
+        self.radiusBgView.layer.borderColor = kMainColor.CGColor;
     }
     
     [HYPlan database_queryPlanWithPerformanceId:cellData.performanceId block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {

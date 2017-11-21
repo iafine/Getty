@@ -27,13 +27,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = kPageBgColor;
-    
     [self.view addSubview:self.collectionView];
-    
-    self.navigationController.delegate = self;
-    
-    // 滚动到最后一个item
-//    [self.collectionView hy_scrollToHorizontalEnd:NO];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:HYPlanInitialSuccessNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self refreshData];
@@ -44,7 +38,6 @@
     [super viewWillAppear:animated];
 
     [self refreshData];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -131,6 +124,12 @@
             // 刷新数据
             self.dataArray = array;
             [self.collectionView reloadData];
+            
+            // 滚动到今天的位置
+            if (self.dataArray.count > 4) {
+                NSInteger index = self.dataArray.count - 4;
+                [self.collectionView hy_scrollToIndex:index animated:NO];
+            }
         }
     }];
 }

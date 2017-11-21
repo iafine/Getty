@@ -10,13 +10,13 @@
 
 @implementation UICollectionView (HYAdd)
 
-- (void)hy_scrollToHorizontalEnd:(BOOL)animated {
+- (void)hy_scrollToIndex:(NSInteger)index animated:(BOOL)animated {
     NSInteger sections = [self numberOfSections];
     if (sections < 1)   return;
     NSInteger items = [self numberOfItemsInSection:0];
     if (items < 1) return;
-    CGFloat offsetX = items * kScreenWidth;
-    [self setContentOffset:CGPointMake(offsetX, 0)];
+    CGFloat offsetX = index * kScreenWidth;
+    [self setContentOffset:CGPointMake(offsetX, 0) animated:animated];
 }
 
 @end

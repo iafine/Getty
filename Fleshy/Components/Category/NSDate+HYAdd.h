@@ -36,4 +36,14 @@
  */
 - (NSString *)hy_stringWeekday;
 
+/**
+ 是否是今天之前的时间
+ */
+- (BOOL)hy_isBeforeToday;
+
+/**
+ 是否是今天之后的时间
+ */
+- (BOOL)hy_isAfterToday;
+
 @end

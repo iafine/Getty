@@ -67,4 +67,27 @@
     }
 }
 
+- (BOOL)hy_isBeforeToday {
+    NSComparisonResult result = [self hy_compareDate:self dateB:[NSDate date]];
+    return (result == NSOrderedDescending ? NO : YES);
+}
+
+- (BOOL)hy_isAfterToday {
+    NSComparisonResult result = [self hy_compareDate:self dateB:[NSDate date]];
+    return (result == NSOrderedDescending ? YES : NO);
+}
+
+#pragma mark - Private Methods
+- (NSComparisonResult)hy_compareDate:(NSDate *)dateA dateB:(NSDate *)dateB {
+    NSString *dateString = [dateA stringWithFormat:@"yyyy-MM-dd"];
+    NSString *nowDateString = [dateB stringWithFormat:@"yyyy-MM-dd"];
+    
+    NSDate *finalDateA = [NSDate dateWithString:dateString format:@"yyyy-MM-dd"];
+    NSDate *finalDateB = [NSDate dateWithString:nowDateString format:@"yyyy-MM-dd"];
+
+    NSComparisonResult result = [finalDateA compare:finalDateB];
+    
+    return result;
+}
+
 @end

@@ -11,8 +11,8 @@
 @interface UICollectionView (HYAdd)
 
 /**
- 水平滚动，滚动到最后一个item (适用于首页效果)
+ 水平滚动，滚动到index位置 (适用于首页效果)
  */
-- (void)hy_scrollToHorizontalEnd:(BOOL)animated;
+- (void)hy_scrollToIndex:(NSInteger)index animated:(BOOL)animated;
 
 @end

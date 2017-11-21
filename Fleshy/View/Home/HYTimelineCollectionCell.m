@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UILabel *startTimeLabel;
 @property (nonatomic, strong) UILabel *endTimeLabel;
 @property (nonatomic, strong) UIView *seperatorView;
+@property (nonatomic, strong) UILabel *descLabel;
 
 @end
 
@@ -39,6 +40,7 @@
     [self.radiusBgView addSubview:self.startTimeLabel];
     [self.radiusBgView addSubview:self.seperatorView];
     [self.radiusBgView addSubview:self.endTimeLabel];
+    [self.radiusBgView addSubview:self.descLabel];
 }
 
 - (void)initLayout {
@@ -59,19 +61,25 @@
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15);
     }];
     [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.seperatorView.mas_top).offset(-15);
+        make.bottom.equalTo(self.seperatorView.mas_top).offset(-35);
         make.centerX.equalTo(self.radiusBgView.mas_centerX);
         make.size.mas_equalTo(CGSizeMake(200, 35));
     }];
     [self.seperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.radiusBgView.mas_centerX);
         make.centerY.equalTo(self.radiusBgView.mas_centerY).offset(-35);
-        make.size.mas_equalTo(CGSizeMake(5, 90));
+        make.size.mas_equalTo(CGSizeMake(1, 180));
     }];
     [self.endTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.seperatorView.mas_bottom).offset(15);
+        make.top.equalTo(self.seperatorView.mas_bottom).offset(35);
         make.centerX.equalTo(self.radiusBgView.mas_centerX);
         make.size.mas_equalTo(CGSizeMake(200, 35));
+    }];
+    [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.radiusBgView.mas_left).offset(15);
+        make.right.equalTo(self.radiusBgView.mas_right).offset(-15);
+        make.bottom.equalTo(self.radiusBgView.mas_bottom).offset(-35);
+        make.height.mas_equalTo(35);
     }];
 }
 
@@ -102,9 +110,9 @@
 - (UIView *)radiusBgView {
     if (!_radiusBgView) {
         _radiusBgView = [[UIView alloc] init];
+        _radiusBgView.backgroundColor = kMainColor;
         _radiusBgView.layer.cornerRadius = 10;
         _radiusBgView.layer.borderWidth = 0.5;
-        _radiusBgView.layer.borderColor = kBorderGrayColor.CGColor;
         _radiusBgView.layer.masksToBounds = YES;
         _radiusBgView.userInteractionEnabled = YES;
     }
@@ -135,25 +143,43 @@
     if (!_seperatorView) {
         _seperatorView = [[UIView alloc] init];
         _seperatorView.backgroundColor = [UIColor whiteColor];
-        _seperatorView.layer.cornerRadius = 2.5;
+        _seperatorView.layer.cornerRadius = 0.5;
     }
     return _seperatorView;
 }
 
+- (UILabel *)descLabel {
+    if (!_descLabel) {
+        _descLabel = [[UILabel alloc] init];
+        _descLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
+        _descLabel.textColor = [UIColor whiteColor];
+        _descLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _descLabel;
+}
+
 - (void)setCellData:(HYPerformance *)cellData {
     _cellData = cellData;
-    
-    self.radiusBgView.backgroundColor = kRandomColor;
+
     self.dateLabel.text = [cellData.performDate stringWithFormat:@"MM月dd日"];
     if ([cellData.performDate isToday]) {
         self.weekLabel.text = @"今天";
+        self.radiusBgView.backgroundColor = kMainColor;
+        self.radiusBgView.layer.borderColor = kMainColor.CGColor;
     }else {
         self.weekLabel.text = [cellData.performDate hy_stringWeekday];
+        self.radiusBgView.backgroundColor = kBgGrayColor;
+        self.radiusBgView.layer.borderColor = kBgGrayColor.CGColor;
     }
     
     [HYPlan database_queryPlanWithPerformanceId:cellData.performanceId block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
         self.startTimeLabel.text = [plan.startTime stringWithFormat:@"HH:mm"];
         self.endTimeLabel.text = [plan.endTime stringWithFormat:@"HH:mm"];
+        if ([cellData.performDate isToday]) {
+            self.descLabel.text = [NSString stringWithFormat:@"距离开始还有%@，共持续%@", [cellData.performDate hy_timeintervalWithBeforeDate:[NSDate new]], [plan.endTime hy_timeintervalWithBeforeDate:plan.startTime]];
+        }else {
+            self.descLabel.text = @"暂未开放";
+        }
     }];
 }
 

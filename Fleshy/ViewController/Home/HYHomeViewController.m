@@ -125,7 +125,7 @@
 #pragma mark - Private Methods
 - (void)refreshData {
     [self.view hy_showLoading];
-    [HYPerformance database_queryAllPerformance:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
+    [HYPerformance database_queryThreeDaysFromNowPerformances:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
         [self.view hy_hideLoading];
         if (array.count > 0) {
             // 刷新数据

@@ -39,4 +39,21 @@
     }];
 }
 
++ (void)database_queryThreeDaysFromNowPerformances:(void (^)(BOOL, NSArray<HYPerformance *> *, NSString *))block {
+    NSString *threeDate = [[[NSDate new] dateByAddingDays:3] stringWithFormat:@"yyyy-MM-dd"];
+    NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM fleshy_performance WHERE perform_id <= (SELECT perform_id FROM fleshy_performance WHERE perform_date like '%@%%') ORDER BY perform_date ASC;", threeDate];
+    [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        NSMutableArray *tempArrray = [NSMutableArray array];
+        while (rs.next) {
+            HYPerformance *performance = [[HYPerformance alloc] init];
+            performance.performanceId = [rs intForColumn:@"perform_id"];
+            performance.planId = [rs intForColumn:@"plan_id"];
+            performance.isPerform = [rs boolForColumn:@"is_perform"];
+            performance.performDate = [NSDate dateWithString:[rs stringForColumn:@"perform_date"] format:@"yyyy-MM-dd HH:mm:ss"];
+            [tempArrray addObject:performance];
+        }
+        block(isSuccess, tempArrray, message);
+    }];
+}
+
 @end

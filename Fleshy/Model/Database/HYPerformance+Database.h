@@ -14,4 +14,9 @@
 
 + (void)database_queryAllPerformance:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message))block;
 
+/**
+ 查询大后天（今天往后推3天）之前所有的执行数据
+ */
++ (void)database_queryThreeDaysFromNowPerformances:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message))block;
+
 @end

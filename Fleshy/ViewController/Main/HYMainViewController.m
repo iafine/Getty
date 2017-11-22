@@ -27,7 +27,7 @@
     [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
             // test
-            [HYLocalNotification createLocalNotification:[[NSDate date] dateByAddingSeconds:15] alertTitle:@"测试" alertBody:@"这是一条本地推送" repeatInterval:NSCalendarUnitDay userInfo:nil];
+            [HYLocalNotification createLocalNotification:nil alertTitle:@"测试标题" subTitle:@"测试子标题" alertBody:@"这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；" badge:0 userInfo:nil];
 //            [self addFleshyPage];
         }else {
             [self addNotAllowNotificationPage];

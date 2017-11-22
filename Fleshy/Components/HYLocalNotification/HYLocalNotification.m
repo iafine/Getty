@@ -47,19 +47,20 @@
     }
 }
 
-+ (void)createLocalNotification:(NSDate *)fireDate alertTitle:(NSString *)alertTitle alertBody:(NSString *)alertBody repeatInterval:(NSCalendarUnit)repeatInterval userInfo:(NSDictionary *)userInfo {
++ (void)createLocalNotification:(NSDate *)fireDate alertTitle:(NSString *)alertTitle subTitle:(NSString *)subTitle alertBody:(NSString *)alertBody badge:(NSInteger)badge userInfo:(NSDictionary *)userInfo {
     if (@available(iOS 10.0, *)) {
         // 高于iOS10版本
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
         content.title = alertTitle;
         content.body = alertBody;
+        content.subtitle = subTitle;
+        content.badge = [NSNumber numberWithInteger:badge];
         content.sound = [UNNotificationSound defaultSound];
 
         // 设置触发日期
 //        NSDateComponents *components = [self componentsEveryDayWithDate:fireDate];
 //        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
-        
         UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:60 repeats:YES];
         UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"HYLocalNotification" content:content trigger:trigger];
         

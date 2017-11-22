@@ -60,12 +60,28 @@
 }
 
 #pragma mark - UNUserNotificationCenterDelegate
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-    
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {    
+    NSLog(@"前台收到本地通知:{\n title:%@,\n subtitle:%@,\n body：%@,\n badge:%@,\n sound:%@,\n userinfo:%@\n}",
+          notification.request.content.title,
+          notification.request.content.subtitle,
+          notification.request.content.body,
+          notification.request.content.badge,
+          notification.request.content.sound,
+          notification.request.content.userInfo);
+    completionHandler(UNNotificationPresentationOptionBadge |
+                      UNNotificationPresentationOptionSound |
+                      UNNotificationPresentationOptionAlert);
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
-    
+    NSLog(@"后台收到本地通知:{\n title:%@,\n subtitle:%@,\n body：%@,\n badge:%@,\n sound:%@,\n userinfo:%@\n}",
+          response.notification.request.content.title,
+          response.notification.request.content.subtitle,
+          response.notification.request.content.body,
+          response.notification.request.content.badge,
+          response.notification.request.content.sound,
+          response.notification.request.content.userInfo);
+    completionHandler();
 }
 
 #pragma mark - Setter and Getter

@@ -79,11 +79,7 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         if (isSuccess) {
             [HYPlan database_queryPlan:self.plan.planName block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
                 NSLog(@"%@", plan);
-                if (plan) {
-                    
-                    // 创建本地推送
-                    [HYLocalNotification createLocalNotification:plan.startTime alertTitle:@"测试" alertBody:@"这是一条本地推送" repeatInterval:NSCalendarUnitDay userInfo:nil];
-                    
+                if (plan) {                    
                     // 创建执行数据
                     NSMutableArray *array = [NSMutableArray array];
                     for (int i=1; i<=plan.durationDays; i++) {

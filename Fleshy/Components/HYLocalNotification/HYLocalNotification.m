@@ -56,17 +56,6 @@
                 NSLog(@"添加推送失败：%@", error.description);
             }
         }];
-    } else {
-        // 低于iOS10版本
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = fireDate;
-        localNotification.alertTitle = alertTitle;
-        localNotification.alertBody = alertBody;
-        localNotification.repeatInterval = repeatInterval;
-        localNotification.userInfo = userInfo;
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-        
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     }
 }
 

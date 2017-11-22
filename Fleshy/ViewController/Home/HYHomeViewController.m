@@ -32,9 +32,6 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:HYPlanInitialSuccessNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         [self refreshData];
     }];
-    
-    // test
-    [HYLocalNotification createLocalNotification:[[NSDate date] dateByAddingSeconds:30] alertTitle:@"测试" alertBody:@"这是一条本地推送" repeatInterval:NSCalendarUnitDay userInfo:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -7,9 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <UserNotifications/UserNotifications.h>
 #import "HYMainViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -22,11 +23,11 @@
     self.window.rootViewController = [[HYMainViewController alloc] init];
     [self.window makeKeyAndVisible];
     
+    // 设置通知代理
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    
     // 设置基本导航栏属性
     [UINavigationBar hy_basicAppearance];
-    
-    // 注册通知
-    [HYLocalNotification registerNotification];
     
     return YES;
 }
@@ -56,6 +57,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - UNUserNotificationCenterDelegate
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    
 }
 
 #pragma mark - Setter and Getter

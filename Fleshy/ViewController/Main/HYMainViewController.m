@@ -23,6 +23,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 注册通知
+    [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            // test
+            [HYLocalNotification createLocalNotification:[[NSDate date] dateByAddingSeconds:15] alertTitle:@"测试" alertBody:@"这是一条本地推送" repeatInterval:NSCalendarUnitDay userInfo:nil];
+//            [self addFleshyPage];
+        }else {
+            [self addNotAllowNotificationPage];
+        }
+    }];
+}
+
+#pragma mark - Private Methods
+- (void)addFleshyPage {
     [self addChildViewController:self.homeNavVC];
     [self.view addSubview:self.homeNavVC.view];
     
@@ -33,6 +47,18 @@
             [self.view addSubview:self.guideNavVC.view];
         }
     }];
+}
+
+- (void)addNotAllowNotificationPage {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您没有允许显示通知，会影响App功能。请前往设置页开启此功能。" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *finishAction = [UIAlertAction actionWithTitle:@"前往设置页面" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        // 跳转到APP设置页
+        [[UIApplication sharedExtensionApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:^(BOOL success) {
+            
+        }];
+    }];
+    [alertVC addAction:finishAction];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 #pragma mark - Setter and Getter

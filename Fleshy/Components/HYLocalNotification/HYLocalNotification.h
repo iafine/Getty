@@ -10,7 +10,7 @@
 
 @interface HYLocalNotification : NSObject
 
-+ (void)registerNotification;
++ (void)registerNotificationCompleteHandler:(void(^)(BOOL granted, NSError *error))completeHandler;
 
 + (void)createLocalNotification:(NSDate *)fireDate alertTitle:(NSString *)alertTitle alertBody:(NSString *)alertBody repeatInterval:(NSCalendarUnit)repeatInterval userInfo:(NSDictionary *)userInfo;
 

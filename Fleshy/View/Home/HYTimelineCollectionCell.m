@@ -184,6 +184,8 @@
         self.endTimeLabel.text = [plan.endTime stringWithFormat:@"HH:mm"];
         if ([cellData.performDate isToday]) {
             self.descLabel.text = [NSString stringWithFormat:@"距离开始还有%@，共持续%@", [cellData.performDate hy_timeintervalWithBeforeDate:[NSDate new]], [plan.endTime hy_timeintervalWithBeforeDate:plan.startTime]];
+        }else if ([cellData.performDate hy_isBeforeToday]) {
+            self.descLabel.text = cellData.isPerform ? @"已完成" : @"未完成";
         }else {
             self.descLabel.text = @"暂未开放";
         }

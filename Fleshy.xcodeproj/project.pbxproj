@@ -34,6 +34,7 @@
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
 		68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */; };
 		68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F311FB92D490002FF0B /* HYPerformance.m */; };
+		68E463B11FC50AC60070B8DA /* HYLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E463B01FC50AC60070B8DA /* HYLocalNotification.m */; };
 		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
@@ -94,8 +95,11 @@
 		68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Prefix.pch"; sourceTree = "<group>"; };
 		68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideChooseTimeView.h; sourceTree = "<group>"; };
 		68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideChooseTimeView.m; sourceTree = "<group>"; };
+		68CD972C1FC428CC0056DE33 /* Fleshy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleshy.entitlements; sourceTree = "<group>"; };
 		68DB7F301FB92D490002FF0B /* HYPerformance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPerformance.h; sourceTree = "<group>"; };
 		68DB7F311FB92D490002FF0B /* HYPerformance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPerformance.m; sourceTree = "<group>"; };
+		68E463AF1FC50AC60070B8DA /* HYLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYLocalNotification.h; sourceTree = "<group>"; };
+		68E463B01FC50AC60070B8DA /* HYLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYLocalNotification.m; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
 		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
 		68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTimelineCollectionCell.m; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 		68BCC4E31FA0296600C145DA /* Fleshy */ = {
 			isa = PBXGroup;
 			children = (
+				68CD972C1FC428CC0056DE33 /* Fleshy.entitlements */,
 				68AE5BB21FA99B9E007C6FCE /* Vendor */,
 				68FFA6AD1FA1D4760015ED30 /* Constants */,
 				68BCC5051FA030A200C145DA /* Components */,
@@ -347,6 +352,7 @@
 		68BCC5051FA030A200C145DA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				68E463AE1FC50A9C0070B8DA /* HYLocalNotification */,
 				687A78761FB5841300E95957 /* HYDatabaseManager */,
 				68392CEE1FAAB646004C548D /* HYAlertView */,
 				68AE5BC01FA99EEF007C6FCE /* HYCacheHelper */,
@@ -354,6 +360,15 @@
 				683A6B501FA307650010F0A0 /* HYComponentHeader.h */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		68E463AE1FC50A9C0070B8DA /* HYLocalNotification */ = {
+			isa = PBXGroup;
+			children = (
+				68E463AF1FC50AC60070B8DA /* HYLocalNotification.h */,
+				68E463B01FC50AC60070B8DA /* HYLocalNotification.m */,
+			);
+			path = HYLocalNotification;
 			sourceTree = "<group>";
 		};
 		68FFA6AD1FA1D4760015ED30 /* Constants */ = {
@@ -411,6 +426,11 @@
 					68BCC4E01FA0296600C145DA = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -513,6 +533,7 @@
 				6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */,
 				6897FF081FBD2C14001FED68 /* HYTopAlertView.m in Sources */,
 				687A78681FB3EE2400E95957 /* HYGuideFinishView.m in Sources */,
+				68E463B11FC50AC60070B8DA /* HYLocalNotification.m in Sources */,
 				68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */,
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
 				6891976F1FC2638800120F07 /* HYPlanDetailController.m in Sources */,
@@ -651,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDD49F4BC31CF4987BF54A4F /* Pods-Fleshy.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Fleshy/Fleshy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2DXV7QR3FC;
@@ -670,6 +692,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Fleshy/Fleshy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2DXV7QR3FC;

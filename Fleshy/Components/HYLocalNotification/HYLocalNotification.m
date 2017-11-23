@@ -9,6 +9,16 @@
 #import "HYLocalNotification.h"
 #import <UserNotifications/UserNotifications.h>
 
+NSString *const HYPlanStartNotificationIdentifier = @"HYPlanStartNotificationIdentifier";
+NSString *const HYPlanEndNotificationIdentifier = @"HYPlanEndNotificationIdentifier";
+
+NSString *const HYPlanStartCategoryIdentifier = @"HYPlanStartCategoryIdentifier";
+NSString *const HYPlanEndCategoryIdentifier = @"HYPlanEndCategoryIdentifier";
+
+NSString *const HYPlanConfirmActionIdetifier = @"HYPlanConfirmActionIdetifier";
+NSString *const HYPlanRefuseActionIdentifier = @"HYPlanRefuseActionIdentifier";
+NSString *const HYPlanFinishActionIdentifier = @"HYPlanFinishActionIdentifier";
+
 @interface HYLocalNotification ()
 
 @end
@@ -24,30 +34,27 @@
             }else {
                 NSLog(@"注册通知失败，失败原因：%@", error.description);
             }
-            if (completeHandler) completeHandler(granted, error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completeHandler) completeHandler(granted, error);
+            });
         }];
         
-        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-            NSLog(@"%@",settings);
-        }];
+//        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+//            NSLog(@"%@",settings);
+//        }];
         
-//        UNNotificationAction *action1 = [UNNotificationAction actionWithIdentifier:actionFiveMin title:@"5分钟后" options:UNNotificationActionOptionNone];
-//
-//        UNNotificationAction *action2 = [UNNotificationAction actionWithIdentifier:actionHalfAnHour title:@"半小时后" options:UNNotificationActionOptionNone];
-//        UNNotificationAction *action3 = [UNNotificationAction actionWithIdentifier:actionOneHour title:@"1小时后" options:UNNotificationActionOptionNone];
-//        UNNotificationAction *action4 = [UNNotificationAction actionWithIdentifier:actionStop title:@"停止" options:UNNotificationActionOptionNone];
-//
-//
-//        UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:categryLaterIdf actions:@[action1, action2,action3, action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
-//
-//
-//        UNNotificationCategory *stopCategory = [UNNotificationCategory categoryWithIdentifier:categryStopIdf actions:@[action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
-//
-//        [center setNotificationCategories:[NSSet setWithArray:@[category,stopCategory]]];
+        UNNotificationAction *confirmAction = [UNNotificationAction actionWithIdentifier:HYPlanConfirmActionIdetifier title:@"开始计划" options:UNNotificationActionOptionNone];
+        UNNotificationAction *refuseAction = [UNNotificationAction actionWithIdentifier:HYPlanRefuseActionIdentifier title:@"取消计划" options:UNNotificationActionOptionDestructive];
+        UNNotificationAction *finishAction = [UNNotificationAction actionWithIdentifier:HYPlanRefuseActionIdentifier title:@"进行打卡" options:UNNotificationActionOptionDestructive];
+        
+        UNNotificationCategory *startCategory = [UNNotificationCategory categoryWithIdentifier:HYPlanStartCategoryIdentifier actions:@[confirmAction, refuseAction] intentIdentifiers:@[HYPlanStartNotificationIdentifier] options:UNNotificationCategoryOptionCustomDismissAction];
+        UNNotificationCategory *endCategory = [UNNotificationCategory categoryWithIdentifier:HYPlanEndCategoryIdentifier actions:@[finishAction] intentIdentifiers:@[HYPlanEndNotificationIdentifier] options:UNNotificationCategoryOptionCustomDismissAction];
+        
+        [center setNotificationCategories:[NSSet setWithArray:@[startCategory, endCategory]]];
     }
 }
 
-+ (void)createLocalNotification:(NSDate *)fireDate alertTitle:(NSString *)alertTitle subTitle:(NSString *)subTitle alertBody:(NSString *)alertBody badge:(NSInteger)badge userInfo:(NSDictionary *)userInfo {
++ (void)createLocalNotification:(NSDate *)fireDate alertTitle:(NSString *)alertTitle subTitle:(NSString *)subTitle identifier:(NSString *)identifier categoryIdentifier:(NSString *)categoryIdentifier alertBody:(NSString *)alertBody badge:(NSInteger)badge userInfo:(NSDictionary *)userInfo {
     if (@available(iOS 10.0, *)) {
         // 高于iOS10版本
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
@@ -57,12 +64,15 @@
         content.subtitle = subTitle;
         content.badge = [NSNumber numberWithInteger:badge];
         content.sound = [UNNotificationSound defaultSound];
+        content.categoryIdentifier = categoryIdentifier;
 
         // 设置触发日期
 //        NSDateComponents *components = [self componentsEveryDayWithDate:fireDate];
 //        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
-        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:60 repeats:YES];
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"HYLocalNotification" content:content trigger:trigger];
+
+        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:(fireDate.minute + fireDate.hour + 60) repeats:YES];
+        
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier content:content trigger:trigger];
         
         [center addNotificationRequest:request withCompletionHandler:^(NSError *_Nullable error) {
             if (!error) {

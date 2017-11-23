@@ -99,8 +99,13 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
                                 self.navigationController.view.alpha = 0;
                             } completion:^(BOOL finished) {
                                 // 发送计划创建完成通知
-                                [[NSNotificationCenter defaultCenter] postNotificationName:HYPlanInitialSuccessNotification object:nil];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:HYPlanInitialSuccessNotification object:plan];
                                 
+                                // 生成计划通知 (开始和结束)
+                                [self generateStartPlanNotification:plan];
+                                [self generateEndPlanNotification:plan];
+
+                                // dismiss引导页
                                 [self removeFromParentViewController];
                                 [self.view removeFromSuperview];
                             }];
@@ -111,6 +116,21 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         }
     }];
     [self.view hy_hideLoading];
+}
+
+- (void)generateStartPlanNotification:(HYPlan *)plan {
+    NSDate *fireDate = [plan.startTime dateByAddingMinutes:-5];
+    NSString *title = [NSString stringWithFormat:@"%@马上开始，请做好准备", plan.planName];
+    NSString *subTitle = @"";
+    NSString *alertBody = [NSString stringWithFormat:@"%@计划在%@即将开始了，恭喜您度过美好的一天！", plan.planName, [plan.startTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
+    [HYLocalNotification createLocalNotification:fireDate alertTitle:title subTitle:subTitle identifier:HYPlanStartNotificationIdentifier categoryIdentifier:HYPlanStartCategoryIdentifier alertBody:alertBody badge:0 userInfo:nil];
+}
+
+- (void)generateEndPlanNotification:(HYPlan *)plan {
+    NSString *title = @"恭喜您，完成计划";
+    NSString *subTitle = @"";
+    NSString *alertBody = @"每一步坚持，都是巨大的成功！";
+    [HYLocalNotification createLocalNotification:plan.endTime alertTitle:title subTitle:subTitle identifier:HYPlanEndNotificationIdentifier categoryIdentifier:HYPlanEndCategoryIdentifier alertBody:alertBody badge:0 userInfo:nil];
 }
 
 #pragma mark - Setter and Getter
@@ -124,7 +144,7 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
         _scrollView.bounces = NO;
         _scrollView.contentSize = CGSizeMake(kScreenWidth * 3, kScreenHeight - 64);
         _scrollView.delegate = self;
-        _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//        _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     return _scrollView;
 }

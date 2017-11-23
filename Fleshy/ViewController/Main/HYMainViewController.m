@@ -25,11 +25,12 @@
     
     // 注册通知
     [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
+        NSLog(@"当前线程是否是主线程：%d", [[NSThread currentThread] isMainThread]);
         if (granted) {
-            // test
-            [HYLocalNotification createLocalNotification:nil alertTitle:@"测试标题" subTitle:@"测试子标题" alertBody:@"这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；这个通知内容，应该可以无限长；" badge:0 userInfo:nil];
-//            [self addFleshyPage];
+            // 打开主页
+            [self addFleshyPage];
         }else {
+            // 打开权限提示页面
             [self addNotAllowNotificationPage];
         }
     }];

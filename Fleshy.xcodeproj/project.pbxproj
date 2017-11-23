@@ -33,11 +33,40 @@
 		68BCC4F41FA0296700C145DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4F31FA0296700C145DA /* main.m */; };
 		68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BCC4FC1FA02A9D00C145DA /* AppDelegate.m */; };
 		68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */; };
+		68CBAB241FC676B90087B98F /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CBAB231FC676B90087B98F /* UserNotifications.framework */; };
+		68CBAB261FC676B90087B98F /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CBAB251FC676B90087B98F /* UserNotificationsUI.framework */; };
+		68CBAB2A1FC676B90087B98F /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CBAB291FC676B90087B98F /* NotificationViewController.m */; };
+		68CBAB2D1FC676B90087B98F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68CBAB2B1FC676B90087B98F /* MainInterface.storyboard */; };
+		68CBAB311FC676B90087B98F /* FleshyNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 68CBAB221FC676B90087B98F /* FleshyNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F311FB92D490002FF0B /* HYPerformance.m */; };
 		68E463B11FC50AC60070B8DA /* HYLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E463B01FC50AC60070B8DA /* HYLocalNotification.m */; };
 		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68CBAB2F1FC676B90087B98F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68BCC4D91FA0296600C145DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68CBAB211FC676B90087B98F;
+			remoteInfo = FleshyNotificationContent;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		68CBAB351FC676B90087B98F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				68CBAB311FC676B90087B98F /* FleshyNotificationContent.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleshy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fleshy/Pods-Fleshy.release.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +124,13 @@
 		68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Prefix.pch"; sourceTree = "<group>"; };
 		68C226391FA6D4350037B963 /* HYGuideChooseTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideChooseTimeView.h; sourceTree = "<group>"; };
 		68C2263A1FA6D4350037B963 /* HYGuideChooseTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideChooseTimeView.m; sourceTree = "<group>"; };
+		68CBAB221FC676B90087B98F /* FleshyNotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FleshyNotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		68CBAB231FC676B90087B98F /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		68CBAB251FC676B90087B98F /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		68CBAB281FC676B90087B98F /* NotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		68CBAB291FC676B90087B98F /* NotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		68CBAB2C1FC676B90087B98F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		68CBAB2E1FC676B90087B98F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68CD972C1FC428CC0056DE33 /* Fleshy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleshy.entitlements; sourceTree = "<group>"; };
 		68DB7F301FB92D490002FF0B /* HYPerformance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPerformance.h; sourceTree = "<group>"; };
 		68DB7F311FB92D490002FF0B /* HYPerformance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPerformance.m; sourceTree = "<group>"; };
@@ -116,6 +152,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68CBAB1F1FC676B90087B98F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68CBAB261FC676B90087B98F /* UserNotificationsUI.framework in Frameworks */,
+				68CBAB241FC676B90087B98F /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -123,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */,
+				68CBAB231FC676B90087B98F /* UserNotifications.framework */,
+				68CBAB251FC676B90087B98F /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -275,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				68BCC4E31FA0296600C145DA /* Fleshy */,
+				68CBAB271FC676B90087B98F /* FleshyNotificationContent */,
 				68BCC4E21FA0296600C145DA /* Products */,
 				9CCB5B5F53FA98495C5AD72E /* Pods */,
 				03BFE5A30453F8D911B719C0 /* Frameworks */,
@@ -285,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				68BCC4E11FA0296600C145DA /* Fleshy.app */,
+				68CBAB221FC676B90087B98F /* FleshyNotificationContent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,6 +411,17 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		68CBAB271FC676B90087B98F /* FleshyNotificationContent */ = {
+			isa = PBXGroup;
+			children = (
+				68CBAB281FC676B90087B98F /* NotificationViewController.h */,
+				68CBAB291FC676B90087B98F /* NotificationViewController.m */,
+				68CBAB2B1FC676B90087B98F /* MainInterface.storyboard */,
+				68CBAB2E1FC676B90087B98F /* Info.plist */,
+			);
+			path = FleshyNotificationContent;
+			sourceTree = "<group>";
+		};
 		68E463AE1FC50A9C0070B8DA /* HYLocalNotification */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,15 +463,34 @@
 				68BCC4DF1FA0296600C145DA /* Resources */,
 				0E7787C87AE8FC8084A0C0F0 /* [CP] Embed Pods Frameworks */,
 				5FDA8871269BA90E33850A10 /* [CP] Copy Pods Resources */,
+				68CBAB351FC676B90087B98F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				68CBAB301FC676B90087B98F /* PBXTargetDependency */,
 			);
 			name = Fleshy;
 			productName = Fleshy;
 			productReference = 68BCC4E11FA0296600C145DA /* Fleshy.app */;
 			productType = "com.apple.product-type.application";
+		};
+		68CBAB211FC676B90087B98F /* FleshyNotificationContent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68CBAB341FC676B90087B98F /* Build configuration list for PBXNativeTarget "FleshyNotificationContent" */;
+			buildPhases = (
+				68CBAB1E1FC676B90087B98F /* Sources */,
+				68CBAB1F1FC676B90087B98F /* Frameworks */,
+				68CBAB201FC676B90087B98F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FleshyNotificationContent;
+			productName = FleshyNotificationContent;
+			productReference = 68CBAB221FC676B90087B98F /* FleshyNotificationContent.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -432,6 +511,10 @@
 							};
 						};
 					};
+					68CBAB211FC676B90087B98F = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 68BCC4DC1FA0296600C145DA /* Build configuration list for PBXProject "Fleshy" */;
@@ -448,6 +531,7 @@
 			projectRoot = "";
 			targets = (
 				68BCC4E01FA0296600C145DA /* Fleshy */,
+				68CBAB211FC676B90087B98F /* FleshyNotificationContent */,
 			);
 		};
 /* End PBXProject section */
@@ -459,6 +543,14 @@
 			files = (
 				68BCC4F11FA0296700C145DA /* LaunchScreen.storyboard in Resources */,
 				68BCC4EE1FA0296700C145DA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68CBAB201FC676B90087B98F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68CBAB2D1FC676B90087B98F /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +642,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68CBAB1E1FC676B90087B98F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68CBAB2A1FC676B90087B98F /* NotificationViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68CBAB301FC676B90087B98F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68CBAB211FC676B90087B98F /* FleshyNotificationContent */;
+			targetProxy = 68CBAB2F1FC676B90087B98F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		68BCC4EF1FA0296700C145DA /* LaunchScreen.storyboard */ = {
@@ -559,6 +667,14 @@
 				68BCC4F01FA0296700C145DA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		68CBAB2B1FC676B90087B98F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68CBAB2C1FC676B90087B98F /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -710,6 +826,36 @@
 			};
 			name = Release;
 		};
+		68CBAB321FC676B90087B98F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2DXV7QR3FC;
+				INFOPLIST_FILE = FleshyNotificationContent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshyios.FleshyNotificationContent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		68CBAB331FC676B90087B98F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2DXV7QR3FC;
+				INFOPLIST_FILE = FleshyNotificationContent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.fleshyios.FleshyNotificationContent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -727,6 +873,15 @@
 			buildConfigurations = (
 				68BCC4F81FA0296700C145DA /* Debug */,
 				68BCC4F91FA0296700C145DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68CBAB341FC676B90087B98F /* Build configuration list for PBXNativeTarget "FleshyNotificationContent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68CBAB321FC676B90087B98F /* Debug */,
+				68CBAB331FC676B90087B98F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

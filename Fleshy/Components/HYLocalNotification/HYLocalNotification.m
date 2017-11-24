@@ -45,7 +45,7 @@ NSString *const HYPlanFinishActionIdentifier = @"HYPlanFinishActionIdentifier";
         
         UNNotificationAction *confirmAction = [UNNotificationAction actionWithIdentifier:HYPlanConfirmActionIdetifier title:@"开始计划" options:UNNotificationActionOptionNone];
         UNNotificationAction *refuseAction = [UNNotificationAction actionWithIdentifier:HYPlanRefuseActionIdentifier title:@"取消计划" options:UNNotificationActionOptionDestructive];
-        UNNotificationAction *finishAction = [UNNotificationAction actionWithIdentifier:HYPlanRefuseActionIdentifier title:@"进行打卡" options:UNNotificationActionOptionDestructive];
+        UNNotificationAction *finishAction = [UNNotificationAction actionWithIdentifier:HYPlanFinishActionIdentifier title:@"进行打卡" options:UNNotificationActionOptionDestructive];
         
         UNNotificationCategory *startCategory = [UNNotificationCategory categoryWithIdentifier:HYPlanStartCategoryIdentifier actions:@[confirmAction, refuseAction] intentIdentifiers:@[HYPlanStartNotificationIdentifier] options:UNNotificationCategoryOptionCustomDismissAction];
         UNNotificationCategory *endCategory = [UNNotificationCategory categoryWithIdentifier:HYPlanEndCategoryIdentifier actions:@[finishAction] intentIdentifiers:@[HYPlanEndNotificationIdentifier] options:UNNotificationCategoryOptionCustomDismissAction];

@@ -22,18 +22,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // 注册通知
-    [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
-        NSLog(@"当前线程是否是主线程：%d", [[NSThread currentThread] isMainThread]);
-        if (granted) {
-            // 打开主页
-            [self addFleshyPage];
-        }else {
-            // 打开权限提示页面
-            [self addNotAllowNotificationPage];
+
+    // 测试数据库
+    NSString *deleteSql = @"DELETE FROM fleshy_plan;";
+    [[HYDBManager sharedInstance] executeDeleteSQL:deleteSql block:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            // 生成批量数据库
+            NSMutableArray *sqlList = [NSMutableArray array];
+            for (int i=0; i < 10000; i++) {
+                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_plan (plan_name, plan_start_time, plan_end_time, plan_create_time, plan_duration_time, plan_duration_days) VALUES ('test_plan_%d', '2017-11-24 12:00:00', '2017-11-24 12:00:00', '2017-11-24 12:00:00', 80, 60);", i];
+                [sqlList addObject:insertSql];
+            }
+            [[HYDBManager sharedInstance] executeSqlList:sqlList block:^(BOOL isSuccess, NSString *message) {
+                if (isSuccess) {
+                    // 查询数据库
+                    NSString *querySql = @"SELECT * FROM fleshy_plan;";
+                    [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+                        while (rs.next) {
+                            NSString *planName = [rs stringForColumn:@"plan_name"];
+                            NSLog(@"计划名称：%@", planName);
+                        }
+                        [rs close];
+                        
+                        NSString *querySql2 = @"SELECT * FROM fleshy_plan WHERE plan_id = 300;";
+                        [[HYDBManager sharedInstance] executeQuerySQL:querySql2 block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+                            while (rs.next) {
+                                NSString *planName = [rs stringForColumn:@"plan_name"];
+                                NSLog(@"第二次查询，计划名称：%@", planName);
+                            }
+                            [rs close];
+                        }];
+                    }];
+                }
+            }];
         }
     }];
+    // 注册通知
+//    [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
+//        NSLog(@"当前线程是否是主线程：%d", [[NSThread currentThread] isMainThread]);
+//        if (granted) {
+//            // 打开主页
+//            [self addFleshyPage];
+//        }else {
+//            // 打开权限提示页面
+//            [self addNotAllowNotificationPage];
+//        }
+//    }];
 }
 
 #pragma mark - Private Methods

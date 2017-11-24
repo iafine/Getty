@@ -35,6 +35,7 @@
             performance.performDate = [NSDate dateWithString:[rs stringForColumn:@"perform_date"] format:@"yyyy-MM-dd HH:mm:ss"];
             [tempArrray addObject:performance];
         }
+        [rs close];
         block(isSuccess, tempArrray, message);
     }];
 }
@@ -52,6 +53,7 @@
             performance.performDate = [NSDate dateWithString:[rs stringForColumn:@"perform_date"] format:@"yyyy-MM-dd HH:mm:ss"];
             [tempArrray addObject:performance];
         }
+        [rs close];
         block(isSuccess, tempArrray, message);
     }];
 }

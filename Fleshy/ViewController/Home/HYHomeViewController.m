@@ -117,7 +117,6 @@
 
 #pragma mark - Private Methods
 - (void)refreshData {
-    NSLog(@"当前线程是否是主线程：%d", [[NSThread currentThread] isMainThread]);
     [self.view hy_showLoading];
     [HYPerformance database_queryThreeDaysFromNowPerformances:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
         [self.view hy_hideLoading];
@@ -125,7 +124,7 @@
             // 刷新数据
             self.dataArray = array;
             [self.collectionView reloadData];
-            
+
             // 滚动到今天的位置
             if (self.dataArray.count > 4) {
                 NSInteger index = self.dataArray.count - 4;

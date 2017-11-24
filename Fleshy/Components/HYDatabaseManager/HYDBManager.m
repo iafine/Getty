@@ -128,7 +128,7 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
                 });
             }else {
                 NSTimeInterval endTime = CACurrentMediaTime();
-                NSLog(@"数据查询成功，SQL语句：%@，本次查询耗时%.4fms", sqlString, (endTime - startTime) * 1000);
+                NSLog(@"数据查询成功，SQL语句：%@，本次查询耗时%.4fms，共计%d行数据", sqlString, (endTime - startTime) * 1000, rs.columnCount);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(YES, rs, nil);
                 });

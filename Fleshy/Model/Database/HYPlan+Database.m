@@ -22,8 +22,8 @@
 + (void)database_queryPlan:(NSString *)planName block:(void (^)(BOOL, HYPlan *, NSString *))block {
     NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM fleshy_plan WHERE plan_name = '%@'", planName];
     [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        HYPlan *plan = [[HYPlan alloc] init];
         while(rs.next) {
-            HYPlan *plan = [[HYPlan alloc] init];
             plan.planId = [rs intForColumn:@"plan_id"];
             plan.planName = [rs stringForColumn:@"plan_name"];
             plan.startTime = [NSDate dateWithString:[rs stringForColumn:@"plan_start_time"] format:@"yyyy-MM-dd HH:mm:ss"];
@@ -31,17 +31,17 @@
             plan.createDate = [NSDate dateWithString:[rs stringForColumn:@"plan_create_time"] format:@"yyyy-MM-dd HH:mm:ss"];
             plan.durationTime = [rs intForColumn:@"plan_duration_time"];
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
-            
-            block(isSuccess, plan, message);
         }
+        [rs close];
+        block(isSuccess, plan, message);
     }];
 }
 
 + (void)database_queryPlanWithPerformanceId:(NSInteger)performanceId block:(void (^)(BOOL, HYPlan *, NSString *))block {
     NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM fleshy_plan WHERE plan_id = (SELECT plan_id FROM fleshy_performance WHERE perform_id = %ld);", performanceId];
     [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        HYPlan *plan = [[HYPlan alloc] init];
         while(rs.next) {
-            HYPlan *plan = [[HYPlan alloc] init];
             plan.planId = [rs intForColumn:@"plan_id"];
             plan.planName = [rs stringForColumn:@"plan_name"];
             plan.startTime = [NSDate dateWithString:[rs stringForColumn:@"plan_start_time"] format:@"yyyy-MM-dd HH:mm:ss"];
@@ -49,9 +49,9 @@
             plan.createDate = [NSDate dateWithString:[rs stringForColumn:@"plan_create_time"] format:@"yyyy-MM-dd HH:mm:ss"];
             plan.durationTime = [rs intForColumn:@"plan_duration_time"];
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
-            
-            block(isSuccess, plan, message);
         }
+        [rs close];
+        block(isSuccess, plan, message);
     }];
 }
 
@@ -70,6 +70,7 @@
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
             [tempArrray addObject:plan];
         }
+        [rs close];
         block(isSuccess, tempArrray, message);
     }];
 }

@@ -19,7 +19,9 @@
     }
     
     [[HYDBManager sharedInstance] executeSqlList:tempArray block:^(BOOL isSuccess, NSString *message) {
-        if (block) block(isSuccess, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block) block(isSuccess, message);
+        });
     }];
 }
 
@@ -36,7 +38,9 @@
             [tempArrray addObject:performance];
         }
         [rs close];
-        block(isSuccess, tempArrray, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, tempArrray, message);
+        });
     }];
 }
 
@@ -54,7 +58,9 @@
             [tempArrray addObject:performance];
         }
         [rs close];
-        block(isSuccess, tempArrray, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, tempArrray, message);            
+        });
     }];
 }
 

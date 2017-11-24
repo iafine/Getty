@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [self testDBMethod];
     // 注册通知
     [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
@@ -37,12 +38,11 @@
 
 #pragma mark - Private Methods
 - (void)addFleshyPage {
+    [self addChildViewController:self.homeNavVC];
+    [self.view addSubview:self.homeNavVC.view];
     
     // 如果还没有制定过计划，显示计划引导页面
     [HYPlan database_queryAllPlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {
-        [self addChildViewController:self.homeNavVC];
-        [self.view addSubview:self.homeNavVC.view];
-
         if (array.count == 0) {
             [self addChildViewController:self.guideNavVC];
             [self.view addSubview:self.guideNavVC.view];
@@ -64,38 +64,37 @@
 
 - (void)testDBMethod {
     // 测试数据库
-    NSString *deleteSql = @"DELETE FROM fleshy_plan;";
-    [[HYDBManager sharedInstance] executeDeleteSQL:deleteSql block:^(BOOL isSuccess, NSString *message) {
-        if (isSuccess) {
-            // 生成批量数据库
-            NSMutableArray *sqlList = [NSMutableArray array];
-            for (int i=0; i < 10000; i++) {
-                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_plan (plan_name, plan_start_time, plan_end_time, plan_create_time, plan_duration_time, plan_duration_days) VALUES ('test_plan_%d', '2017-11-24 12:00:00', '2017-11-24 12:00:00', '2017-11-24 12:00:00', 80, 60);", i];
-                [sqlList addObject:insertSql];
-            }
-            [[HYDBManager sharedInstance] executeSqlList:sqlList block:^(BOOL isSuccess, NSString *message) {
-                if (isSuccess) {
-                    // 查询数据库
-                    NSString *querySql = @"SELECT * FROM fleshy_plan;";
-                    [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
-                        while (rs.next) {
-                            NSString *planName = [rs stringForColumn:@"plan_name"];
-                            NSLog(@"计划名称：%@", planName);
-                        }
-                        [rs close];
-                        
-                        NSString *querySql2 = @"SELECT * FROM fleshy_plan WHERE plan_id = 300;";
-                        [[HYDBManager sharedInstance] executeQuerySQL:querySql2 block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
-                            while (rs.next) {
-                                NSString *planName = [rs stringForColumn:@"plan_name"];
-                                NSLog(@"第二次查询，计划名称：%@", planName);
-                            }
-                            [rs close];
-                        }];
-                    }];
-                }
-            }];
+    NSString *querySql1 = @"SELECT * FROM fleshy_plan WHERE plan_id = 101;";
+    [[HYDBManager sharedInstance] executeQuerySQL:querySql1 block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        while (rs.next) {
+            NSString *planName = [rs stringForColumn:@"plan_name"];
+            NSLog(@"第二次查询，计划名称：%@", planName);
         }
+        [rs close];
+    }];
+    NSString *querySql2 = @"SELECT * FROM fleshy_plan WHERE plan_id = 300;";
+    [[HYDBManager sharedInstance] executeQuerySQL:querySql2 block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        while (rs.next) {
+            NSString *planName = [rs stringForColumn:@"plan_name"];
+            NSLog(@"第二次查询，计划名称：%@", planName);
+        }
+        [rs close];
+    }];
+    NSString *querySql3 = @"SELECT * FROM fleshy_plan WHERE plan_id = 309;";
+    [[HYDBManager sharedInstance] executeQuerySQL:querySql3 block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        while (rs.next) {
+            NSString *planName = [rs stringForColumn:@"plan_name"];
+            NSLog(@"第二次查询，计划名称：%@", planName);
+        }
+        [rs close];
+    }];
+    NSString *querySql4 = @"SELECT * FROM fleshy_plan WHERE plan_id = 409;";
+    [[HYDBManager sharedInstance] executeQuerySQL:querySql4 block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
+        while (rs.next) {
+            NSString *planName = [rs stringForColumn:@"plan_name"];
+            NSLog(@"第二次查询，计划名称：%@", planName);
+        }
+        [rs close];
     }];
 }
 

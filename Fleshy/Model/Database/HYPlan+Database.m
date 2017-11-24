@@ -15,7 +15,9 @@
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_plan (plan_name, plan_start_time, plan_end_time, plan_create_time, plan_duration_time, plan_duration_days) VALUES ('%@', '%@', '%@', '%@', %ld , %ld);", plan.planName, [plan.startTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"], [plan.endTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"], [[NSDate new] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"], plan.durationTime, plan.durationDays];
     
     [[HYDBManager sharedInstance] executeInsetSQL:insertSql block:^(BOOL isSuccess, NSString *message) {
-        block(isSuccess, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, message);
+        });
     }];
 }
 
@@ -33,7 +35,9 @@
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
         }
         [rs close];
-        block(isSuccess, plan, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, plan, message);
+        });
     }];
 }
 
@@ -51,7 +55,9 @@
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
         }
         [rs close];
-        block(isSuccess, plan, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, plan, message);
+        });
     }];
 }
 
@@ -71,7 +77,9 @@
             [tempArrray addObject:plan];
         }
         [rs close];
-        block(isSuccess, tempArrray, message);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, tempArrray, message);            
+        });
     }];
 }
 

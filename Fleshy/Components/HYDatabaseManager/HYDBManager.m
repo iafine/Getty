@@ -117,24 +117,20 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 }
 
 - (void)executeQuerySQL:(NSString *)sqlString block:(void (^)(BOOL, FMResultSet *, NSString *))block {
-    NSTimeInterval startTime = CACurrentMediaTime();
-    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSTimeInterval startTime = CACurrentMediaTime();
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
             FMResultSet *rs = [db executeQuery:sqlString];
             if ([db hadError]) {
                 NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    block(NO, rs, [db lastErrorMessage]);
-                });
+                block(NO, rs, [db lastErrorMessage]);
             }else {
                 NSTimeInterval endTime = CACurrentMediaTime();
-                NSLog(@"数据查询成功，SQL语句：%@，本次查询耗时%.4fms，共计%d行数据", sqlString, (endTime - startTime) * 1000, rs.columnCount);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    block(YES, rs, nil);
-                });
+                NSLog(@"数据查询成功，SQL语句：%@，本次查询耗时%.4fms。", sqlString, (endTime - startTime) * 1000);
+                block(YES, rs, nil);
             }
-        });
-    }];
+        }];
+    });
 }
 
 - (void)executeSqlList:(NSArray *)sqlList db:(FMDatabase *)db block:(void(^)(BOOL isSuccess, NSString *message))block {
@@ -151,31 +147,26 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 }
 
 - (void)executeSqlList:(NSArray *)sqlList block:(void (^)(BOOL, NSString *))block {
-    __block BOOL isSuccess = NO;
-    NSLog(@"============批量执行SQL开始============");
-    NSTimeInterval startTime = CACurrentMediaTime();
-    [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        __block BOOL isSuccess = NO;
+        NSLog(@"============批量执行SQL开始============");
+        NSTimeInterval startTime = CACurrentMediaTime();
+        [self.dbQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
             for (NSString *sqlString in sqlList) {
                 NSLog(@"正在批量执行SQL：%@", sqlString);
                 isSuccess = [db executeUpdate:sqlString];
                 if ([db hadError]) {
-                    NSLog(@"executeSQLList error %d: %@", [db lastErrorCode], [db lastErrorMessage]);
                     *rollback = YES;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        NSLog(@"批量执行SQL失败");
-                        block(isSuccess, [db lastErrorMessage]);
-                    });
+                    NSLog(@"批量执行SQL失败， error %d: %@", [db lastErrorCode], [db lastErrorMessage]);
+                    block(isSuccess, [db lastErrorMessage]);
                     break;
                 }
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSTimeInterval endTime = CACurrentMediaTime();
-                NSLog(@"批量执行SQL成功，一共耗时%.4fms", (endTime - startTime) * 1000);
-                block(isSuccess, nil);
-            });
-        });
-    }];
+            NSTimeInterval endTime = CACurrentMediaTime();
+            NSLog(@"批量执行SQL成功，一共耗时%.4fms", (endTime - startTime) * 1000);
+            block(isSuccess, nil);
+        }];
+    });
 }
 
 #pragma mark - Private Methods
@@ -187,24 +178,20 @@ NSString *const HYDatabaseName = @"fleshy.sqlite";
 }
 
 - (void)executeSql:(NSString *)sqlString block:(void(^)(BOOL isSuccess, NSString *message))block{
-    NSTimeInterval startTime = CACurrentMediaTime();
-    [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSTimeInterval startTime = CACurrentMediaTime();
+        [self.dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
             BOOL isSuccess = [db executeUpdate:sqlString];
             NSTimeInterval endTime = CACurrentMediaTime();
             if ([db hadError]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    block(NO, [db lastErrorMessage]);
-                });
+                block(NO, [db lastErrorMessage]);
                 NSLog(@"executeSQL error %d:  %@",[db lastErrorCode],[db lastErrorMessage]);
             }else{
                 NSLog(@"执行SQL语句：%@，本次查询耗时%.4fms", sqlString, (endTime - startTime) * 1000);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    block(isSuccess, nil);
-                });
+                block(isSuccess, nil);
             }
-        });
-    }];
+        }];
+    });
 }
 
 @end

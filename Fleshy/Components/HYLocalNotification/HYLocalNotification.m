@@ -19,6 +19,9 @@ NSString *const HYPlanConfirmActionIdetifier = @"HYPlanConfirmActionIdetifier";
 NSString *const HYPlanRefuseActionIdentifier = @"HYPlanRefuseActionIdentifier";
 NSString *const HYPlanFinishActionIdentifier = @"HYPlanFinishActionIdentifier";
 
+NSString *const HYRegisterNotificationGrantKey = @"HYRegisterNotificationGrantKey";
+NSString *const HYHasRegisterNotifiactionKey = @"HYHasRegisterNotifiactionKey";
+
 @interface HYLocalNotification ()
 
 @end
@@ -29,9 +32,12 @@ NSString *const HYPlanFinishActionIdentifier = @"HYPlanFinishActionIdentifier";
     if (@available(iOS 10.0, *)) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            [HYCacheHelper setCacheValue:@(1) cacheKey:HYHasRegisterNotifiactionKey cacheType:HYCacheDisk];
             if (granted) {
+                [HYCacheHelper setCacheValue:@(0) cacheKey:HYRegisterNotificationGrantKey cacheType:HYCacheDisk];
                 NSLog(@"注册通知成功");
             }else {
+                [HYCacheHelper setCacheValue:@(1) cacheKey:HYRegisterNotificationGrantKey cacheType:HYCacheDisk];
                 NSLog(@"注册通知失败，失败原因：%@", error.description);
             }
             dispatch_async(dispatch_get_main_queue(), ^{

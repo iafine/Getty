@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		682BC01F1FCBBD6E007CA6E2 /* HYGuideNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BC01E1FCBBD6E007CA6E2 /* HYGuideNotificationController.m */; };
 		682FF8C91FBE7E4E0045DC56 /* HYNotificationNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FF8C81FBE7E4E0045DC56 /* HYNotificationNames.m */; };
 		683204041FBADF6000617CCF /* HYPlan+Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 683204031FBADF6000617CCF /* HYPlan+Database.m */; };
 		683204071FBB0CB600617CCF /* HYPerformance+Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 683204061FBB0CB600617CCF /* HYPerformance+Database.m */; };
@@ -70,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleshy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fleshy/Pods-Fleshy.release.xcconfig"; sourceTree = "<group>"; };
+		682BC01D1FCBBD6E007CA6E2 /* HYGuideNotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideNotificationController.h; sourceTree = "<group>"; };
+		682BC01E1FCBBD6E007CA6E2 /* HYGuideNotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideNotificationController.m; sourceTree = "<group>"; };
 		682FF8C71FBE7E4E0045DC56 /* HYNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNotificationNames.h; sourceTree = "<group>"; };
 		682FF8C81FBE7E4E0045DC56 /* HYNotificationNames.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNotificationNames.m; sourceTree = "<group>"; };
 		683204011FBAC59D00617CCF /* HYDBDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDBDefine.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 			children = (
 				683A6B561FA31DC30010F0A0 /* HYGuideViewController.h */,
 				683A6B571FA31DC30010F0A0 /* HYGuideViewController.m */,
+				682BC01D1FCBBD6E007CA6E2 /* HYGuideNotificationController.h */,
+				682BC01E1FCBBD6E007CA6E2 /* HYGuideNotificationController.m */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */,
 				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
+				682BC01F1FCBBD6E007CA6E2 /* HYGuideNotificationController.m in Sources */,
 				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,
 				687A78751FB5396400E95957 /* HYMainViewController.m in Sources */,
 				683A6B4E1FA305280010F0A0 /* UICollectionView+HYAdd.m in Sources */,

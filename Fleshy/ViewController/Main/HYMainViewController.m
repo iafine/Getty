@@ -8,7 +8,7 @@
 
 #import "HYMainViewController.h"
 #import "HYHomeViewController.h"
-#import "HYGuideViewController.h"
+#import "HYGuideNotificationController.h"
 #import "HYPlan+Database.h"
 
 @interface HYMainViewController ()
@@ -23,17 +23,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self testDBMethod];
-    // 注册通知
-    [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            // 打开主页
-            [self addFleshyPage];
-        }else {
-            // 打开权限提示页面
-            [self addNotAllowNotificationPage];
-        }
-    }];
+    // 如果没有申请过通知权限，那么显示通知开启引导页面
+    BOOL isRegister = [HYCacheHelper cacheValueForKey:HYHasRegisterNotifiactionKey cacheType:HYCacheDisk];
+    if (isRegister) {
+        // 如果还没有同意通知权限，那么显示通知开启引导页面
+        [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError *error) {
+            if (granted) {
+                [self addFleshyPage];
+            }else {
+                [self addNotAllowNotificationPage];
+            }
+        }];
+    }else {
+        [self addNotAllowNotificationPage];
+    }
 }
 
 #pragma mark - Private Methods
@@ -42,24 +45,26 @@
     [self.view addSubview:self.homeNavVC.view];
     
     // 如果还没有制定过计划，显示计划引导页面
-    [HYPlan database_queryAllPlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {
-        if (array.count == 0) {
-            [self addChildViewController:self.guideNavVC];
-            [self.view addSubview:self.guideNavVC.view];
-        }
-    }];
+//    [HYPlan database_queryAllPlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {
+//        if (array.count == 0) {
+//            [self addChildViewController:self.guideNavVC];
+//            [self.view addSubview:self.guideNavVC.view];
+//        }
+//    }];
 }
 
 - (void)addNotAllowNotificationPage {
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您没有允许显示通知，会影响App功能。请前往设置页开启此功能。" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *finishAction = [UIAlertAction actionWithTitle:@"前往设置页面" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        // 跳转到APP设置页
-        [[UIApplication sharedExtensionApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:^(BOOL success) {
-            
-        }];
-    }];
-    [alertVC addAction:finishAction];
-    [self presentViewController:alertVC animated:YES completion:nil];
+    [self addChildViewController:self.guideNavVC];
+    [self.view addSubview:self.guideNavVC.view];
+//    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您没有允许显示通知，会影响App功能。请前往设置页开启此功能。" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *finishAction = [UIAlertAction actionWithTitle:@"前往设置页面" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//        // 跳转到APP设置页
+//        [[UIApplication sharedExtensionApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:^(BOOL success) {
+//
+//        }];
+//    }];
+//    [alertVC addAction:finishAction];
+//    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 - (void)testDBMethod {
@@ -108,7 +113,7 @@
 
 - (UINavigationController *)guideNavVC {
     if (!_guideNavVC) {
-        _guideNavVC = [[UINavigationController alloc] initWithRootViewController:[HYGuideViewController new]];
+        _guideNavVC = [[UINavigationController alloc] initWithRootViewController:[HYGuideNotificationController new]];
     }
     return _guideNavVC;
 }

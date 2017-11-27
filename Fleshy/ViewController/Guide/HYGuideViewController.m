@@ -92,23 +92,6 @@ NSString *const HYGuideChangeColorEvent = @"HYGuideChangeColorEvent";
                     [HYPerformance database_insertPerformances:array block:^(BOOL isSuccess, NSString *message) {
                         if (isSuccess) {
                             [hud hideAnimated:YES];
-                            
-                            [self.navigationController removeFromParentViewController];
-                            [UIView animateWithDuration:0.5 animations:^{
-                                self.navigationController.view.transform = CGAffineTransformMakeScale(0.1, 0.1);
-                                self.navigationController.view.alpha = 0;
-                            } completion:^(BOOL finished) {
-                                // 发送计划创建完成通知
-                                [[NSNotificationCenter defaultCenter] postNotificationName:HYPlanInitialSuccessNotification object:plan];
-                                
-                                // 生成计划通知 (开始和结束)
-                                [self generateStartPlanNotification:plan];
-                                [self generateEndPlanNotification:plan];
-
-                                // dismiss引导页
-                                [self removeFromParentViewController];
-                                [self.view removeFromSuperview];
-                            }];
                         }
                     }];
                 }

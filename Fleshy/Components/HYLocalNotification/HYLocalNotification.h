@@ -18,6 +18,9 @@ extern NSString *const HYPlanConfirmActionIdetifier;        // 计划通知确�
 extern NSString *const HYPlanRefuseActionIdentifier;        // 计划通知拒绝identifier
 extern NSString *const HYPlanFinishActionIdentifier;        // 计划通知完成identifier
 
+extern NSString *const HYHasRegisterNotifiactionKey;        // 是否已经申请过通知权限缓存key （NO未申请过，YES已经申请过）
+extern NSString *const HYRegisterNotificationGrantKey;      // 通知权限用户允许或未允许缓存Key (NO未允许，YES允许)
+
 @interface HYLocalNotification : NSObject
 
 + (void)registerNotificationCompleteHandler:(void (^)(BOOL granted, NSError *error))completeHandler;

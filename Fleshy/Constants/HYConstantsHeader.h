@@ -20,7 +20,11 @@
 
 #define kFemaleColor [UIColor colorWithRed:239.0 / 255.0 green:144.0 / 255.0 blue:141.0 / 255.0 alpha:1.0]
 #define kMaleColor [UIColor colorWithRed:110.0 / 255.0 green:156.0 / 255.0 blue:247.0 / 255.0 alpha:1.0]
-#define kMainColor ([(NSString *)[HYCacheHelper cacheValueForKey:@"kHYGuideGenderCacheKey" cacheType:HYCacheDisk] isEqualToString: @"male"] ? kMaleColor : kFemaleColor)
+//#define kMainColor ([(NSString *)[HYCacheHelper cacheValueForKey:@"kHYGuideGenderCacheKey" cacheType:HYCacheDisk] isEqualToString: @"male"] ? kMaleColor : kFemaleColor)
+
+#define kTitleColor [UIColor colorWithRed:0.27 green:0.27 blue:0.27 alpha:1.00]
+#define kDescColor  [UIColor colorWithRed:0.71 green:0.71 blue:0.71 alpha:1.00]
+#define kMainColor  [UIColor colorWithRed:0.42 green:0.63 blue:0.97 alpha:1.00]
 
 // 尺寸相关
 #define kScreenBounds [UIScreen mainScreen].bounds

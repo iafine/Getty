@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.descLabel];
     [self.view addSubview:self.notificationBtn];

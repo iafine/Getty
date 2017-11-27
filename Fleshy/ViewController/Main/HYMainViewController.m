@@ -23,13 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self addChildViewController:self.homeNavVC];
+    [self.view addSubview:self.homeNavVC.view];
+    
     // 如果没有申请过通知权限，那么显示通知开启引导页面
     BOOL isRegister = [HYCacheHelper cacheValueForKey:HYHasRegisterNotifiactionKey cacheType:HYCacheDisk];
     if (isRegister) {
         // 如果还没有同意通知权限，那么显示通知开启引导页面
         [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError *error) {
             if (granted) {
-                [self addFleshyPage];
             }else {
                 [self addNotAllowNotificationPage];
             }
@@ -41,8 +43,6 @@
 
 #pragma mark - Private Methods
 - (void)addFleshyPage {
-    [self addChildViewController:self.homeNavVC];
-    [self.view addSubview:self.homeNavVC.view];
     
     // 如果还没有制定过计划，显示计划引导页面
 //    [HYPlan database_queryAllPlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {

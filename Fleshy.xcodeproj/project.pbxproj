@@ -41,7 +41,7 @@
 		68CBAB311FC676B90087B98F /* FleshyNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 68CBAB221FC676B90087B98F /* FleshyNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F311FB92D490002FF0B /* HYPerformance.m */; };
 		68E463B11FC50AC60070B8DA /* HYLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E463B01FC50AC60070B8DA /* HYLocalNotification.m */; };
-		68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */; };
+		68FFA6B11FA1D8000015ED30 /* HYHomePlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYHomePlanCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
 
@@ -140,8 +140,8 @@
 		68E463AF1FC50AC60070B8DA /* HYLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYLocalNotification.h; sourceTree = "<group>"; };
 		68E463B01FC50AC60070B8DA /* HYLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYLocalNotification.m; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
-		68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTimelineCollectionCell.h; sourceTree = "<group>"; };
-		68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTimelineCollectionCell.m; sourceTree = "<group>"; };
+		68FFA6AF1FA1D8000015ED30 /* HYHomePlanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomePlanCell.h; sourceTree = "<group>"; };
+		68FFA6B01FA1D8000015ED30 /* HYHomePlanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYHomePlanCell.m; sourceTree = "<group>"; };
 		7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fleshy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD49F4BC31CF4987BF54A4F /* Pods-Fleshy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleshy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fleshy/Pods-Fleshy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,8 +229,8 @@
 		683A6B591FA31DFC0010F0A0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				68FFA6AF1FA1D8000015ED30 /* HYTimelineCollectionCell.h */,
-				68FFA6B01FA1D8000015ED30 /* HYTimelineCollectionCell.m */,
+				68FFA6AF1FA1D8000015ED30 /* HYHomePlanCell.h */,
+				68FFA6B01FA1D8000015ED30 /* HYHomePlanCell.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -619,7 +619,7 @@
 			files = (
 				683204041FBADF6000617CCF /* HYPlan+Database.m in Sources */,
 				683A6B601FA3309F0010F0A0 /* UINavigationBar+HYAdd.m in Sources */,
-				68FFA6B11FA1D8000015ED30 /* HYTimelineCollectionCell.m in Sources */,
+				68FFA6B11FA1D8000015ED30 /* HYHomePlanCell.m in Sources */,
 				68BCC4F41FA0296700C145DA /* main.m in Sources */,
 				682BC01F1FCBBD6E007CA6E2 /* HYGuideNotificationController.m in Sources */,
 				68C2263B1FA6D4350037B963 /* HYGuideChooseTimeView.m in Sources */,

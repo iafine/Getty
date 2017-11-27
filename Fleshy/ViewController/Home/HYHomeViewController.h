@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class HYTimelineCollectionCell;
+@class HYHomePlanCell;
 @interface HYHomeViewController : UIViewController
 
-@property (nonatomic, strong) HYTimelineCollectionCell *selectedCell;
+@property (nonatomic, strong) HYHomePlanCell *selectedCell;
 
 @end

@@ -7,14 +7,14 @@
 //
 
 #import "HYHomeViewController.h"
-#import "HYTimelineCollectionCell.h"
+#import "HYHomePlanCell.h"
 #import "HYPerformance+Database.h"
 #import "HYPlanDetailController.h"
 #import "HYHomePushAnimator.h"
 
-@interface HYHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate>
+@interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, copy) NSArray *dataArray;
 
@@ -26,128 +26,83 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = kPageBgColor;
-    [self.view addSubview:self.collectionView];
+    self.navigationItem.title = @"Fleshy";
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:HYPlanInitialSuccessNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [self refreshData];
-    }];
+    [self.view addSubview:self.tableView];
+    [self layoutSubViews];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    [self refreshData];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    self.navigationController.delegate = self;
+- (void)layoutSubViews {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    if (self.navigationController.delegate == self) {
-        self.navigationController.delegate = nil;
-    }
-}
-
-#pragma mark - UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    HYTimelineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[HYTimelineCollectionCell cellID] forIndexPath:indexPath];
-    cell.cellData = [self.dataArray objectAtIndex:indexPath.row];
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+    return [HYHomePlanCell cellHeight];
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+    HYHomePlanCell *cell = [HYHomePlanCell cellWithTableView:tableView];
     return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if (kind == UICollectionElementKindSectionHeader) {
-        return nil;
-    }else {
-        return nil;
-    }
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
 }
 
-#pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    HYTimelineCollectionCell *cell = (HYTimelineCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    self.selectedCell = cell;
-    HYPlanDetailController *detailVC = [[HYPlanDetailController alloc] init];
-    detailVC.bgColor = cell.radiusBgView.backgroundColor;
-    [self.navigationController pushViewController:detailVC animated:YES];
+- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1f;
 }
 
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 15, 0, 15);
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(kScreenWidth - 30, kScreenHeight - 80);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 30;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 15;
-}
-
-#pragma mark - UINavigationControllerDelegate
-- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                            animationControllerForOperation:(UINavigationControllerOperation)operation
-                                                         fromViewController:(UIViewController *)fromVC
-                                                           toViewController:(UIViewController *)toVC {
-    if ([toVC isKindOfClass:[HYPlanDetailController class]]) {
-        return [[HYHomePushAnimator alloc] init];
-    }else {
-        return nil;
-    }
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Private Methods
 - (void)refreshData {
-    [self.view hy_showLoading];
-    [HYPerformance database_queryThreeDaysFromNowPerformances:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
-        [self.view hy_hideLoading];
-        if (array.count > 0) {
-            // 刷新数据
-            self.dataArray = array;
-            [self.collectionView reloadData];
-
-            // 滚动到今天的位置
-            if (self.dataArray.count > 4) {
-                NSInteger index = self.dataArray.count - 4;
-                [self.collectionView hy_scrollToIndex:index animated:NO];
-            }
-        }
-    }];
+//    [self.view hy_showLoading];
+//    [HYPerformance database_queryThreeDaysFromNowPerformances:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
+//        [self.view hy_hideLoading];
+//        if (array.count > 0) {
+//            // 刷新数据
+//            self.dataArray = array;
+//            [self.collectionView reloadData];
+//
+//            // 滚动到今天的位置
+//            if (self.dataArray.count > 4) {
+//                NSInteger index = self.dataArray.count - 4;
+//                [self.collectionView hy_scrollToIndex:index animated:NO];
+//            }
+//        }
+//    }];
 }
 
 #pragma mark - Setter and Getter
-- (UICollectionView *)collectionView {
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:kScreenBounds collectionViewLayout:flowLayout];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.pagingEnabled = YES;
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        [_collectionView registerClass:[HYTimelineCollectionCell class] forCellWithReuseIdentifier:[HYTimelineCollectionCell cellID]];
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
     }
-    return _collectionView;
+    return _tableView;
 }
 
 - (NSArray *)dataArray {

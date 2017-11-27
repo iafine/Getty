@@ -37,8 +37,7 @@
  *  初始化视图
  */
 - (void)initCellUI {
-    self.backgroundColor = [UIColor clearColor];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.descLabel];

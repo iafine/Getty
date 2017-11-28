@@ -26,6 +26,7 @@
 #define kDescColor  [UIColor colorWithRed:0.71 green:0.71 blue:0.71 alpha:1.00]
 #define kMainColor  [UIColor colorWithRed:0.42 green:0.63 blue:0.97 alpha:1.00]
 #define kSeperatorColor  [UIColor colorWithRed:0.90 green:0.90 blue:0.90 alpha:1.00]
+#define kTableBackgroundColor [UIColor colorWithRed:0.97 green:0.98 blue:0.98 alpha:1.00]
 
 // 尺寸相关
 #define kScreenBounds [UIScreen mainScreen].bounds

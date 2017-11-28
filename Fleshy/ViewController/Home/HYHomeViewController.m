@@ -11,6 +11,7 @@
 #import "HYPerformance+Database.h"
 #import "HYPlanDetailController.h"
 #import "HYHomePushAnimator.h"
+#import "HYPlanInsertController.h"
 
 @interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -98,6 +99,8 @@
         self.plusBtn.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         // 执行动作响应，注册通知
+        UINavigationController *insertNav = [[UINavigationController alloc] initWithRootViewController:[HYPlanInsertController new]];
+        [self presentViewController:insertNav animated:YES completion:nil];
     }];
 }
 
@@ -126,6 +129,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = kTableBackgroundColor;
         _tableView.tableFooterView = [UIView new];
     }
     return _tableView;

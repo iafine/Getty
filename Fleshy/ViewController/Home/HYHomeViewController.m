@@ -15,6 +15,7 @@
 @interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIButton *plusBtn;
 
 @property (nonatomic, copy) NSArray *dataArray;
 
@@ -29,6 +30,7 @@
     self.navigationItem.title = @"Fleshy";
     
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.plusBtn];
     [self layoutSubViews];
 }
 
@@ -43,6 +45,11 @@
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
+    [self.plusBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-44);
+        make.size.mas_equalTo(CGSizeMake(70, 70));
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -51,7 +58,7 @@
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -76,6 +83,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSLog(@"选中");
+}
+
+#pragma mark - Events
+- (void)touchedDownPlusBtnHandler {
+    CGFloat scale = 0.9;
+    [UIView animateWithDuration:0.15 animations:^{
+        self.plusBtn.transform = CGAffineTransformMakeScale(scale, scale);
+    }];
+}
+
+- (void)clickedPlusBtnHandler {
+    [UIView animateWithDuration:0.15 animations:^{
+        self.plusBtn.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        // 执行动作响应，注册通知
+    }];
 }
 
 #pragma mark - Private Methods
@@ -106,6 +129,24 @@
         _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
+}
+
+- (UIButton *)plusBtn {
+    if (!_plusBtn) {
+        _plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_plusBtn setTitle:@"+" forState:UIControlStateNormal];
+        [_plusBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _plusBtn.titleLabel.font = [UIFont systemFontOfSize:50 weight:UIFontWeightThin];
+        _plusBtn.backgroundColor = kMainColor;
+        _plusBtn.layer.cornerRadius = 35;
+        _plusBtn.layer.shadowOpacity = 0.5;
+        _plusBtn.layer.shadowColor = kMainColor.CGColor;
+        _plusBtn.layer.shadowOffset = CGSizeMake(0, 0);
+        [_plusBtn addTarget:self action:@selector(touchedDownPlusBtnHandler) forControlEvents:UIControlEventTouchDown];
+        [_plusBtn addTarget:self action:@selector(clickedPlusBtnHandler) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+        _plusBtn.contentEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0);
+    }
+    return _plusBtn;
 }
 
 - (NSArray *)dataArray {

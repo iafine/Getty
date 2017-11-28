@@ -8,68 +8,66 @@
 
 #import "HYDatePickerView.h"
 
-#define kHYContentWidth kScreenWidth - 60    // 内容视图宽度
+#define kHYContentWidth kScreenWidth    // 内容视图宽度
 #define kHYContentHeight 260   // 内容视图高度
 
 @interface HYDatePickerView ()
 
 @property (nonatomic, strong) UIView *contentView;   // 内容视图 (下面所有的控件都放在此处)
+@property (nonatomic, strong) UIDatePicker *pickerView;     // 选择控件
+
+@property (nonatomic, strong) UIButton *cancelBtn;  // 取消按钮
 @property (nonatomic, strong) UILabel *titleLabel;  // 标题
 @property (nonatomic, strong) UIButton *okBtn;      // 确定按钮
-@property (nonatomic, strong) UIDatePicker *pickerView;     // 选择控件
 
 @end
 
 @implementation HYDatePickerView
 
-- (instancetype)initWithTitle:(NSString *)title {
+- (instancetype)initDatePickerView {
     self = [super initWithFrame:kScreenBounds];
     if (self) {
         // 初始化基础控件
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
         [self addSubview:self.contentView];
-        [self.contentView addSubview:self.titleLabel];
-        [self.contentView addSubview:self.pickerView];
+
+        [self.contentView addSubview:self.cancelBtn];
+//        [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.okBtn];
-        
-        self.contentView.center = self.center;
-        self.titleLabel.text = title;
+        [self.contentView addSubview:self.pickerView];
     }
     return self;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self dismiss];
 }
 
 #pragma mark - Public Methods
 - (void)show {
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     
-    CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    popAnimation.duration = 0.4;
-    popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
-                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f, 1.1f, 1.0f)],
-                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9f, 0.9f, 1.0f)],
-                            [NSValue valueWithCATransform3D:CATransform3DIdentity]];
-    popAnimation.keyTimes = @[@0.0f, @0.5f, @0.75f, @1.0f];
-    popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [self.contentView.layer addAnimation:popAnimation forKey:nil];
-    
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        self.contentView.frame = CGRectMake(0, (kScreenHeight - kHYContentHeight), kHYContentWidth, kHYContentHeight);
     } completion:^(BOOL finished){
     }];
 }
 
 - (void)dismiss {
-    self.contentView.transform = CGAffineTransformIdentity;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.contentView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        self.contentView.frame = CGRectMake(0, (kScreenHeight + kHYContentHeight), kHYContentWidth, kHYContentHeight);
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     } completion:^(BOOL finished){
         [self removeFromSuperview];
     }];
 }
 
 #pragma mark - Events
+- (void)clickedCancelBtnHandler {
+    [self dismiss];
+}
+
 - (void)clickedOKBtnHandler {
     NSDate *newDate = [self.pickerView.date hy_newDateBySecondZero];
     if ([self.delegate respondsToSelector:@selector(datePicker:didSelectdDate:)]) {
@@ -88,40 +86,50 @@
 #pragma mark - Setter and Getter
 - (UIView *)contentView {
     if (!_contentView) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kHYContentWidth, kHYContentHeight)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, (kScreenHeight + kHYContentHeight), kHYContentWidth, kHYContentHeight)];
         _contentView.backgroundColor = [UIColor whiteColor];
-        _contentView.layer.cornerRadius = 6;
-        _contentView.layer.masksToBounds = YES;
     }
     return _contentView;
 }
 
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kHYContentWidth, 40)];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.backgroundColor = kMainColor;
-        _titleLabel.textColor = [UIColor whiteColor];
-    }
-    return _titleLabel;
-}
-
 - (UIDatePicker *)pickerView {
     if (!_pickerView) {
-        _pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 60, kHYContentWidth, kHYContentHeight - 40 - 40)];
+        _pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 60, kHYContentWidth, kHYContentHeight - 60)];
         _pickerView.datePickerMode = UIDatePickerModeTime;
         [_pickerView addTarget:self action:@selector(pickerViewValueChange) forControlEvents:UIControlEventValueChanged];
     }
     return _pickerView;
 }
 
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kHYContentWidth, 40)];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.backgroundColor = kTitleColor;
+        _titleLabel.textColor = [UIColor whiteColor];
+    }
+    return _titleLabel;
+}
+
+- (UIButton *)cancelBtn {
+    if (!_cancelBtn) {
+        _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _cancelBtn.frame = CGRectMake(5, 5, 60, 40);
+        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelBtn setTitleColor:kMainColor forState:UIControlStateNormal];
+        _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:kTextSizeSmall];
+        [_cancelBtn addTarget:self action:@selector(clickedCancelBtnHandler) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cancelBtn;
+}
+
 - (UIButton *)okBtn {
     if (!_okBtn) {
         _okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _okBtn.frame = CGRectMake(0, kHYContentHeight - 40, kHYContentWidth, 40);
+        _okBtn.frame = CGRectMake(kHYContentWidth - 60 - 5, 5, 60, 40);
         [_okBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [_okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _okBtn.backgroundColor = kMainColor;
+        [_okBtn setTitleColor:kMainColor forState:UIControlStateNormal];
+        _okBtn.titleLabel.font = [UIFont boldSystemFontOfSize:kTextSizeSmall];
         [_okBtn addTarget:self action:@selector(clickedOKBtnHandler) forControlEvents:UIControlEventTouchUpInside];
     }
     return _okBtn;

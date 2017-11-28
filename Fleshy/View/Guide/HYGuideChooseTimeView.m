@@ -224,10 +224,10 @@ static NSString *const kTableViewIdentify = @"HYGuideChooseTableCell";
 }
 
 - (void)showDatePickerAlert:(NSString *)title tag:(NSInteger)tag  {
-    HYDatePickerView *pickerView = [[HYDatePickerView alloc] initWithTitle:title];
-    pickerView.delegate = self;
-    pickerView.tag = tag;
-    [pickerView show];
+//    HYDatePickerView *pickerView = [[HYDatePickerView alloc] initWithTitle:title];
+//    pickerView.delegate = self;
+//    pickerView.tag = tag;
+//    [pickerView show];
 }
 
 - (void)showPlanDurationAlert {

@@ -19,7 +19,7 @@
 
 @property (nonatomic, weak) id<HYDatePickerViewDelegate> delegate;
 
-- (instancetype)initWithTitle:(NSString *)title;
+- (instancetype)initDatePickerView;
 
 - (void)show;
 

@@ -15,9 +15,17 @@
     [[UINavigationBar appearance] setTintColor:kTitleColor];    // 设置导航栏左右按钮tint颜色
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];    // 去掉导航栏底部阴影线
     
-    NSDictionary *textAttributes =  @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:17],
+    NSDictionary *textAttributes =  @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:kTextSizeMedium],
                                        NSForegroundColorAttributeName : kTitleColor };
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];   // 定制导航栏title字体
+    
+    // UIBarButtonItem的也放在这里
+    NSDictionary *buttonTextAttributes =  @{ NSFontAttributeName : [UIFont systemFontOfSize:kTextSizeSmall],
+                                       NSForegroundColorAttributeName : kTitleColor };
+    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateNormal];
+    
+    // UITextField的也放在这里
+    [[UITextField appearance] setTintColor:kMainColor];
 }
 
 @end

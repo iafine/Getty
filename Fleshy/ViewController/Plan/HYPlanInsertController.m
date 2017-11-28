@@ -7,6 +7,8 @@
 //
 
 #import "HYPlanInsertController.h"
+#import "HYPlanInsertCell.h"
+#import "HYDatePickerView.h"
 
 @interface HYPlanInsertController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -44,7 +46,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-    return 5;
+    return self.placeholderArray.count;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
@@ -56,13 +58,12 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.textLabel.textColor = kDescColor;
+    HYPlanInsertCell *cell = [HYPlanInsertCell cellWithTableView:tableView cellStyle:(indexPath.section == 0 ? HYPlanInsertCellStyleEdit : HYPLanInsertCellStyleLabel)];
+    if (indexPath.section == 0) {
+        cell.textField.placeholder = [self.placeholderArray objectAtIndex:indexPath.section];
+    }else {
+        cell.titleLabel.text = [self.placeholderArray objectAtIndex:indexPath.section];
     }
-    cell.textLabel.text = @"输入标题";
     return cell;
 }
 
@@ -80,7 +81,7 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, kScreenWidth-40, 20)];
     headerLabel.textColor = kDescColor;
     headerLabel.font = [UIFont systemFontOfSize:kTextSizeTiny];
-    headerLabel.text = @"标题";
+    headerLabel.text = [self.titleArray objectAtIndex:section];
     [headerView addSubview:headerLabel];
     return headerView;
 }
@@ -91,6 +92,9 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    HYDatePickerView *datePicker = [[HYDatePickerView alloc] initDatePickerView];
+    [datePicker show];
 }
 
 #pragma mark - Events
@@ -113,6 +117,20 @@
         _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
+}
+
+- (NSArray *)titleArray {
+    if (!_titleArray) {
+        _titleArray = @[@"标题", @"每天开始时间", @"每天结束时间", @"持续天数"];
+    }
+    return _titleArray;
+}
+
+- (NSArray *)placeholderArray {
+    if (!_placeholderArray) {
+        _placeholderArray = @[@"输入标题", @"选择开始时间", @"选择结束时间", @"选择持续天数"];
+    }
+    return _placeholderArray;
 }
 
 @end

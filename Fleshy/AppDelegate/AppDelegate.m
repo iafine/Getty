@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <UserNotifications/UserNotifications.h>
 #import "HYMainViewController.h"
+#import "IQKeyboardManager.h"
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -25,6 +26,9 @@
     
     // 设置通知代理
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    
+    // 设置键盘相关
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
     // 设置基本导航栏属性
     [UINavigationBar hy_basicAppearance];

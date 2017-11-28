@@ -32,7 +32,7 @@
         [self addSubview:self.contentView];
 
         [self.contentView addSubview:self.cancelBtn];
-//        [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.okBtn];
         [self.contentView addSubview:self.pickerView];
     }
@@ -77,10 +77,10 @@
 }
 
 - (void)pickerViewValueChange {
-//    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-//    fmt.dateFormat = @"HH:mm";
-//    NSString *dateStr = [fmt stringFromDate:self.pickerView.date];
-//    self.titleLabel.text = dateStr;
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"HH:mm";
+    NSString *dateStr = [fmt stringFromDate:self.pickerView.date];
+    self.titleLabel.text = dateStr;
 }
 
 #pragma mark - Setter and Getter
@@ -103,10 +103,10 @@
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kHYContentWidth, 40)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 5, kHYContentWidth - 140, 40)];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.backgroundColor = kTitleColor;
-        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.textColor = kTitleColor;
+        _titleLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
     }
     return _titleLabel;
 }

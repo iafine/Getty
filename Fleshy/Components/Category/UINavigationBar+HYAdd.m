@@ -19,12 +19,15 @@
                                        NSForegroundColorAttributeName : kTitleColor };
     [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];   // 定制导航栏title字体
     
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back"]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
+    
     // UIBarButtonItem的也放在这里
     NSDictionary *buttonTextAttributes =  @{ NSFontAttributeName : [UIFont systemFontOfSize:kTextSizeSmall],
                                        NSForegroundColorAttributeName : kTitleColor };
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateNormal];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
-                                                         forBarMetrics:UIBarMetricsDefault];
+    //隐藏返回按钮的文字
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
     
     // UITextField的也放在这里
     [[UITextField appearance] setTintColor:kMainColor];

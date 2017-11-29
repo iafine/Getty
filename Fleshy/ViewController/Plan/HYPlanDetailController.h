@@ -1,5 +1,5 @@
 //
-//  HYPlanInsertController.h
+//  HYPlanDetailController.h
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/28.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HYPlanInsertController : UIViewController
+@interface HYPlanDetailController : UIViewController
+
+@property (nonatomic, strong) HYPlan *plan;
 
 @end

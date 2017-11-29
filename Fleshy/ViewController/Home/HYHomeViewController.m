@@ -11,7 +11,7 @@
 #import "HYPerformance+Database.h"
 #import "HYPlanDetailController.h"
 #import "HYHomePushAnimator.h"
-#import "HYPlanInsertController.h"
+#import "HYPlanDetailController.h"
 
 @interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, DZNEmptyDataSetSource>
 
@@ -118,7 +118,10 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSLog(@"选中");
+    HYPlan *plan = [self.dataArray objectAtIndex:indexPath.row];
+    HYPlanDetailController *planVC = [[HYPlanDetailController alloc] init];
+    planVC.plan = plan;
+    [self.navigationController pushViewController:planVC animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -190,7 +193,7 @@
         self.plusBtn.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         // 执行动作响应，注册通知
-        UINavigationController *insertNav = [[UINavigationController alloc] initWithRootViewController:[HYPlanInsertController new]];
+        UINavigationController *insertNav = [[UINavigationController alloc] initWithRootViewController:[HYPlanDetailController new]];
         [self presentViewController:insertNav animated:YES completion:nil];
     }];
 }
@@ -213,6 +216,7 @@
     [HYPlan database_deletePlan:plan.planId block:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
             NSLog(@"删除计划成功");
+            [self.tableView reloadData];
         }else {
             NSLog(@"删除计划失败");
         }

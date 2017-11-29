@@ -1,27 +1,27 @@
 //
-//  HYPlanInsertCell.m
+//  HYPlanDetailCell.m
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/28.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "HYPlanInsertCell.h"
+#import "HYPlanDetailCell.h"
 
-@interface HYPlanInsertCell ()
+@interface HYPlanDetailCell ()
 
-@property (nonatomic, assign) HYPlanInsertCellStyle cellStyle;
+@property (nonatomic, assign) HYPlanDetailCellStyle cellStyle;
 
 @end
 
-@implementation HYPlanInsertCell
+@implementation HYPlanDetailCell
 
 #pragma mark - LifeCycle
-+ (instancetype)cellWithTableView:(UITableView *)tableView cellStyle:(HYPlanInsertCellStyle)cellStyle {
++ (instancetype)cellWithTableView:(UITableView *)tableView cellStyle:(HYPlanDetailCellStyle)cellStyle {
     // 修改cell类型为定义类型
-    HYPlanInsertCell *cell = [tableView dequeueReusableCellWithIdentifier:[HYPlanInsertCell ID]];
+    HYPlanDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:[HYPlanDetailCell ID]];
     if (cell == nil){
-        cell = [[HYPlanInsertCell alloc] init];
+        cell = [[HYPlanDetailCell alloc] init];
         cell.cellStyle = cellStyle;
         
         // 初始化
@@ -35,7 +35,7 @@
  *  初始化视图
  */
 - (void)initCellUI {
-    if (self.cellStyle == HYPlanInsertCellStyleEdit) {
+    if (self.cellStyle == HYPlanDetailCellStyleEdit) {
         [self.contentView addSubview:self.textField];
     }else {
         [self.contentView addSubview:self.titleLabel];
@@ -43,7 +43,7 @@
 }
 
 - (void)initCellLayout {
-    if (self.cellStyle == HYPlanInsertCellStyleEdit) {
+    if (self.cellStyle == HYPlanDetailCellStyleEdit) {
         [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top);
             make.left.equalTo(self.contentView.mas_left).offset(20);

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		680860F01FCD05D500CD8E76 /* HYPlanInsertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860EF1FCD05D500CD8E76 /* HYPlanInsertController.m */; };
-		680860F41FCD2D0C00CD8E76 /* HYPlanInsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860F31FCD2D0C00CD8E76 /* HYPlanInsertCell.m */; };
+		680860F01FCD05D500CD8E76 /* HYPlanDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860EF1FCD05D500CD8E76 /* HYPlanDetailController.m */; };
+		680860F41FCD2D0C00CD8E76 /* HYPlanDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860F31FCD2D0C00CD8E76 /* HYPlanDetailCell.m */; };
 		680860F81FCD5C8A00CD8E76 /* HYListPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860F71FCD5C8A00CD8E76 /* HYListPickView.m */; };
 		682960581FCEAB820062416B /* NSArray+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 682960571FCEAB820062416B /* NSArray+HYAdd.m */; };
 		682BC01F1FCBBD6E007CA6E2 /* HYGuideNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BC01E1FCBBD6E007CA6E2 /* HYGuideNotificationController.m */; };
@@ -29,7 +29,6 @@
 		687A78751FB5396400E95957 /* HYMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78741FB5396400E95957 /* HYMainViewController.m */; };
 		687A78791FB5844D00E95957 /* HYDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A78781FB5844D00E95957 /* HYDBManager.m */; };
 		6887354A1FB3410100A135FC /* UIView+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 688735491FB3410100A135FC /* UIView+HYAdd.m */; };
-		6891976F1FC2638800120F07 /* HYPlanDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6891976E1FC2638800120F07 /* HYPlanDetailController.m */; };
 		6897FF081FBD2C14001FED68 /* HYTopAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6897FF071FBD2C14001FED68 /* HYTopAlertView.m */; };
 		68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA53811FA8892100CF1866 /* UIResponder+HYAdd.m */; };
 		68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AE5BC21FA99F17007C6FCE /* HYCacheHelper.m */; };
@@ -75,10 +74,10 @@
 
 /* Begin PBXFileReference section */
 		1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fleshy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fleshy/Pods-Fleshy.release.xcconfig"; sourceTree = "<group>"; };
-		680860EE1FCD05D500CD8E76 /* HYPlanInsertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlanInsertController.h; sourceTree = "<group>"; };
-		680860EF1FCD05D500CD8E76 /* HYPlanInsertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlanInsertController.m; sourceTree = "<group>"; };
-		680860F21FCD2D0C00CD8E76 /* HYPlanInsertCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlanInsertCell.h; sourceTree = "<group>"; };
-		680860F31FCD2D0C00CD8E76 /* HYPlanInsertCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlanInsertCell.m; sourceTree = "<group>"; };
+		680860EE1FCD05D500CD8E76 /* HYPlanDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlanDetailController.h; sourceTree = "<group>"; };
+		680860EF1FCD05D500CD8E76 /* HYPlanDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlanDetailController.m; sourceTree = "<group>"; };
+		680860F21FCD2D0C00CD8E76 /* HYPlanDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlanDetailCell.h; sourceTree = "<group>"; };
+		680860F31FCD2D0C00CD8E76 /* HYPlanDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlanDetailCell.m; sourceTree = "<group>"; };
 		680860F61FCD5C8A00CD8E76 /* HYListPickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYListPickView.h; sourceTree = "<group>"; };
 		680860F71FCD5C8A00CD8E76 /* HYListPickView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYListPickView.m; sourceTree = "<group>"; };
 		682960561FCEAB820062416B /* NSArray+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYAdd.h"; sourceTree = "<group>"; };
@@ -121,8 +120,6 @@
 		687A78781FB5844D00E95957 /* HYDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDBManager.m; sourceTree = "<group>"; };
 		688735481FB3410100A135FC /* UIView+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HYAdd.h"; sourceTree = "<group>"; };
 		688735491FB3410100A135FC /* UIView+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYAdd.m"; sourceTree = "<group>"; };
-		6891976D1FC2638800120F07 /* HYPlanDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlanDetailController.h; sourceTree = "<group>"; };
-		6891976E1FC2638800120F07 /* HYPlanDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlanDetailController.m; sourceTree = "<group>"; };
 		6897FF061FBD2C14001FED68 /* HYTopAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTopAlertView.h; sourceTree = "<group>"; };
 		6897FF071FBD2C14001FED68 /* HYTopAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTopAlertView.m; sourceTree = "<group>"; };
 		68AA53801FA8892100CF1866 /* UIResponder+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+HYAdd.h"; sourceTree = "<group>"; };
@@ -192,8 +189,8 @@
 		680860ED1FCD059900CD8E76 /* Plan */ = {
 			isa = PBXGroup;
 			children = (
-				680860EE1FCD05D500CD8E76 /* HYPlanInsertController.h */,
-				680860EF1FCD05D500CD8E76 /* HYPlanInsertController.m */,
+				680860EE1FCD05D500CD8E76 /* HYPlanDetailController.h */,
+				680860EF1FCD05D500CD8E76 /* HYPlanDetailController.m */,
 			);
 			path = Plan;
 			sourceTree = "<group>";
@@ -201,8 +198,8 @@
 		680860F11FCD2CD000CD8E76 /* Plan */ = {
 			isa = PBXGroup;
 			children = (
-				680860F21FCD2D0C00CD8E76 /* HYPlanInsertCell.h */,
-				680860F31FCD2D0C00CD8E76 /* HYPlanInsertCell.m */,
+				680860F21FCD2D0C00CD8E76 /* HYPlanDetailCell.h */,
+				680860F31FCD2D0C00CD8E76 /* HYPlanDetailCell.m */,
 			);
 			path = Plan;
 			sourceTree = "<group>";
@@ -262,8 +259,6 @@
 				6850AB3B1FC26EAE00AFCE95 /* AnimatedTransitioning */,
 				683A6B511FA309980010F0A0 /* HYHomeViewController.h */,
 				683A6B521FA309980010F0A0 /* HYHomeViewController.m */,
-				6891976D1FC2638800120F07 /* HYPlanDetailController.h */,
-				6891976E1FC2638800120F07 /* HYPlanDetailController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -681,11 +676,10 @@
 				687A78681FB3EE2400E95957 /* HYGuideFinishView.m in Sources */,
 				68E463B11FC50AC60070B8DA /* HYLocalNotification.m in Sources */,
 				68AE5BC31FA99F17007C6FCE /* HYCacheHelper.m in Sources */,
-				680860F01FCD05D500CD8E76 /* HYPlanInsertController.m in Sources */,
+				680860F01FCD05D500CD8E76 /* HYPlanDetailController.m in Sources */,
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
-				6891976F1FC2638800120F07 /* HYPlanDetailController.m in Sources */,
 				683A6B581FA31DC30010F0A0 /* HYGuideViewController.m in Sources */,
-				680860F41FCD2D0C00CD8E76 /* HYPlanInsertCell.m in Sources */,
+				680860F41FCD2D0C00CD8E76 /* HYPlanDetailCell.m in Sources */,
 				6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */,
 				6850AB411FC27A6100AFCE95 /* HYHomePushAnimator.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,

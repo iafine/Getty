@@ -1,27 +1,26 @@
 //
-//  HYPlanInsertController.m
+//  HYPlanDetailController.m
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/28.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "HYPlanInsertController.h"
-#import "HYPlanInsertCell.h"
+#import "HYPlanDetailController.h"
+#import "HYPlanDetailCell.h"
 #import "HYDatePickerView.h"
 #import "HYListPickView.h"
 
-@interface HYPlanInsertController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanInsertCellDelegate, HYListPickViewDelegate>
+@interface HYPlanDetailController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanDetailCellDelegate, HYListPickViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *placeholderArray;
-@property (nonatomic, strong) HYPlan *plan;
 
 @end
 
-@implementation HYPlanInsertController
+@implementation HYPlanDetailController
 
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
@@ -60,7 +59,7 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    HYPlanInsertCell *cell = [HYPlanInsertCell cellWithTableView:tableView cellStyle:(indexPath.section == 0 ? HYPlanInsertCellStyleEdit : HYPLanInsertCellStyleLabel)];
+    HYPlanDetailCell *cell = [HYPlanDetailCell cellWithTableView:tableView cellStyle:(indexPath.section == 0 ? HYPlanDetailCellStyleEdit : HYPlanDetailCellStyleLabel)];
     cell.delegate = self;
     if (indexPath.section == 0) {
         if (self.plan.planName.length) {
@@ -162,7 +161,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - HYPlanInsertCellDelegate
+#pragma mark - HYPlanDetailCellDelegate
 - (void)textFieldDidChange:(UITextField *)textField {
     self.plan.planName = textField.text;
 }

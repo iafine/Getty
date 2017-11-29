@@ -23,6 +23,8 @@
     NSDictionary *buttonTextAttributes =  @{ NSFontAttributeName : [UIFont systemFontOfSize:kTextSizeSmall],
                                        NSForegroundColorAttributeName : kTitleColor };
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+                                                         forBarMetrics:UIBarMetricsDefault];
     
     // UITextField的也放在这里
     [[UITextField appearance] setTintColor:kMainColor];

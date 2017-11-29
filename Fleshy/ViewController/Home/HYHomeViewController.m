@@ -121,6 +121,7 @@
     HYPlan *plan = [self.dataArray objectAtIndex:indexPath.row];
     HYPlanDetailController *planVC = [[HYPlanDetailController alloc] init];
     planVC.plan = plan;
+    planVC.operateType = HYPlanDetailOperateView;
     [self.navigationController pushViewController:planVC animated:YES];
 }
 
@@ -193,7 +194,9 @@
         self.plusBtn.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         // 执行动作响应，注册通知
-        UINavigationController *insertNav = [[UINavigationController alloc] initWithRootViewController:[HYPlanDetailController new]];
+        HYPlanDetailController *planVC = [[HYPlanDetailController alloc] init];
+        planVC.operateType = HYPlanDetailOperateInsert;
+        UINavigationController *insertNav = [[UINavigationController alloc] initWithRootViewController:planVC];
         [self presentViewController:insertNav animated:YES completion:nil];
     }];
 }

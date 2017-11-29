@@ -28,10 +28,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.title = @"添加";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
-    
+    [self initNavigationItem];
     [self.view addSubview:self.tableView];
     [self layoutSubViews];
 }
@@ -43,6 +40,23 @@
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
+}
+
+- (void)initNavigationItem {
+    if (self.operateType == HYPlanDetailOperateInsert) {
+        // 添加页面
+        self.navigationItem.title = @"添加";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
+    }else if (self.operateType == HYPlanDetailOperateEdit) {
+        // 编辑页面
+        self.navigationItem.title = self.plan.planName;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
+    }else {
+        // 查看页面
+        self.navigationItem.title = self.plan.planName;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
+    }
 }
 
 #pragma mark - UITableViewDataSource

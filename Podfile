@@ -11,6 +11,7 @@ pod 'YYKit'
 pod 'MBProgressHUD'
 pod 'FMDB'
 pod 'IQKeyboardManager'
+pod 'DZNEmptyDataSet'
 
 end
 

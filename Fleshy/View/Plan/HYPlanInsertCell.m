@@ -71,7 +71,9 @@
 
 #pragma mark - Events
 - (void)textFieldDidChange {
-    
+    if ([self.delegate respondsToSelector:@selector(textFieldDidChange:)]) {
+        [self.delegate textFieldDidChange:self.textField];
+    }
 }
 
 #pragma mark - Setter and Getter

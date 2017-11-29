@@ -16,6 +16,6 @@
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
-@property (nonatomic, copy) NSDictionary *cellData; // cell显示数据
+@property (nonatomic, strong) HYPlan *cellData; // cell显示数据
 
 @end

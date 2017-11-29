@@ -9,13 +9,15 @@
 #import "HYPlanInsertController.h"
 #import "HYPlanInsertCell.h"
 #import "HYDatePickerView.h"
+#import "HYListPickView.h"
 
-@interface HYPlanInsertController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HYPlanInsertController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanInsertCellDelegate, HYListPickViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *placeholderArray;
+@property (nonatomic, strong) HYPlan *plan;
 
 @end
 
@@ -29,7 +31,7 @@
     
     self.navigationItem.title = @"添加";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(clickedBackBtnHandler)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
     
     [self.view addSubview:self.tableView];
     [self layoutSubViews];
@@ -59,10 +61,21 @@
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     HYPlanInsertCell *cell = [HYPlanInsertCell cellWithTableView:tableView cellStyle:(indexPath.section == 0 ? HYPlanInsertCellStyleEdit : HYPLanInsertCellStyleLabel)];
+    cell.delegate = self;
     if (indexPath.section == 0) {
-        cell.textField.placeholder = [self.placeholderArray objectAtIndex:indexPath.section];
+        if (self.plan.planName.length) {
+            cell.textField.text = self.plan.planName;
+        }else {
+            cell.textField.placeholder = [self.placeholderArray objectAtIndex:indexPath.section];
+        }
+    }else if (indexPath.section == 1) {
+        cell.titleLabel.text = self.plan.startTime ? [self.plan.startTime stringWithFormat:@"HH:mm"] : [self.placeholderArray objectAtIndex:indexPath.section];
+    }else if (indexPath.section == 2) {
+        cell.titleLabel.text = self.plan.endTime ? [self.plan.endTime stringWithFormat:@"HH:mm"] : [self.placeholderArray objectAtIndex:indexPath.section];
+    }else if (indexPath.section == 3) {
+        cell.titleLabel.text = self.plan.durationDays > 0 ? [NSString stringWithFormat:@"%ld天", self.plan.durationDays] : [self.placeholderArray objectAtIndex:indexPath.section];
     }else {
-        cell.titleLabel.text = [self.placeholderArray objectAtIndex:indexPath.section];
+        
     }
     return cell;
 }
@@ -93,17 +106,129 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    HYDatePickerView *datePicker = [[HYDatePickerView alloc] initDatePickerView];
-    [datePicker show];
+    if (indexPath.section == 1) {
+        HYDatePickerView *datePicker = [[HYDatePickerView alloc] initDatePickerView];
+        datePicker.tag = 1001;
+        datePicker.delegate = self;
+        [datePicker show];
+    }else if (indexPath.section == 2) {
+        // 先判断开始时间有没有选中
+        if (self.plan.startTime) {
+            HYDatePickerView *datePicker = [[HYDatePickerView alloc] initDatePickerView];
+            datePicker.tag = 1002;
+            datePicker.delegate = self;
+            [datePicker show];
+        }else {
+            [UIView hy_showToast:@"提示" message:@"请先选择开始时间"];
+        }
+    }else if (indexPath.section == 3) {
+        HYListPickView *listPicker = [[HYListPickView alloc] initDatePickerView:@"请选择持续时间" dataArray:@[@"15天", @"30天", @"45天", @"60天"]];
+        listPicker.delegate = self;
+        [listPicker show];
+    }else {
+        
+    }
+}
+
+#pragma mark - HYDatePickerViewDelegate
+- (void)datePicker:(HYDatePickerView *)pickerView didSelectdDate:(NSDate *)date {
+    if (pickerView.tag == 1001) {
+        // 开始时间
+        self.plan.startTime = date;
+    }else {
+        // 如果结束时间小于开始时间，弹出提示
+        if ([date earlierDate:self.plan.startTime] == date) {
+            [UIView hy_showToast:@"提示" message:@"结束时间必须大于开始时间"];
+            return;
+        }
+        self.plan.endTime = date;
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark - HYListPickViewDelegate
+- (void)listPicker:(HYListPickView *)pickerView didSelectdRow:(NSString *)rowString {
+    if ([@"15天" isEqualToString:rowString]) {
+        self.plan.durationDays = 15;
+    }else if ([@"30天" isEqualToString:rowString]) {
+        self.plan.durationDays = 30;
+    }else if ([@"45天" isEqualToString:rowString]) {
+        self.plan.durationDays = 45;
+    }else if ([@"60天" isEqualToString:rowString]) {
+        self.plan.durationDays = 60;
+    }else {
+        
+    }
+    [self.tableView reloadData];
+}
+
+#pragma mark - HYPlanInsertCellDelegate
+- (void)textFieldDidChange:(UITextField *)textField {
+    self.plan.planName = textField.text;
 }
 
 #pragma mark - Events
 - (void)clickedBackBtnHandler {
+    [self.view endEditing:YES];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)clickedSaveBtnHandler {
+    // 计划名称不匹配
+    if (self.plan.planName.length == 0) {
+        [UIView hy_showToast:@"提示" message:@"计划名称不能为空"];
+        return;
+    }
+    // 开始时间不匹配
+    if (self.plan.startTime == nil) {
+        [UIView hy_showToast:@"提示" message:@"开始时间不能为空"];
+        return;
+    }
+    // 结束时间不匹配
+    if (self.plan.endTime == nil) {
+        [UIView hy_showToast:@"提示" message:@"结束时间不能为空"];
+        return;
+    }
+    // 持续时间不匹配
+    if (self.plan.durationDays == 0) {
+        [UIView hy_showToast:@"提示" message:@"持续时间不能为空"];
+        return;
+    }
+    [self generatePlanData];
+}
+
+#pragma mark - Private Methods
+- (void)generatePlanData {
+    // 生成一条计划数据，然后创建多条执行数据与之对应
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    // 获取每天持续时间
+    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
+    
+    [HYPlan databasae_insertPlan:self.plan block:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            // 插入成功，创建执行数据集
+            NSMutableArray *array = [NSMutableArray array];
+            for (int i=1; i<=self.plan.durationDays; i++) {
+                HYPerformance *performance = [[HYPerformance alloc] init];
+                performance.planId = self.plan.planId;
+                performance.isPerform = NO;
+                performance.performDate = [self.plan.startTime dateByAddingDays:i];
+                [array addObject:performance];
+            }
+            [HYPerformance database_insertPerformances:array block:^(BOOL isSuccess, NSString *message) {
+                [hud hideAnimated:YES];
+                if (isSuccess) {
+                    [self clickedBackBtnHandler];
+                }else {
+                    [UIView hy_showToast:@"提示" message:@"生成执行数据失败，请返回重新操作"];
+                }
+            }];
+        }else {
+            [hud hideAnimated:YES];
+            [UIView hy_showToast:@"提示" message:@"生成计划数据失败，请返回重新操作"];
+        }
+    }];
 }
 
 #pragma mark - Setter and Getter
@@ -131,6 +256,13 @@
         _placeholderArray = @[@"输入标题", @"选择开始时间", @"选择结束时间", @"选择持续天数"];
     }
     return _placeholderArray;
+}
+
+- (HYPlan *)plan {
+    if (!_plan) {
+        _plan = [[HYPlan alloc] init];
+    }
+    return _plan;
 }
 
 @end

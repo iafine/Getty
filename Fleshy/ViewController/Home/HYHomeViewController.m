@@ -13,7 +13,7 @@
 #import "HYHomePushAnimator.h"
 #import "HYPlanInsertController.h"
 
-@interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, DZNEmptyDataSetSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIButton *plusBtn;
@@ -29,6 +29,9 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Fleshy";
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.plusBtn];
@@ -37,6 +40,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    // 查询计划表数据
+    [HYPlan database_queryAllPlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {
+        if (array.count > 0) {
+            self.dataArray = array.copy;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)layoutSubViews {
@@ -49,7 +60,7 @@
     [self.plusBtn  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
         make.bottom.equalTo(self.view.mas_bottom).offset(-44);
-        make.size.mas_equalTo(CGSizeMake(70, 70));
+        make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
 }
 
@@ -59,7 +70,7 @@
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -68,6 +79,7 @@
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     HYHomePlanCell *cell = [HYHomePlanCell cellWithTableView:tableView];
+    cell.cellData = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -77,7 +89,11 @@
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.1f;
+    return CGFLOAT_MIN;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -86,7 +102,63 @@
     NSLog(@"选中");
 }
 
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+    if(velocity.y > 0) {
+        // 上滑取消加号按钮显示
+        if (self.plusBtn.alpha != 0) {
+            CGRect newFrame = CGRectMake(CGRectGetMinX(self.plusBtn.frame), CGRectGetMinY(self.plusBtn.frame) + 120, CGRectGetWidth(self.plusBtn.frame), CGRectGetHeight(self.plusBtn.frame));
+            [UIView animateWithDuration:0.15 animations:^{
+                self.plusBtn.frame = newFrame;
+                self.plusBtn.alpha = 0;
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+    }else {
+        // 下滑显示按钮加号
+        if (self.plusBtn.alpha == 0) {
+            CGRect newFrame = CGRectMake(CGRectGetMinX(self.plusBtn.frame), CGRectGetMinY(self.plusBtn.frame) - 120, CGRectGetWidth(self.plusBtn.frame), CGRectGetHeight(self.plusBtn.frame));
+            [UIView animateWithDuration:0.15 animations:^{
+                self.plusBtn.frame = newFrame;
+                self.plusBtn.alpha = 1;
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+    }
+}
+
+#pragma mark - DZNEmptyDataSetSource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *title = @"还没有创建过计划";
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:kTextSizeMedium],
+                                 NSForegroundColorAttributeName:kTitleColor
+                                 };
+    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"点击下方+号按钮，来快速创建一个计划吧，开启一段新的体验！";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:kTextSizeSlightSmall],
+                                 NSForegroundColorAttributeName:kDescColor,
+                                 NSParagraphStyleAttributeName:paragraph
+                                 };
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
 #pragma mark - Events
+- (void)clickedBackBtnHandler {
+    
+}
+
 - (void)touchedDownPlusBtnHandler {
     CGFloat scale = 0.9;
     [UIView animateWithDuration:0.15 animations:^{
@@ -129,7 +201,10 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.emptyDataSetSource = self;
         _tableView.backgroundColor = kTableBackgroundColor;
+        _tableView.separatorColor = kTableBackgroundColor;
+        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
         _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
@@ -142,7 +217,7 @@
         [_plusBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _plusBtn.titleLabel.font = [UIFont systemFontOfSize:50 weight:UIFontWeightThin];
         _plusBtn.backgroundColor = kMainColor;
-        _plusBtn.layer.cornerRadius = 35;
+        _plusBtn.layer.cornerRadius = 30;
         _plusBtn.layer.shadowOpacity = 0.5;
         _plusBtn.layer.shadowColor = kMainColor.CGColor;
         _plusBtn.layer.shadowOffset = CGSizeMake(0, 0);

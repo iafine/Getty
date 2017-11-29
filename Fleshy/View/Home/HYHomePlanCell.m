@@ -10,6 +10,7 @@
 
 @interface HYHomePlanCell ()
 
+@property (nonatomic, strong) UIView *radiusBgView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *descLabel;
@@ -38,25 +39,34 @@
  */
 - (void)initCellUI {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.timeLabel];
-    [self.contentView addSubview:self.descLabel];
+    self.backgroundColor = kTableBackgroundColor;
+    
+    [self.contentView addSubview:self.radiusBgView];
+    [self.radiusBgView addSubview:self.titleLabel];
+    [self.radiusBgView addSubview:self.timeLabel];
+    [self.radiusBgView addSubview:self.descLabel];
 }
 
 - (void)initCellLayout {
+    [self.radiusBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(10);
+        make.top.equalTo(self.contentView.mas_top).offset(5);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
+    }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(10);
-        make.left.equalTo(self.contentView.mas_left).offset(20);
+        make.top.equalTo(self.radiusBgView.mas_top).offset(10);
+        make.left.equalTo(self.radiusBgView.mas_left).offset(20);
         make.height.mas_equalTo(35);
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(10);
-        make.right.equalTo(self.contentView.mas_right).offset(-20);
+        make.top.equalTo(self.radiusBgView.mas_top).offset(10);
+        make.right.equalTo(self.radiusBgView.mas_right).offset(-20);
         make.height.mas_equalTo(35);
     }];
     [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
-        make.left.equalTo(self.contentView.mas_left).offset(20);
+        make.left.equalTo(self.radiusBgView.mas_left).offset(20);
         make.height.mas_equalTo(70);
     }];
 }
@@ -71,6 +81,15 @@
 }
 
 #pragma mark - Setter and Getter
+- (UIView *)radiusBgView {
+    if (!_radiusBgView) {
+        _radiusBgView = [[UIView alloc] init];
+        _radiusBgView.backgroundColor = [UIColor whiteColor];
+        _radiusBgView.layer.cornerRadius = 10;
+    }
+    return _radiusBgView;
+}
+
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
@@ -78,7 +97,6 @@
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.textColor = kTitleColor;
         _titleLabel.numberOfLines = 0;
-        _titleLabel.text = @"测试标题";
     }
     return _titleLabel;
 }
@@ -89,7 +107,6 @@
         _timeLabel.font = [UIFont systemFontOfSize:kTextSizeSlightSmall];
         _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.textColor = kDescColor;
-        _timeLabel.text = @"9:00-10:00";
     }
     return _timeLabel;
 }
@@ -101,44 +118,16 @@
         _descLabel.textAlignment = NSTextAlignmentLeft;
         _descLabel.textColor = kDescColor;
         _descLabel.numberOfLines = 0;
-        _descLabel.text = @"计划持续60天，每天持续1小时30分钟";
-        _descLabel.numberOfLines = 0;
     }
     return _descLabel;
 }
 
-- (void)setCellData:(NSDictionary *)cellData {
+- (void)setCellData:(HYPlan *)cellData {
     _cellData = cellData;
-
-//    self.dateLabel.text = [cellData.performDate stringWithFormat:@"MM月dd日"];
-//    if ([cellData.performDate isToday]) {
-//        // 如果是今天的计划
-//        self.weekLabel.text = @"今天";
-//        self.radiusBgView.backgroundColor = kMainColor;
-//        self.radiusBgView.layer.borderColor = kMainColor.CGColor;
-//    } else if ([cellData.performDate hy_isBeforeToday]) {
-//        // 如果是之前的计划
-//        self.weekLabel.text = [cellData.performDate hy_stringWeekday];
-//        self.radiusBgView.backgroundColor = kBgGrayColor;
-//        self.radiusBgView.layer.borderColor = kBgGrayColor.CGColor;
-//    } else {
-//        // 如果是之后的计划
-//        self.weekLabel.text = [cellData.performDate hy_stringWeekday];
-//        self.radiusBgView.backgroundColor = kMainColor;
-//        self.radiusBgView.layer.borderColor = kMainColor.CGColor;
-//    }
-//
-//    [HYPlan database_queryPlanWithPerformanceId:cellData.performanceId block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
-//        self.startTimeLabel.text = [plan.startTime stringWithFormat:@"HH:mm"];
-//        self.endTimeLabel.text = [plan.endTime stringWithFormat:@"HH:mm"];
-//        if ([cellData.performDate isToday]) {
-//            self.descLabel.text = [NSString stringWithFormat:@"距离开始还有%@，共持续%@", [cellData.performDate hy_timeintervalWithBeforeDate:[NSDate new]], [plan.endTime hy_timeintervalWithBeforeDate:plan.startTime]];
-//        }else if ([cellData.performDate hy_isBeforeToday]) {
-//            self.descLabel.text = cellData.isPerform ? @"已完成" : @"未完成";
-//        }else {
-//            self.descLabel.text = @"暂未开放";
-//        }
-//    }];
+    
+    self.titleLabel.text = cellData.planName;
+    self.timeLabel.text = [NSString stringWithFormat:@"%@-%@", [cellData.startTime stringWithFormat:@"HH:mm"], [cellData.endTime stringWithFormat:@"HH:mm"]];
+    self.descLabel.text = [NSString stringWithFormat:@"计划共持续%ld天，每天持续%ld分钟", cellData.durationDays, cellData.durationTime];
 }
 
 @end

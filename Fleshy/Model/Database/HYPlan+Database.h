@@ -16,6 +16,8 @@
 
 + (void)database_queryPlanWithPerformanceId:(NSInteger)performanceId block:(void(^)(BOOL isSuccess, HYPlan *plan, NSString *message))block;
 
-+ (void)database_queryAllPlan:(void(^)(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message))block;
++ (void)database_queryAvailablePlan:(void(^)(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message))block;
+
++ (void)database_deletePlan:(NSInteger)planId block:(void(^)(BOOL isSuccess, NSString *message))block;
 
 @end

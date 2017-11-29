@@ -53,6 +53,7 @@
             plan.createDate = [NSDate dateWithString:[rs stringForColumn:@"plan_create_time"] format:@"yyyy-MM-dd HH:mm:ss"];
             plan.durationTime = [rs intForColumn:@"plan_duration_time"];
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
+            plan.isDelete = [rs boolForColumn:@"plan_is_delete"];
         }
         [rs close];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -61,8 +62,8 @@
     }];
 }
 
-+ (void)database_queryAllPlan:(void (^)(BOOL, NSArray<HYPlan *> *, NSString *))block {
-    NSString *querySql = @"SELECT * FROM fleshy_plan;";
++ (void)database_queryAvailablePlan:(void (^)(BOOL, NSArray<HYPlan *> *, NSString *))block {
+    NSString *querySql = @"SELECT * FROM fleshy_plan WHERE plan_is_delete = 0;";
     [[HYDBManager sharedInstance] executeQuerySQL:querySql block:^(BOOL isSuccess, FMResultSet *rs, NSString *message) {
         NSMutableArray *tempArrray = [NSMutableArray array];
         while (rs.next) {
@@ -74,11 +75,21 @@
             plan.createDate = [NSDate dateWithString:[rs stringForColumn:@"plan_create_time"] format:@"yyyy-MM-dd HH:mm:ss"];
             plan.durationTime = [rs intForColumn:@"plan_duration_time"];
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
+            plan.isDelete = [rs boolForColumn:@"plan_is_delete"];
             [tempArrray addObject:plan];
         }
         [rs close];
         dispatch_async(dispatch_get_main_queue(), ^{
             block(isSuccess, tempArrray, message);            
+        });
+    }];
+}
+
++ (void)database_deletePlan:(NSInteger)planId block:(void (^)(BOOL, NSString *))block {
+    NSString *updateSql = [NSString stringWithFormat:@"UPDATE fleshy_plan SET plan_is_delete = 1 WHERE plan_id = %ld;", planId];
+    [[HYDBManager sharedInstance] executeUpdateSQL:updateSql block:^(BOOL isSuccess, NSString *message) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, message);
         });
     }];
 }

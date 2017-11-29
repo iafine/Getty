@@ -14,20 +14,22 @@
 
 #define HY_CREATE_PALN  @"create table fleshy_plan(\
                             plan_id INTEGER,\
-                            plan_name TEXT NOT NULL,\
+                            plan_name TEXT NOT NULL UNIQUE,\
                             plan_start_time TEXT NOT NULL,\
                             plan_end_time TEXT NOT NULL,\
                             plan_create_time TEXT NOT NULL,\
                             plan_duration_time INTEGER NOT NULL,\
                             plan_duration_days INTEGER NOT NULL,\
+                            plan_is_delete  INTEGER DEFAULT 0,\
                             PRIMARY KEY (plan_id)\
                         );"
 
 #define HY_CREATE_PERFORMANCE   @"CREATE TABLE IF NOT EXISTS fleshy_performance(\
                                     perform_id INTEGER,\
                                     plan_id INTEGER NOT NULL,\
-                                    is_perform INTEGER NOT NULL,\
+                                    is_perform INTEGER DEFAULT 0,\
                                     perform_date TEXT,\
+                                    perform_is_delete INTEGER DEFAULT 0,\
                                     PRIMARY KEY (perform_id),\
                                     FOREIGN KEY (plan_id) REFERENCES fleshy_plan(plan_id)\
                                 );"

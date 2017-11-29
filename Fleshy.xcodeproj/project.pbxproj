@@ -10,6 +10,7 @@
 		680860F01FCD05D500CD8E76 /* HYPlanInsertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860EF1FCD05D500CD8E76 /* HYPlanInsertController.m */; };
 		680860F41FCD2D0C00CD8E76 /* HYPlanInsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860F31FCD2D0C00CD8E76 /* HYPlanInsertCell.m */; };
 		680860F81FCD5C8A00CD8E76 /* HYListPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 680860F71FCD5C8A00CD8E76 /* HYListPickView.m */; };
+		682960581FCEAB820062416B /* NSArray+HYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 682960571FCEAB820062416B /* NSArray+HYAdd.m */; };
 		682BC01F1FCBBD6E007CA6E2 /* HYGuideNotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BC01E1FCBBD6E007CA6E2 /* HYGuideNotificationController.m */; };
 		682FF8C91FBE7E4E0045DC56 /* HYNotificationNames.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FF8C81FBE7E4E0045DC56 /* HYNotificationNames.m */; };
 		683204041FBADF6000617CCF /* HYPlan+Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 683204031FBADF6000617CCF /* HYPlan+Database.m */; };
@@ -80,6 +81,8 @@
 		680860F31FCD2D0C00CD8E76 /* HYPlanInsertCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlanInsertCell.m; sourceTree = "<group>"; };
 		680860F61FCD5C8A00CD8E76 /* HYListPickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYListPickView.h; sourceTree = "<group>"; };
 		680860F71FCD5C8A00CD8E76 /* HYListPickView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYListPickView.m; sourceTree = "<group>"; };
+		682960561FCEAB820062416B /* NSArray+HYAdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYAdd.h"; sourceTree = "<group>"; };
+		682960571FCEAB820062416B /* NSArray+HYAdd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HYAdd.m"; sourceTree = "<group>"; };
 		682BC01D1FCBBD6E007CA6E2 /* HYGuideNotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideNotificationController.h; sourceTree = "<group>"; };
 		682BC01E1FCBBD6E007CA6E2 /* HYGuideNotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideNotificationController.m; sourceTree = "<group>"; };
 		682FF8C71FBE7E4E0045DC56 /* HYNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNotificationNames.h; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				688735491FB3410100A135FC /* UIView+HYAdd.m */,
 				687A786F1FB4414500E95957 /* NSDate+HYAdd.h */,
 				687A78701FB4414500E95957 /* NSDate+HYAdd.m */,
+				682960561FCEAB820062416B /* NSArray+HYAdd.h */,
+				682960571FCEAB820062416B /* NSArray+HYAdd.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */,
 				68AA53821FA8892100CF1866 /* UIResponder+HYAdd.m in Sources */,
 				687A78791FB5844D00E95957 /* HYDBManager.m in Sources */,
+				682960581FCEAB820062416B /* NSArray+HYAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSDate *createDate;
 @property (nonatomic, assign) NSInteger durationTime;
 @property (nonatomic, assign) NSInteger durationDays;
+@property (nonatomic, assign) BOOL isDelete;
 
 @end

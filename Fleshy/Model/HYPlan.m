@@ -18,7 +18,8 @@
                                                @"endTime" : _endTime,
                                                @"createDate" : _createDate,
                                                @"durationTime" : @(_durationTime),
-                                               @"durationDays" : @(_durationDays)
+                                               @"durationDays" : @(_durationDays),
+                                               @"isDelete" : @(_isDelete),
                                                }];
 }
             

@@ -15,6 +15,7 @@
 #import "UIResponder+HYAdd.h"
 #import "UIView+HYAdd.h"
 #import "NSDate+HYAdd.h"
+#import "NSArray+HYAdd.h"
 
 // Utils
 #import "HYDBManager.h"

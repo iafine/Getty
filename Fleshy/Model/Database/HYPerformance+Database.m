@@ -14,7 +14,7 @@
 + (void)database_insertPerformances:(NSArray<HYPerformance *> *)performances block:(void (^)(BOOL, NSString *))block {
     NSMutableArray *tempArray = [NSMutableArray array];
     for (HYPerformance *performance in performances) {
-        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, is_perform, perform_date) VALUES (%ld, %d, '%@');", performance.planId, performance.isPerform, [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, perform_date) VALUES (%ld, '%@');", performance.planId, [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
         [tempArray addObject:insertSql];
     }
     

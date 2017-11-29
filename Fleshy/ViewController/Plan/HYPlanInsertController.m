@@ -207,21 +207,28 @@
     
     [HYPlan databasae_insertPlan:self.plan block:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
-            // 插入成功，创建执行数据集
-            NSMutableArray *array = [NSMutableArray array];
-            for (int i=1; i<=self.plan.durationDays; i++) {
-                HYPerformance *performance = [[HYPerformance alloc] init];
-                performance.planId = self.plan.planId;
-                performance.isPerform = NO;
-                performance.performDate = [self.plan.startTime dateByAddingDays:i];
-                [array addObject:performance];
-            }
-            [HYPerformance database_insertPerformances:array block:^(BOOL isSuccess, NSString *message) {
-                [hud hideAnimated:YES];
+            // 查询该条数据
+            [HYPlan database_queryPlan:self.plan.planName block:^(BOOL isSuccess, HYPlan *plan, NSString *message) {
                 if (isSuccess) {
-                    [self clickedBackBtnHandler];
+                    // 插入成功，创建执行数据集
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (int i=1; i<=plan.durationDays; i++) {
+                        HYPerformance *performance = [[HYPerformance alloc] init];
+                        performance.planId = plan.planId;
+                        performance.performDate = [plan.startTime dateByAddingDays:i];
+                        [array addObject:performance];
+                    }
+                    [HYPerformance database_insertPerformances:array block:^(BOOL isSuccess, NSString *message) {
+                        [hud hideAnimated:YES];
+                        if (isSuccess) {
+                            [self clickedBackBtnHandler];
+                        }else {
+                            [UIView hy_showToast:@"提示" message:@"生成执行数据失败，请返回重新操作"];
+                        }
+                    }];
                 }else {
-                    [UIView hy_showToast:@"提示" message:@"生成执行数据失败，请返回重新操作"];
+                    [hud hideAnimated:YES];
+                    [UIView hy_showToast:@"提示" message:@"生成计划数据失败，请返回重新操作"];
                 }
             }];
         }else {

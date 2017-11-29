@@ -27,7 +27,7 @@
 /**
  更新操作
  */
-- (void)executeUpdateSQL:(NSString *)sqlString block:(void (^)(BOOL, NSString *))block;
+- (void)executeUpdateSQL:(NSString *)sqlString block:(void(^)(BOOL isSuccess, NSString *message))block;
 
 /**
  查询操作

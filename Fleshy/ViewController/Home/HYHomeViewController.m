@@ -42,12 +42,7 @@
     [super viewWillAppear:animated];
     
     // 查询计划表数据
-    [HYPlan database_queryAllPlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {
-        if (array.count > 0) {
-            self.dataArray = array.copy;
-            [self.tableView reloadData];
-        }
-    }];
+    [self refreshData];
 }
 
 - (void)layoutSubViews {
@@ -81,6 +76,30 @@
     HYHomePlanCell *cell = [HYHomePlanCell cellWithTableView:tableView];
     cell.cellData = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        // 编辑操作
+        NSLog(@"编辑操作");
+    }];
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        // 删除操作
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"您确定需要删除此计划吗" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        UIAlertAction *finishAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            
+            HYPlan *deletePlan = [self.dataArray objectAtIndex:indexPath.row];
+            self.dataArray = [self.dataArray hy_removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self deletePlanHandler:deletePlan];
+        }];
+        [alertVC addAction:cancelAction];
+        [alertVC addAction:finishAction];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }];
+    return @[deleteAction, editAction];
 }
 
 #pragma mark - UITableViewDelegate
@@ -178,21 +197,26 @@
 
 #pragma mark - Private Methods
 - (void)refreshData {
-//    [self.view hy_showLoading];
-//    [HYPerformance database_queryThreeDaysFromNowPerformances:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message) {
-//        [self.view hy_hideLoading];
-//        if (array.count > 0) {
-//            // 刷新数据
-//            self.dataArray = array;
-//            [self.collectionView reloadData];
-//
-//            // 滚动到今天的位置
-//            if (self.dataArray.count > 4) {
-//                NSInteger index = self.dataArray.count - 4;
-//                [self.collectionView hy_scrollToIndex:index animated:NO];
-//            }
-//        }
-//    }];
+    [HYPlan database_queryAvailablePlan:^(BOOL isSuccess, NSArray<HYPlan *> *array, NSString *message) {
+        if (array.count > 0) {
+            self.dataArray = array.copy;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void)editPlanHandler {
+    // 跳转到编辑页面
+}
+
+- (void)deletePlanHandler:(HYPlan *)plan {
+    [HYPlan database_deletePlan:plan.planId block:^(BOOL isSuccess, NSString *message) {
+        if (isSuccess) {
+            NSLog(@"删除计划成功");
+        }else {
+            NSLog(@"删除计划失败");
+        }
+    }];
 }
 
 #pragma mark - Setter and Getter

@@ -9,9 +9,9 @@
 #import "HYHomeViewController.h"
 #import "HYHomePlanCell.h"
 #import "HYPerformance+Database.h"
-#import "HYPlanDetailController.h"
+#import "HYPlanEditController.h"
 #import "HYHomePushAnimator.h"
-#import "HYPlanDetailController.h"
+#import "HYPlanEditController.h"
 
 @interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, DZNEmptyDataSetSource>
 
@@ -81,7 +81,11 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"编辑" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         // 编辑操作
-        NSLog(@"编辑操作");
+        HYPlan *plan = [self.dataArray objectAtIndex:indexPath.row];
+        HYPlanEditController *planVC = [[HYPlanEditController alloc] init];
+        planVC.plan = plan;
+        planVC.operateType = HYPlanDetailOperateEdit;
+        [self.navigationController pushViewController:planVC animated:YES];
     }];
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         // 删除操作
@@ -117,12 +121,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    HYPlan *plan = [self.dataArray objectAtIndex:indexPath.row];
-    HYPlanDetailController *planVC = [[HYPlanDetailController alloc] init];
-    planVC.plan = plan;
-    planVC.operateType = HYPlanDetailOperateView;
-    [self.navigationController pushViewController:planVC animated:YES];
+    NSLog(@"选中");
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -194,7 +193,7 @@
         self.plusBtn.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         // 执行动作响应，注册通知
-        HYPlanDetailController *planVC = [[HYPlanDetailController alloc] init];
+        HYPlanEditController *planVC = [[HYPlanEditController alloc] init];
         planVC.operateType = HYPlanDetailOperateInsert;
         UINavigationController *insertNav = [[UINavigationController alloc] initWithRootViewController:planVC];
         [self presentViewController:insertNav animated:YES completion:nil];

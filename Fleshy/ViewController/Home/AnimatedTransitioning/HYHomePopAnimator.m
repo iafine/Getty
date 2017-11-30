@@ -8,7 +8,7 @@
 
 #import "HYHomePopAnimator.h"
 #import "HYHomeViewController.h"
-#import "HYPlanDetailController.h"
+#import "HYPlanEditController.h"
 #import "HYHomePlanCell.h"
 
 @implementation HYHomePopAnimator
@@ -19,7 +19,7 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     // 获取源控制器和目标控制器
-//    HYPlanDetailController *detailVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+//    HYPlanEditController *detailVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 //    HYHomeViewController *homeVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 //    UIView *containerView = [transitionContext containerView];
 //

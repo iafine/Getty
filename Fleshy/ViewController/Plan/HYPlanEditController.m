@@ -1,17 +1,17 @@
 //
-//  HYPlanDetailController.m
+//  HYPlanEditController.m
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/28.
 //  Copyright © 2017年 Hyyy. All rights reserved.
 //
 
-#import "HYPlanDetailController.h"
+#import "HYPlanEditController.h"
 #import "HYPlanDetailCell.h"
 #import "HYDatePickerView.h"
 #import "HYListPickView.h"
 
-@interface HYPlanDetailController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanDetailCellDelegate, HYListPickViewDelegate>
+@interface HYPlanEditController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanDetailCellDelegate, HYListPickViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation HYPlanDetailController
+@implementation HYPlanEditController
 
 #pragma mark - Life Cycle
 - (void)viewDidLoad {
@@ -47,15 +47,11 @@
         // 添加页面
         self.navigationItem.title = @"添加";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
-    }else if (self.operateType == HYPlanDetailOperateEdit) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
+    }else {
         // 编辑页面
         self.navigationItem.title = self.plan.planName;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
-    }else {
-        // 查看页面
-        self.navigationItem.title = self.plan.planName;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(clickedSaveBtnHandler)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更新" style:UIBarButtonItemStylePlain target:self action:@selector(clickedUpdateBtnHandler)];
     }
 }
 
@@ -210,6 +206,29 @@
     [self generatePlanData];
 }
 
+- (void)clickedUpdateBtnHandler {
+    // 计划名称不匹配
+    if (self.plan.planName.length == 0) {
+        [UIView hy_showToast:@"提示" message:@"计划名称不能为空"];
+        return;
+    }
+    // 开始时间不匹配
+    if (self.plan.startTime == nil) {
+        [UIView hy_showToast:@"提示" message:@"开始时间不能为空"];
+        return;
+    }
+    // 结束时间不匹配
+    if (self.plan.endTime == nil) {
+        [UIView hy_showToast:@"提示" message:@"结束时间不能为空"];
+        return;
+    }
+    // 持续时间不匹配
+    if (self.plan.durationDays == 0) {
+        [UIView hy_showToast:@"提示" message:@"持续时间不能为空"];
+        return;
+    }
+}
+
 #pragma mark - Private Methods
 - (void)generatePlanData {
     // 生成一条计划数据，然后创建多条执行数据与之对应
@@ -234,6 +253,8 @@
                     [HYPerformance database_insertPerformances:array block:^(BOOL isSuccess, NSString *message) {
                         [hud hideAnimated:YES];
                         if (isSuccess) {
+                            // 生成计划通知
+                            
                             [self clickedBackBtnHandler];
                         }else {
                             [UIView hy_showToast:@"提示" message:@"生成执行数据失败，请返回重新操作"];

@@ -18,6 +18,7 @@
                             plan_start_time TEXT NOT NULL,\
                             plan_end_time TEXT NOT NULL,\
                             plan_create_time TEXT NOT NULL,\
+                            plan_create_time TEXT NOT NULL,\
                             plan_duration_time INTEGER NOT NULL,\
                             plan_duration_days INTEGER NOT NULL,\
                             plan_is_delete  INTEGER DEFAULT 0,\

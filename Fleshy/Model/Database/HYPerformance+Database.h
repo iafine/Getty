@@ -14,9 +14,6 @@
 
 + (void)database_queryAllPerformance:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message))block;
 
-/**
- 查询大后天（今天往后推3天）之前所有的执行数据
- */
-+ (void)database_queryThreeDaysFromNowPerformances:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSString *message))block;
++ (void)database_queryPerformances:(NSInteger)planId block:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSArray<HYPerformance *> *performArray, NSString *message))block;
 
 @end

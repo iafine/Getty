@@ -12,19 +12,18 @@
 
 /**
  获取两个时间之间的间隔
-
- @param beforeDate 开始时间
- @return 间隔字符串
  */
 - (NSString *)hy_timeintervalWithBeforeDate:(NSDate *)beforeDate;
 
 /**
  获取两个时间之间的间隔，返回分钟
-
- @param beforeDate 开始时间
- @return 间隔分钟
  */
 - (NSInteger)hy_minutesIntervalWithBeforeDate:(NSDate *)beforeDate;
+
+/**
+ 获取两个事件之间的间隔，返回天数
+ */
+- (NSInteger)hy_daysIntervalWithBeforeDate:(NSDate *)beforeDate;
 
 /**
  将秒数归零，替换成一个新的NSDate对象
@@ -45,5 +44,10 @@
  是否是今天之后的时间
  */
 - (BOOL)hy_isAfterToday;
+
+/**
+ 是否是同一天
+ */
+- (BOOL)hy_isSameDay:(NSDate *)date;
 
 @end

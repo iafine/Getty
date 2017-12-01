@@ -7,11 +7,11 @@
 //
 
 #import "HYPlanEditController.h"
-#import "HYPlanDetailCell.h"
+#import "HYPlanEditCell.h"
 #import "HYDatePickerView.h"
 #import "HYListPickView.h"
 
-@interface HYPlanEditController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanDetailCellDelegate, HYListPickViewDelegate>
+@interface HYPlanEditController ()<UITableViewDelegate, UITableViewDataSource, HYDatePickerViewDelegate, HYPlanEditCellDelegate, HYListPickViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -69,7 +69,7 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    HYPlanDetailCell *cell = [HYPlanDetailCell cellWithTableView:tableView cellStyle:(indexPath.section == 0 ? HYPlanDetailCellStyleEdit : HYPlanDetailCellStyleLabel)];
+    HYPlanEditCell *cell = [HYPlanEditCell cellWithTableView:tableView cellStyle:(indexPath.section == 0 ? HYPlanEditCellStyleEdit : HYPlanEditCellStyleLabel)];
     cell.delegate = self;
     if (indexPath.section == 0) {
         if (self.plan.planName.length) {
@@ -171,7 +171,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - HYPlanDetailCellDelegate
+#pragma mark - HYPlanEditCellDelegate
 - (void)textFieldDidChange:(UITextField *)textField {
     self.plan.planName = textField.text;
 }
@@ -227,6 +227,7 @@
         [UIView hy_showToast:@"提示" message:@"持续时间不能为空"];
         return;
     }
+    [self updatePlanDate];
 }
 
 #pragma mark - Private Methods
@@ -268,6 +269,21 @@
         }else {
             [hud hideAnimated:YES];
             [UIView hy_showToast:@"提示" message:@"生成计划数据失败，请返回重新操作"];
+        }
+    }];
+}
+
+- (void)updatePlanDate {
+    // 生成一条计划数据，然后创建多条执行数据与之对应
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // 获取每天持续时间
+    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
+    
+    [HYPlan database_updatePlan:self.plan block:^(BOOL isSuccess, NSString *message) {
+        [hud hideAnimated:YES];
+        if (isSuccess) {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }

@@ -12,7 +12,22 @@
 @implementation HYPlan (Database)
 
 + (void)databasae_insertPlan:(HYPlan *)plan block:(void (^)(BOOL, NSString *))block {
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_plan (plan_name, plan_start_time, plan_end_time, plan_create_time, plan_duration_time, plan_duration_days) VALUES ('%@', '%@', '%@', '%@', %ld , %ld);", plan.planName, [plan.startTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"], [plan.endTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"], [[NSDate new] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"], plan.durationTime, plan.durationDays];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_plan ("
+                           "plan_name, "
+                           "plan_start_time,"
+                           "plan_end_time,"
+                           "plan_create_time,"
+                           "plan_update_time,"
+                           "plan_duration_time,"
+                           "plan_duration_days"
+                           ") VALUES ('%@', '%@', '%@', '%@', '%@', %ld , %ld);",
+                           plan.planName,
+                           [plan.startTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           [plan.endTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           [[NSDate new] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           [[NSDate new] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           plan.durationTime,
+                           plan.durationDays];
     
     [[HYDBManager sharedInstance] executeInsetSQL:insertSql block:^(BOOL isSuccess, NSString *message) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -81,6 +96,29 @@
         [rs close];
         dispatch_async(dispatch_get_main_queue(), ^{
             block(isSuccess, tempArrray, message);            
+        });
+    }];
+}
+
++ (void)database_updatePlan:(HYPlan *)plan block:(void (^)(BOOL, NSString *))block {
+    NSString *updateSql = [NSString stringWithFormat:@"UPDATE fleshy_plan SET "
+                           "plan_name='%@',"
+                           "plan_start_time='%@',"
+                           "plan_end_time='%@',"
+                           "plan_update_time='%@',"
+                           "plan_duration_time=%ld,"
+                           "plan_duration_days=%ld"
+                           " WHERE plan_id = %ld;",
+                           plan.planName,
+                           [plan.startTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           [plan.endTime stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           [[NSDate new] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                           plan.durationTime,
+                           plan.durationDays,
+                           plan.planId];
+    [[HYDBManager sharedInstance] executeUpdateSQL:updateSql block:^(BOOL isSuccess, NSString *message) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, message);
         });
     }];
 }

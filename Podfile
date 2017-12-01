@@ -12,6 +12,7 @@ pod 'MBProgressHUD'
 pod 'FMDB'
 pod 'IQKeyboardManager'
 pod 'DZNEmptyDataSet'
+pod 'FSCalendar'
 
 end
 

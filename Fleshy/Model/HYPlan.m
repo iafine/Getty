@@ -17,6 +17,7 @@
                                                @"startTime" : _startTime,
                                                @"endTime" : _endTime,
                                                @"createDate" : _createDate,
+                                               @"updateDate" : _updateDate,
                                                @"durationTime" : @(_durationTime),
                                                @"durationDays" : @(_durationDays),
                                                @"isDelete" : @(_isDelete),

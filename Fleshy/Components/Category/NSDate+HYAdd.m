@@ -31,6 +31,13 @@
     return timeInterval / 60;
 }
 
+- (NSInteger)hy_daysIntervalWithBeforeDate:(NSDate *)beforeDate {
+    NSDate *newCurrentDate = [NSDate dateWithString:[self stringWithFormat:@"yyyy-MM-dd 00:00:00"] format:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *newBeforeDate = [NSDate dateWithString:[beforeDate stringWithFormat:@"yyyy-MM-dd 00:00:00"] format:@"yyyy-MM-dd HH:mm:ss"];
+    NSTimeInterval timeInterval = [newCurrentDate timeIntervalSinceDate:newBeforeDate];
+    return timeInterval / (60 * 60 * 24);
+}
+
 - (NSDate *)hy_newDateBySecondZero {
     NSString *date = [self stringWithFormat:@"yyyy-MM-dd"];
     NSString *hour = [self stringWithFormat:@"HH"];
@@ -75,6 +82,14 @@
 - (BOOL)hy_isAfterToday {
     NSComparisonResult result = [self hy_compareDate:self dateB:[NSDate date]];
     return (result == NSOrderedDescending ? YES : NO);
+}
+
+- (BOOL)hy_isSameDay:(NSDate *)date {
+    double timezoneFix = [NSTimeZone localTimeZone].secondsFromGMT;
+    if ( (int)(([self timeIntervalSince1970] + timezoneFix)/(24*3600)) - (int)(([date timeIntervalSince1970] + timezoneFix)/(24*3600)) == 0) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - Private Methods

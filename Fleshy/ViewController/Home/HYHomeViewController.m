@@ -11,7 +11,7 @@
 #import "HYPerformance+Database.h"
 #import "HYPlanEditController.h"
 #import "HYHomePushAnimator.h"
-#import "HYPlanEditController.h"
+#import "HYPlanDetailController.h"
 
 @interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, DZNEmptyDataSetSource>
 
@@ -121,7 +121,11 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"选中");
+    
+    HYPlan *plan = [self.dataArray objectAtIndex:indexPath.row];
+    HYPlanDetailController *detailVC = [[HYPlanDetailController alloc] init];
+    detailVC.plan = plan;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

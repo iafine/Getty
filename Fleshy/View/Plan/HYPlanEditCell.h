@@ -1,5 +1,5 @@
 //
-//  HYPlanDetailCell.h
+//  HYPlanEditCell.h
 //  Fleshy
 //
 //  Created by Hyyy on 2017/11/28.
@@ -8,30 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, HYPlanDetailCellStyle) {
-    HYPlanDetailCellStyleLabel,
-    HYPlanDetailCellStyleEdit,
+typedef NS_ENUM(NSUInteger, HYPlanEditCellStyle) {
+    HYPlanEditCellStyleLabel,
+    HYPlanEditCellStyleEdit,
 };
 
-@protocol HYPlanDetailCellDelegate <NSObject>
+@protocol HYPlanEditCellDelegate <NSObject>
 
 - (void)textFieldDidChange:(UITextField *)textField;
 
 @end
 
-@interface HYPlanDetailCell : UITableViewCell
+@interface HYPlanEditCell : UITableViewCell
 
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @property (nonatomic, copy) NSDictionary *cellData; // cell显示数据
-@property (nonatomic, weak) id<HYPlanDetailCellDelegate> delegate;
+@property (nonatomic, weak) id<HYPlanEditCellDelegate> delegate;
 
 + (NSString *)ID;
 
 + (CGFloat)cellHeight;
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView cellStyle:(HYPlanDetailCellStyle)cellStyle;
++ (instancetype)cellWithTableView:(UITableView *)tableView cellStyle:(HYPlanEditCellStyle)cellStyle;
 
 
 @end

@@ -14,7 +14,12 @@
 + (void)database_insertPerformances:(NSArray<HYPerformance *> *)performances block:(void (^)(BOOL, NSString *))block {
     NSMutableArray *tempArray = [NSMutableArray array];
     for (HYPerformance *performance in performances) {
-        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance (plan_id, perform_date) VALUES (%ld, '%@');", performance.planId, [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO fleshy_performance ("
+                               "plan_id, "
+                               "perform_date"
+                               ") VALUES (%ld, '%@');",
+                               performance.planId,
+                               [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"]];
         [tempArray addObject:insertSql];
     }
     
@@ -35,6 +40,7 @@
             performance.planId = [rs intForColumn:@"plan_id"];
             performance.isPerform = [rs boolForColumn:@"is_perform"];
             performance.performDate = [NSDate dateWithString:[rs stringForColumn:@"perform_date"] format:@"yyyy-MM-dd HH:mm:ss"];
+            performance.isDelete = [rs boolForColumn:@"perform_is_delete"];
             [tempArrray addObject:performance];
         }
         [rs close];
@@ -56,6 +62,7 @@
             performance.planId = [rs intForColumn:@"plan_id"];
             performance.isPerform = [rs boolForColumn:@"is_perform"];
             performance.performDate = [NSDate dateWithString:[rs stringForColumn:@"perform_date"] format:@"yyyy-MM-dd HH:mm:ss"];
+            performance.isDelete = [rs boolForColumn:@"perform_is_delete"];
             [array addObject:performance];
             if (performance.isPerform) {
                 [performArray addObject:performance];
@@ -64,6 +71,15 @@
         [rs close];
         dispatch_async(dispatch_get_main_queue(), ^{
             block(isSuccess, array.copy, performArray.copy, message);
+        });
+    }];
+}
+
++ (void)database_deletePerformances:(NSInteger)planId block:(void (^)(BOOL, NSString *))block {
+    NSString *updateSql = [NSString stringWithFormat:@"UPDATE fleshy_performance SET perform_is_delete = 1 WHERE plan_id = %ld;", planId];
+    [[HYDBManager sharedInstance] executeUpdateSQL:updateSql block:^(BOOL isSuccess, NSString *message) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(isSuccess, message);
         });
     }];
 }

@@ -16,4 +16,6 @@
 
 + (void)database_queryPerformances:(NSInteger)planId block:(void(^)(BOOL isSuccess, NSArray<HYPerformance *> *array, NSArray<HYPerformance *> *performArray, NSString *message))block;
 
++ (void)database_deletePerformances:(NSInteger)planId block:(void(^)(BOOL isSuccess, NSString *message))block;
+
 @end

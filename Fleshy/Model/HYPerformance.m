@@ -15,7 +15,8 @@
                                                @"performanceId" : @(_performanceId),
                                                @"planId" : @(_planId),
                                                @"isPerform" : @(_isPerform),
-                                               @"performDate" : _performDate
+                                               @"performDate" : _performDate,
+                                               @"isDelete" : @(_isDelete)
                                                }];
 }
 

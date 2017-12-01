@@ -48,6 +48,7 @@
             plan.createDate = [NSDate dateWithString:[rs stringForColumn:@"plan_create_time"] format:@"yyyy-MM-dd HH:mm:ss"];
             plan.durationTime = [rs intForColumn:@"plan_duration_time"];
             plan.durationDays = [rs intForColumn:@"plan_duration_days"];
+            plan.isDelete = [rs boolForColumn:@"plan_is_delete"];
         }
         [rs close];
         dispatch_async(dispatch_get_main_queue(), ^{

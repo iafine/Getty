@@ -219,10 +219,17 @@
 }
 
 - (void)deletePlanHandler:(HYPlan *)plan {
+    // 计划表删除此计划
     [HYPlan database_deletePlan:plan.planId block:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
-            NSLog(@"删除计划成功");
-            [self.tableView reloadData];
+            // 执行表删除此计划相关数据
+            [HYPerformance database_deletePerformances:plan.planId block:^(BOOL isSuccess, NSString *message) {
+                if (isSuccess) {
+                    [self.tableView reloadData];
+                }else {
+                    NSLog(@"清空执行数据失败");
+                }
+            }];
         }else {
             NSLog(@"删除计划失败");
         }

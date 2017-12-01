@@ -18,4 +18,6 @@
 
 @property (nonatomic, copy) NSDate *performDate;
 
+@property (nonatomic, assign) BOOL isDelete;
+
 @end

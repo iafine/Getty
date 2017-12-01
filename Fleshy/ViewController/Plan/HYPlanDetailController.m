@@ -170,8 +170,6 @@
         _calendar.appearance.headerMinimumDissolvedAlpha = 0;
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
         _calendar.placeholderType = FSCalendarPlaceholderTypeNone;
-        _calendar.appearance.titleTodayColor = kTitleColor;
-        _calendar.appearance.todayColor = [UIColor clearColor];
         _calendar.appearance.weekdayTextColor = kTitleColor;
         _calendar.appearance.headerTitleColor = kTitleColor;
         _calendar.appearance.selectionColor = kDescColor;

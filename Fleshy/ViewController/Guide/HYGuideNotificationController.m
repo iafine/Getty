@@ -61,7 +61,7 @@
         self.notificationBtn.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         // 执行动作响应，注册通知
-        [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError * _Nullable error) {
+        [[HYLocalNotification sharedInstance] registerNotificationCompleteHandler:^(BOOL granted, NSError *error) {
             if (granted) {
                 // 引导页消失
                 [self dismissNotificationPage];

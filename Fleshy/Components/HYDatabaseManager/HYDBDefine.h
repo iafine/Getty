@@ -21,7 +21,7 @@
                             plan_update_time TEXT NOT NULL,\
                             plan_duration_time INTEGER NOT NULL,\
                             plan_duration_days INTEGER NOT NULL,\
-                            plan_is_delete  INTEGER DEFAULT 0,\
+                            plan_is_delete INTEGER DEFAULT 0,\
                             PRIMARY KEY (plan_id)\
                         );"
 
@@ -30,6 +30,8 @@
                                     plan_id INTEGER NOT NULL,\
                                     is_perform INTEGER DEFAULT 0,\
                                     perform_date TEXT,\
+                                    perform_is_start INTEGER DEFAULT 0,\
+                                    perform_is_end INTEGER DEFAULT 0,\
                                     perform_is_delete INTEGER DEFAULT 0,\
                                     PRIMARY KEY (perform_id),\
                                     FOREIGN KEY (plan_id) REFERENCES fleshy_plan(plan_id)\

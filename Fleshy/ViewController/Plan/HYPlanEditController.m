@@ -265,7 +265,22 @@
                         [hud hideAnimated:YES];
                         if (isSuccess) {
                             // 生成计划通知
-                            
+                            [[HYLocalNotification sharedInstance] createLocalNotification:self.plan.startTime
+                                                                               alertTitle:self.plan.planName
+                                                                                 subTitle:nil
+                                                                               identifier:HYPlanStartNotificationIdentifier
+                                                                       categoryIdentifier:HYPlanStartCategoryIdentifier
+                                                                                alertBody:@"计划准备开始，请长按通知，开始计划"
+                                                                                    badge:0
+                                                                                 userInfo:nil];
+                            [[HYLocalNotification sharedInstance] createLocalNotification:self.plan.endTime
+                                                                               alertTitle:self.plan.planName
+                                                                                 subTitle:nil
+                                                                               identifier:HYPlanEndNotificationIdentifier
+                                                                       categoryIdentifier:HYPlanEndCategoryIdentifier
+                                                                                alertBody:@"计划已结束，请长按通知，及时打卡"
+                                                                                    badge:0
+                                                                                 userInfo:nil];
                             [self clickedBackBtnHandler];
                         }else {
                             [UIView hy_showToast:@"提示" message:@"生成执行数据失败，请返回重新操作"];
@@ -304,6 +319,22 @@
                 [HYPerformance database_updatePerformances:tempArray.copy block:^(BOOL isSuccess, NSString *message) {
                     if (isSuccess) {
                         // 更新计划成功
+                        [[HYLocalNotification sharedInstance] createLocalNotification:self.plan.startTime
+                                                                           alertTitle:self.plan.planName
+                                                                             subTitle:@"更新测试"
+                                                                           identifier:HYPlanStartNotificationIdentifier
+                                                                   categoryIdentifier:HYPlanStartCategoryIdentifier
+                                                                            alertBody:@"计划准备开始，请长按通知，开始计划"
+                                                                                badge:0
+                                                                             userInfo:nil];
+                        [[HYLocalNotification sharedInstance] createLocalNotification:self.plan.endTime
+                                                                           alertTitle:self.plan.planName
+                                                                             subTitle:@"更新测试"
+                                                                           identifier:HYPlanEndNotificationIdentifier
+                                                                   categoryIdentifier:HYPlanEndCategoryIdentifier
+                                                                            alertBody:@"计划已结束，请长按通知，及时打卡"
+                                                                                badge:0
+                                                                             userInfo:nil];
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                 }];

@@ -30,9 +30,8 @@
     BOOL isRegister = [HYCacheHelper cacheValueForKey:HYHasRegisterNotifiactionKey cacheType:HYCacheDisk];
     if (isRegister) {
         // 如果还没有同意通知权限，那么显示通知开启引导页面
-        [HYLocalNotification registerNotificationCompleteHandler:^(BOOL granted, NSError *error) {
-            if (granted) {
-            }else {
+        [[HYLocalNotification sharedInstance] registerNotificationCompleteHandler:^(BOOL granted, NSError *error) {
+            if (!granted) {
                 [self addNotAllowNotificationPage];
             }
         }];

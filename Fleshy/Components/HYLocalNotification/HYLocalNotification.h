@@ -23,9 +23,11 @@ extern NSString *const HYRegisterNotificationGrantKey;      // 通知权限用�
 
 @interface HYLocalNotification : NSObject
 
-+ (void)registerNotificationCompleteHandler:(void (^)(BOOL granted, NSError *error))completeHandler;
++ (instancetype)sharedInstance;
 
-+ (void)createLocalNotification:(NSDate *)fireDate
+- (void)registerNotificationCompleteHandler:(void (^)(BOOL granted, NSError *error))completeHandler;
+
+- (void)createLocalNotification:(NSDate *)fireDate
                      alertTitle:(NSString *)alertTitle
                        subTitle:(NSString *)subTitle
                      identifier:(NSString *)identifier

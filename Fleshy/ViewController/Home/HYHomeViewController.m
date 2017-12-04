@@ -84,7 +84,7 @@
         HYPlan *plan = [self.dataArray objectAtIndex:indexPath.row];
         HYPlanEditController *planVC = [[HYPlanEditController alloc] init];
         planVC.plan = plan;
-        planVC.operateType = HYPlanDetailOperateEdit;
+        planVC.operateType = HYPlanDetailOperateUpdate;
         [self.navigationController pushViewController:planVC animated:YES];
     }];
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {

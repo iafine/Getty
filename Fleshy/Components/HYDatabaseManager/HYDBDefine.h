@@ -14,7 +14,7 @@
 
 #define HY_CREATE_PALN  @"create table fleshy_plan(\
                             plan_id INTEGER,\
-                            plan_name TEXT NOT NULL UNIQUE,\
+                            plan_name TEXT NOT NULL,\
                             plan_start_time TEXT NOT NULL,\
                             plan_end_time TEXT NOT NULL,\
                             plan_create_time TEXT NOT NULL,\

@@ -131,9 +131,12 @@
             [UIView hy_showToast:@"提示" message:@"请先选择开始时间"];
         }
     }else if (indexPath.section == 3) {
-        HYListPickView *listPicker = [[HYListPickView alloc] initDatePickerView:@"请选择持续时间" dataArray:@[@"15天", @"30天", @"45天", @"60天"]];
-        listPicker.delegate = self;
-        [listPicker show];
+        // 如果是更新页面，持续时间无法再次进行选择更改。
+        if (self.operateType == HYPlanDetailOperateInsert) {
+            HYListPickView *listPicker = [[HYListPickView alloc] initDatePickerView:@"请选择持续时间" dataArray:@[@"15天", @"30天", @"45天", @"60天"]];
+            listPicker.delegate = self;
+            [listPicker show];
+        }
     }else {
         
     }
@@ -183,6 +186,9 @@
 }
 
 - (void)clickedSaveBtnHandler {
+    // 生成更新数据
+    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
+    
     // 计划名称不匹配
     if (self.plan.planName.length == 0) {
         [UIView hy_showToast:@"提示" message:@"计划名称不能为空"];
@@ -207,6 +213,13 @@
 }
 
 - (void)clickedUpdateBtnHandler {
+    // 生成更新数据
+    NSString *startTime = [NSString stringWithFormat:@"%@ %@", [self.plan.createDate stringWithFormat:@"yyyy-MM-dd"], [self.plan.startTime stringWithFormat:@"HH:mm:ss"]];
+    NSString *endTime = [NSString stringWithFormat:@"%@ %@", [self.plan.createDate stringWithFormat:@"yyyy-MM-dd"], [self.plan.endTime stringWithFormat:@"HH:mm:ss"]];
+    self.plan.startTime = [NSDate dateWithString:startTime format:@"yyyy-MM-dd HH:mm:ss"];
+    self.plan.endTime = [NSDate dateWithString:endTime format:@"yyyy-MM-dd HH:mm:ss"];
+    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
+    
     // 计划名称不匹配
     if (self.plan.planName.length == 0) {
         [UIView hy_showToast:@"提示" message:@"计划名称不能为空"];
@@ -234,9 +247,6 @@
 - (void)generatePlanData {
     // 生成一条计划数据，然后创建多条执行数据与之对应
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    // 获取每天持续时间
-    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
     
     [HYPlan databasae_insertPlan:self.plan block:^(BOOL isSuccess, NSString *message) {
         if (isSuccess) {
@@ -277,13 +287,27 @@
     // 生成一条计划数据，然后创建多条执行数据与之对应
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    // 获取每天持续时间
-    self.plan.durationTime = [self.plan.endTime hy_minutesIntervalWithBeforeDate:self.plan.startTime];
-    
     [HYPlan database_updatePlan:self.plan block:^(BOOL isSuccess, NSString *message) {
         [hud hideAnimated:YES];
         if (isSuccess) {
-            [self.navigationController popViewControllerAnimated:YES];
+            // 更新执行表数据。先更新已存在的数据，如果有新增数据或者是删除数据，再做处理
+            [HYPerformance database_queryPerformances:self.plan.planId block:^(BOOL isSuccess, NSArray<HYPerformance *> *array, NSArray<HYPerformance *> *performArray, NSString *message) {
+                NSMutableArray *tempArray = [NSMutableArray array];
+                for (int i=1; i<=array.count; i++) {
+                    HYPerformance *tempPerformance = [array objectAtIndex:i-1];
+                    NSString *startTime = [NSString stringWithFormat:@"%@ %@",
+                                           [tempPerformance.performDate stringWithFormat:@"yyyy-MM-dd"],
+                                           [self.plan.startTime stringWithFormat:@"HH:mm:ss"]];
+                    tempPerformance.performDate = [NSDate dateWithString:startTime format:@"yyyy-MM-dd HH:mm:ss"];
+                    [tempArray addObject:tempPerformance];
+                }
+                [HYPerformance database_updatePerformances:tempArray.copy block:^(BOOL isSuccess, NSString *message) {
+                    if (isSuccess) {
+                        // 更新计划成功
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+            }];
         }
     }];
 }

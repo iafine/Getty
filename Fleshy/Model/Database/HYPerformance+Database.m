@@ -84,4 +84,25 @@
     }];
 }
 
++ (void)database_updatePerformances:(NSArray<HYPerformance *> *)performances block:(void (^)(BOOL, NSString *))block {
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (HYPerformance *performance in performances) {
+        NSString *insertSql = [NSString stringWithFormat:@"UPDATE fleshy_performance SET "
+                               "perform_date='%@', "
+                               "is_perform=%d, "
+                               "perform_is_delete=%d "
+                               "WHERE perform_id=%ld;",
+                               [performance.performDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+                               performance.isPerform,
+                               performance.isDelete,
+                               performance.performanceId];
+        [tempArray addObject:insertSql];
+    }
+    
+    [[HYDBManager sharedInstance] executeSqlList:tempArray block:^(BOOL isSuccess, NSString *message) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block) block(isSuccess, message);
+        });
+    }];
+}
 @end

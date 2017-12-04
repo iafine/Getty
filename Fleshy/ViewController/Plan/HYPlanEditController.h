@@ -10,7 +10,7 @@
 
 typedef NS_ENUM(NSUInteger, HYPlanDetailOperate) {
     HYPlanDetailOperateInsert,  // 添加页面
-    HYPlanDetailOperateEdit,    // 编辑页面
+    HYPlanDetailOperateUpdate,    // 更新页面
 };
 
 @interface HYPlanEditController : UIViewController

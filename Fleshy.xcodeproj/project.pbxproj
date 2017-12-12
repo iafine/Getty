@@ -44,6 +44,7 @@
 		68CBAB311FC676B90087B98F /* FleshyNotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 68CBAB221FC676B90087B98F /* FleshyNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		68DB7F321FB92D490002FF0B /* HYPerformance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DB7F311FB92D490002FF0B /* HYPerformance.m */; };
 		68E463B11FC50AC60070B8DA /* HYLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E463B01FC50AC60070B8DA /* HYLocalNotification.m */; };
+		68F865411FDE92AA00038109 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F865401FDE92AA00038109 /* SettingViewController.swift */; };
 		68FFA6B11FA1D8000015ED30 /* HYHomePlanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FFA6B01FA1D8000015ED30 /* HYHomePlanCell.m */; };
 		EC6397D6D901A8E08CF253FE /* libPods-Fleshy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7476600B9AD36B4742B5A640 /* libPods-Fleshy.a */; };
 /* End PBXBuildFile section */
@@ -148,6 +149,8 @@
 		68DB7F311FB92D490002FF0B /* HYPerformance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPerformance.m; sourceTree = "<group>"; };
 		68E463AF1FC50AC60070B8DA /* HYLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYLocalNotification.h; sourceTree = "<group>"; };
 		68E463B01FC50AC60070B8DA /* HYLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYLocalNotification.m; sourceTree = "<group>"; };
+		68F865401FDE92AA00038109 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		68F865421FDE936100038109 /* Fleshy-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Fleshy-Bridging-Header.h"; sourceTree = "<group>"; };
 		68FFA6AE1FA1D4960015ED30 /* HYConstantsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConstantsHeader.h; sourceTree = "<group>"; };
 		68FFA6AF1FA1D8000015ED30 /* HYHomePlanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomePlanCell.h; sourceTree = "<group>"; };
 		68FFA6B01FA1D8000015ED30 /* HYHomePlanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYHomePlanCell.m; sourceTree = "<group>"; };
@@ -396,6 +399,7 @@
 				68BCC4F21FA0296700C145DA /* Info.plist */,
 				68BCC4F31FA0296700C145DA /* main.m */,
 				68BCC5041FA02EA600C145DA /* Fleshy-Prefix.pch */,
+				68F865421FDE936100038109 /* Fleshy-Bridging-Header.h */,
 			);
 			path = Fleshy;
 			sourceTree = "<group>";
@@ -422,6 +426,7 @@
 		68BCC4FF1FA02AD100C145DA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				68F8653E1FDE927A00038109 /* Setting */,
 				680860ED1FCD059900CD8E76 /* Plan */,
 				687A78721FB5394D00E95957 /* Main */,
 				683A6B551FA31D9B0010F0A0 /* Home */,
@@ -473,6 +478,14 @@
 				68E463B01FC50AC60070B8DA /* HYLocalNotification.m */,
 			);
 			path = HYLocalNotification;
+			sourceTree = "<group>";
+		};
+		68F8653E1FDE927A00038109 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				68F865401FDE92AA00038109 /* SettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		68FFA6AD1FA1D4760015ED30 /* Constants */ = {
@@ -548,6 +561,7 @@
 				TargetAttributes = {
 					68BCC4E01FA0296600C145DA = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -681,6 +695,7 @@
 				683A6B5D1FA31F3A0010F0A0 /* HYGuideGenderView.m in Sources */,
 				680860F41FCD2D0C00CD8E76 /* HYPlanEditCell.m in Sources */,
 				6841ECD21FB1635A008645E5 /* HYDatePickerView.m in Sources */,
+				68F865411FDE92AA00038109 /* SettingViewController.swift in Sources */,
 				6850AB411FC27A6100AFCE95 /* HYHomePushAnimator.m in Sources */,
 				68BCC4FD1FA02A9D00C145DA /* AppDelegate.m in Sources */,
 				682FF8C91FBE7E4E0045DC56 /* HYNotificationNames.m in Sources */,
@@ -839,6 +854,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DDD49F4BC31CF4987BF54A4F /* Pods-Fleshy.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Fleshy/Fleshy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -852,6 +868,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "68240a1c-efeb-4f4a-bc4e-b43df2de7cb2";
 				PROVISIONING_PROFILE_SPECIFIER = Fleshy_Development;
+				SWIFT_OBJC_BRIDGING_HEADER = "Fleshy/Fleshy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -860,6 +879,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1597C86FC0BF3AE50977607D /* Pods-Fleshy.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Fleshy/Fleshy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -873,6 +893,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "09ff8363-11de-4e64-a976-53bcddceff08";
 				PROVISIONING_PROFILE_SPECIFIER = Fleshy_Distribution;
+				SWIFT_OBJC_BRIDGING_HEADER = "Fleshy/Fleshy-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -12,6 +12,7 @@
 #import "HYPlanEditController.h"
 #import "HYHomePushAnimator.h"
 #import "HYPlanDetailController.h"
+#import "Fleshy-Swift.h"
 
 @interface HYHomeViewController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, DZNEmptyDataSetSource>
 
@@ -31,7 +32,7 @@
     self.navigationItem.title = @"Fleshy";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStyleDone target:self action:@selector(clickedBackBtnHandler)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStyleDone target:self action:@selector(handleSettingButtonEvent)];
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.plusBtn];
@@ -181,8 +182,9 @@
 }
 
 #pragma mark - Events
-- (void)clickedBackBtnHandler {
-    
+- (void)handleSettingButtonEvent {
+    SettingViewController *settingVC = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)touchedDownPlusBtnHandler {

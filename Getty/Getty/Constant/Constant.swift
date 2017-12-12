@@ -3,7 +3,7 @@
 //  Getty
 //
 //  Created by Hyyy on 2017/12/12.
-//  Copyright © 2017年 Hyyy. All rights reserved.
+//  Copyright © 2017年 Getty. All rights reserved.
 //
 
 import UIKit
@@ -72,4 +72,45 @@ struct Constant {
         // size = 36
         static let kFontHuge = UIFont.systemFont(ofSize: 36)
     }
+    
+    // MARK: - 缓存相关
+    struct Cache {
+        
+        // 是否已经申请过通知权限缓存key （NO未申请过，YES已经申请过）
+        static let kHasRegisterdNotificationKey = "HasRegisterdNotificationKey"
+    }
+    
+    // MARK: - 通知相关
+    struct Notification {
+        
+        // 计划开始identifier
+        static let kPlanStartIdentifier = "PlanStartIdentifier"
+        
+        // 计划结束identifier
+        static let kPlanEndIdentifier = "PlanEndIdentifier"
+        
+        // MARK: - Category相关
+        struct Category {
+            
+            // 计划开始category
+            static let kPlanStartCategory = "PlanStartCategory"
+            
+            // 计划结束category
+            static let kPlanEndCategory = "PlanEndCategory"
+        }
+        
+        // MARK: - Action相关
+        struct Action {
+            
+            // 确认action
+            static let kPlanConfirmAction = "PlanConfirmAction"
+            
+            // 拒绝action
+            static let kPlanRefuseAction = "PlanRefuseAction"
+            
+            // 完成action
+            static let kPlanFinishAction = "PlanFinishAction"
+        }
+    }
+    
 }

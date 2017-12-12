@@ -3,7 +3,7 @@
 //  Getty
 //
 //  Created by Hyyy on 2017/12/12.
-//  Copyright © 2017年 Hyyy. All rights reserved.
+//  Copyright © 2017年 Getty. All rights reserved.
 //
 
 import UIKit
@@ -91,7 +91,35 @@ class NotificationGuideViewController: UIViewController {
             self.notificationButton.transform = .identity
         }) { (finished) in
             // 注册通知
+            NotificationManager.manager.registerLocalNotificationCompleteHandler(completeHandler: { (granted, error) in
+                if (granted) {
+                    // 引导页消失
+                    self.dismissNotificationPage()
+                }else {
+                    // 打开权限提示页面
+                    self.addNotAllowNotificationPage()
+                }
+            })
         }
     }
-
+    
+    func dismissNotificationPage() {
+        navigationController?.removeFromParentViewController()
+        UIView.animate(withDuration: 0.5, animations: {
+            self.navigationController?.view.transform = CGAffineTransform (scaleX: 0.1, y: 0.1)
+            self.navigationController?.view.alpha = 0
+        }) { (finished) in
+            self.removeFromParentViewController()
+            self.view.removeFromSuperview()
+        }
+    }
+    
+    func addNotAllowNotificationPage() {
+        let alertVC = UIAlertController (title: "提示", message: "您没有允许显示通知，会影响App功能。请前往设置页开启此功能。", preferredStyle: .alert)
+        let finishAction = UIAlertAction (title: "前往设置页面", style: .destructive) { (action) in
+            UIApplication.shared.open(URL (string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        }
+        alertVC.addAction(finishAction)
+        present(alertVC, animated: true, completion: nil)
+    }
 }

@@ -3,7 +3,7 @@
 //  Getty
 //
 //  Created by Hyyy on 2017/12/12.
-//  Copyright © 2017年 Hyyy. All rights reserved.
+//  Copyright © 2017年 Getty. All rights reserved.
 //
 
 import UIKit
@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = MainViewController ()
         window?.makeKeyAndVisible()
     
+        themeAppearance()
+        
         return true
     }
 
@@ -45,7 +47,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
-
+extension AppDelegate {
+    func themeAppearance() {
+        
+//        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];    // 设置导航栏背景颜色
+//        [[UINavigationBar appearance] setTintColor:kTitleColor];    // 设置导航栏左右按钮tint颜色
+//        [[UINavigationBar appearance] setShadowImage:[UIImage new]];    // 去掉导航栏底部阴影线
+//
+//        NSDictionary *textAttributes =  @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:kTextSizeMedium],
+//            NSForegroundColorAttributeName : kTitleColor };
+//        [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];   // 定制导航栏title字体
+//
+//        [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back"]];
+//        [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
+//
+//        // UIBarButtonItem的也放在这里
+//        NSDictionary *buttonTextAttributes =  @{ NSFontAttributeName : [UIFont systemFontOfSize:kTextSizeSmall],
+//            NSForegroundColorAttributeName : kTitleColor };
+//        [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateNormal];
+//        //隐藏返回按钮的文字
+//        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
+//
+//        // UITextField的也放在这里
+//        [[UITextField appearance] setTintColor:kMainColor];
+    }
 }
 

@@ -21,7 +21,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Getty"
-        navigationItem.rightBarButtonItem = UIBarButtonItem (image: UIImage (named: "setting"), style: .plain, target: self, action: #selector(handleRightBarButtonEvent))
+        navigationItem.rightBarButtonItem = UIBarButtonItem (image: UIImage (named: "setting"),
+                                                             style: .plain,
+                                                             target: self,
+                                                             action: #selector(handleRightBarButtonEvent))
         
         view.addSubview(homeView)
     }

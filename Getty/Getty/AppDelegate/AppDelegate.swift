@@ -52,26 +52,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     func themeAppearance() {
         
-//        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];    // 设置导航栏背景颜色
-//        [[UINavigationBar appearance] setTintColor:kTitleColor];    // 设置导航栏左右按钮tint颜色
-//        [[UINavigationBar appearance] setShadowImage:[UIImage new]];    // 去掉导航栏底部阴影线
-//
-//        NSDictionary *textAttributes =  @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:kTextSizeMedium],
-//            NSForegroundColorAttributeName : kTitleColor };
-//        [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];   // 定制导航栏title字体
-//
-//        [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back"]];
-//        [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
-//
-//        // UIBarButtonItem的也放在这里
-//        NSDictionary *buttonTextAttributes =  @{ NSFontAttributeName : [UIFont systemFontOfSize:kTextSizeSmall],
-//            NSForegroundColorAttributeName : kTitleColor };
-//        [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateNormal];
-//        //隐藏返回按钮的文字
-//        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
-//
-//        // UITextField的也放在这里
-//        [[UITextField appearance] setTintColor:kMainColor];
+        UINavigationBar.appearance().barTintColor = UIColor.white   // 设置导航栏背景颜色
+        UINavigationBar.appearance().tintColor = Constant.Color.kTitleColor // 设置导航栏左右按钮文字颜色
+        UINavigationBar.appearance().shadowImage = UIImage()    // 去掉导航栏底部阴影线
+        UINavigationBar.appearance().backIndicatorImage = UIImage (named: "back")
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage (named: "back")
+
+        // 定制导航栏title字体
+        let textAttributes = [NSAttributedStringKey.font : Constant.Font.kFontMedium,
+                              NSAttributedStringKey.foregroundColor : Constant.Color.kTitleColor]
+        UINavigationBar.appearance().titleTextAttributes = textAttributes
+        
+
+        // UIBarButtonItem
+        let buttonTextAttributes = [NSAttributedStringKey.font : Constant.Font.kFontSmall,
+                                    NSAttributedStringKey.foregroundColor : Constant.Color.kTitleColor]
+        UIBarButtonItem.appearance().setTitleTextAttributes(buttonTextAttributes, for: .normal)
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-100, 0), for: .default)
+        
+        // UITextField
+        UITextField.appearance().tintColor = Constant.Color.kMainColor
     }
 }
 

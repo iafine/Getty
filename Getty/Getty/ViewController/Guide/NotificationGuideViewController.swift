@@ -42,6 +42,9 @@ class NotificationGuideViewController: UIViewController {
         
         button.layer.cornerRadius = 60
         button.layer.masksToBounds = true
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowColor = Constant.Color.kMainColor.cgColor
+        button.layer.shadowOffset = CGSize (width: 0, height: 0)
         
         button.addTarget(self, action: #selector(handleNotificationButtonTouchDownEvent), for: .touchDown)
         button.addTarget(self, action: #selector(handleNotificationButtonTouchUpEvent), for: [.touchUpInside, .touchUpOutside])

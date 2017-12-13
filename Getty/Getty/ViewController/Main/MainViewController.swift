@@ -12,12 +12,21 @@ import SnapKit
 class MainViewController: UIViewController {
     
     let guideNavVC: UINavigationController = {
+        
         return UINavigationController (rootViewController: NotificationGuideViewController())
+    }()
+    
+    let homeNavVC: UINavigationController = {
+        
+        return UINavigationController (rootViewController: HomeViewController())
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        addChildViewController(homeNavVC)
+        view.addSubview(homeNavVC.view)
+        
         let hasRegisterdNotification = UserDefaults.standard.bool(forKey: Constant.Cache.kHasRegisterdNotificationKey)
         if (hasRegisterdNotification) {
             // 如果还没有同意通知权限，那么显示通知开启引导页面

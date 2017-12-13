@@ -21,6 +21,8 @@
 		68A4B4081FDF831500E984D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4B4091FDF831500E984D1 /* SnapKit.framework */; };
 		68A4B40C1FDF869900E984D1 /* NotificationGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B40B1FDF869900E984D1 /* NotificationGuideViewController.swift */; };
 		68A4B4171FDFBC5C00E984D1 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4161FDFBC5C00E984D1 /* NotificationManager.swift */; };
+		68A4B41A1FE004C800E984D1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4191FE004C800E984D1 /* HomeViewController.swift */; };
+		68A4B41C1FE0C83C00E984D1 /* HomePlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B41B1FE0C83C00E984D1 /* HomePlanCell.swift */; };
 		6D320DF6603E676C7A46C924 /* Pods_Getty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819CCD7F46C5AFF151144E53 /* Pods_Getty.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		68A4B4091FDF831500E984D1 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A4B40B1FDF869900E984D1 /* NotificationGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationGuideViewController.swift; sourceTree = "<group>"; };
 		68A4B4161FDFBC5C00E984D1 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		68A4B4191FE004C800E984D1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		68A4B41B1FE0C83C00E984D1 /* HomePlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlanCell.swift; sourceTree = "<group>"; };
 		819CCD7F46C5AFF151144E53 /* Pods_Getty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Getty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		970A36EB926A31AC26746ABB /* Pods-Getty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Getty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Getty/Pods-Getty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +168,7 @@
 		68A4B3F61FDF6F8300E984D1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				68A4B4181FE0049600E984D1 /* Home */,
 				68A4B40A1FDF866900E984D1 /* Guide */,
 				68A4B3FB1FDF6FC700E984D1 /* Main */,
 			);
@@ -182,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				68A4B3F91FDF6FC200E984D1 /* HomeView.swift */,
+				68A4B41B1FE0C83C00E984D1 /* HomePlanCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -241,6 +247,14 @@
 				68A4B4161FDFBC5C00E984D1 /* NotificationManager.swift */,
 			);
 			path = NotifiationManager;
+			sourceTree = "<group>";
+		};
+		68A4B4181FE0049600E984D1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				68A4B4191FE004C800E984D1 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		852CD3C2E9F08DF0EC7403C4 /* Frameworks */ = {
@@ -462,9 +476,11 @@
 				68A4B40C1FDF869900E984D1 /* NotificationGuideViewController.swift in Sources */,
 				68A4B4041FDF706E00E984D1 /* DatabaseManager.swift in Sources */,
 				68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */,
+				68A4B41A1FE004C800E984D1 /* HomeViewController.swift in Sources */,
 				68A4B3FD1FDF6FD900E984D1 /* MainViewController.swift in Sources */,
 				68A4B4171FDFBC5C00E984D1 /* NotificationManager.swift in Sources */,
 				68A4B4071FDF709300E984D1 /* Constant.swift in Sources */,
+				68A4B41C1FE0C83C00E984D1 /* HomePlanCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

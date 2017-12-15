@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     let homeView: HomeView = {
         
         let view = HomeView (frame: CGRect (x: 0, y: 64, width: Constant.Size.kScreenWidth, height: Constant.Size.kScreenHeight - 64))
-        
         return view
     }()
     
@@ -24,11 +23,22 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem (image: UIImage (named: "setting"),
                                                              style: .plain,
                                                              target: self,
-                                                             action: #selector(handleRightBarButtonEvent))
+                                                             action: #selector(handleSettingButtonEvent))
         
+        homeView.delegate = self
         view.addSubview(homeView)
     }
     
-    @objc func handleRightBarButtonEvent() {
+    @objc func handleSettingButtonEvent() {
+        let settingVC = SettingViewController()
+        navigationController?.pushViewController(settingVC, animated: true)
+    }
+}
+
+extension HomeViewController: HomeViewDelegate {
+    func addButtonHasClicked() {
+        let insertVC = InsertPlanViewController()
+        let insertNav = UINavigationController (rootViewController: insertVC)
+        present(insertNav, animated: true, completion: nil)
     }
 }

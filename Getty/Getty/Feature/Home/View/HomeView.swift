@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol HomeViewDelegate: class {
+    
+    
+    /// 加号点击事件
+    func addButtonHasClicked()
+}
+
 class HomeView: UIView {
     
     let tableView: UITableView = {
@@ -38,6 +45,8 @@ class HomeView: UIView {
         
         return button
     }()
+    
+    var delegate: HomeViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,6 +90,7 @@ class HomeView: UIView {
             self.addButton.transform = CGAffineTransform.identity
         }) { (finished) in
             // 传递点击新增按钮事件
+            self.delegate?.addButtonHasClicked()
         }
     }
 }

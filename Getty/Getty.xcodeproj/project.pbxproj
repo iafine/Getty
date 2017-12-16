@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		680E40511FE3BC3D002A1109 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40501FE3BC3D002A1109 /* SettingViewController.swift */; };
+		680E40541FE3BE3E002A1109 /* DatePickerAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40531FE3BE3E002A1109 /* DatePickerAlertView.swift */; };
+		680E40561FE3CDC4002A1109 /* ListAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40551FE3CDC4002A1109 /* ListAlertView.swift */; };
 		68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B3C61FDF6C5B00E984D1 /* AppDelegate.swift */; };
 		68A4B3CC1FDF6C5B00E984D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68A4B3CA1FDF6C5B00E984D1 /* Main.storyboard */; };
 		68A4B3CE1FDF6C5B00E984D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A4B3CD1FDF6C5B00E984D1 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 /* Begin PBXFileReference section */
 		21B4EA7DE64F46A89C7D8D71 /* Pods-Getty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Getty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Getty/Pods-Getty.release.xcconfig"; sourceTree = "<group>"; };
 		680E40501FE3BC3D002A1109 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		680E40531FE3BE3E002A1109 /* DatePickerAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerAlertView.swift; sourceTree = "<group>"; };
+		680E40551FE3CDC4002A1109 /* ListAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlertView.swift; sourceTree = "<group>"; };
 		68A4B3C31FDF6C5B00E984D1 /* Getty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Getty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A4B3C61FDF6C5B00E984D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68A4B3CB1FDF6C5B00E984D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +117,15 @@
 				680E40501FE3BC3D002A1109 /* SettingViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		680E40521FE3BE0F002A1109 /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				680E40531FE3BE3E002A1109 /* DatePickerAlertView.swift */,
+				680E40551FE3CDC4002A1109 /* ListAlertView.swift */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 		68A4B3BA1FDF6C5B00E984D1 = {
@@ -191,6 +204,7 @@
 		68A4B4011FDF703700E984D1 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				680E40521FE3BE0F002A1109 /* AlertView */,
 				68A4B4151FDFBC0400E984D1 /* NotifiationManager */,
 				68A4B4021FDF704600E984D1 /* DatabaseManager */,
 			);
@@ -540,9 +554,11 @@
 				68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */,
 				68A4B42D1FE0F54B00E984D1 /* HomeViewController.swift in Sources */,
 				68A4B4351FE0F81D00E984D1 /* InsertPlanView.swift in Sources */,
+				680E40541FE3BE3E002A1109 /* DatePickerAlertView.swift in Sources */,
 				68A4B4171FDFBC5C00E984D1 /* NotificationManager.swift in Sources */,
 				68A4B4321FE0F75100E984D1 /* InsertPlanViewController.swift in Sources */,
 				68A4B42A1FE0F54B00E984D1 /* NotificationGuideViewController.swift in Sources */,
+				680E40561FE3CDC4002A1109 /* ListAlertView.swift in Sources */,
 				68A4B4071FDF709300E984D1 /* Constant.swift in Sources */,
 				68A4B42E1FE0F54B00E984D1 /* MainViewController.swift in Sources */,
 			);

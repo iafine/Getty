@@ -30,7 +30,7 @@ class ListAlertView: UIView {
         return label
     }()
     
-    let titleArray: NSArray = ["15次", "30次", "45次", "60次", "90次"]
+    let titleArray: NSArray = ["15次", "30次", "60次", "90次"]
 
     
     init() {

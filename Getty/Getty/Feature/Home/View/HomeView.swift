@@ -46,6 +46,8 @@ class HomeView: UIView {
         return button
     }()
     
+    var lastOffsetY: CGFloat = 0
+    
     var delegate: HomeViewDelegate?
     
     override init(frame: CGRect) {
@@ -137,8 +139,12 @@ extension HomeView: UITableViewDataSource {
 }
 
 extension HomeView: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastOffsetY = scrollView.contentOffset.y
+    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if (velocity.y > 0) {
+        if (scrollView.contentOffset.y > lastOffsetY) {
             // 上滑取消加号按钮显示
             if (addButton.alpha != 0) {
                 let newFrame = CGRect (x: addButton.frame.minX,

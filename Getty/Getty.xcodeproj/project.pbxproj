@@ -29,6 +29,7 @@
 		68A4B42E1FE0F54B00E984D1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4291FE0F54B00E984D1 /* MainViewController.swift */; };
 		68A4B4321FE0F75100E984D1 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4311FE0F75100E984D1 /* InsertPlanViewController.swift */; };
 		68A4B4351FE0F81D00E984D1 /* InsertPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4341FE0F81D00E984D1 /* InsertPlanView.swift */; };
+		68E1F55D1FE67B34008CDF9B /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1F55C1FE67B34008CDF9B /* PlanDetailViewController.swift */; };
 		68FDE83B1FE26A4A00509CE3 /* InsertPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FDE83A1FE26A4A00509CE3 /* InsertPlanCell.swift */; };
 		6D320DF6603E676C7A46C924 /* Pods_Getty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819CCD7F46C5AFF151144E53 /* Pods_Getty.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		68A4B4291FE0F54B00E984D1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		68A4B4311FE0F75100E984D1 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
 		68A4B4341FE0F81D00E984D1 /* InsertPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanView.swift; sourceTree = "<group>"; };
+		68E1F55C1FE67B34008CDF9B /* PlanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 		68FDE83A1FE26A4A00509CE3 /* InsertPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanCell.swift; sourceTree = "<group>"; };
 		819CCD7F46C5AFF151144E53 /* Pods_Getty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Getty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		970A36EB926A31AC26746ABB /* Pods-Getty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Getty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Getty/Pods-Getty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			children = (
 				68A4B4311FE0F75100E984D1 /* InsertPlanViewController.swift */,
 				680E40571FE4DF57002A1109 /* ChooseNotificationTimeViewController.swift */,
+				68E1F55C1FE67B34008CDF9B /* PlanDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -515,10 +518,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Getty/Pods-Getty-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +561,7 @@
 				68FDE83B1FE26A4A00509CE3 /* InsertPlanCell.swift in Sources */,
 				680E40511FE3BC3D002A1109 /* SettingViewController.swift in Sources */,
 				68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */,
+				68E1F55D1FE67B34008CDF9B /* PlanDetailViewController.swift in Sources */,
 				68A4B42D1FE0F54B00E984D1 /* HomeViewController.swift in Sources */,
 				68A4B4351FE0F81D00E984D1 /* InsertPlanView.swift in Sources */,
 				680E40541FE3BE3E002A1109 /* DatePickerAlertView.swift in Sources */,

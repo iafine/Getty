@@ -27,6 +27,8 @@ class InsertPlanViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem (image: UIImage (named: "close"), style: .done, target: self, action: #selector(handleCloseButtonEvent))
         navigationItem.rightBarButtonItem = UIBarButtonItem (title: "完成", style: .done, target: self, action: #selector(handleFinishButtonEvent))
         
+        insertView.delegate = self
+        
         view.addSubview(insertView)
     }
     
@@ -36,5 +38,20 @@ class InsertPlanViewController: UIViewController {
     
     @objc func handleFinishButtonEvent() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension InsertPlanViewController: InsertPlanViewDelegate {
+    func handleSelectedRow(indexPath: IndexPath) {
+        if (indexPath.section == 1 || indexPath.section == 2) {
+            let datePicker = DatePickerAlertView ()
+            datePicker.show()
+        } else if (indexPath.section == 3) {
+            let listPicker = ListAlertView()
+            listPicker.show()
+        } else if (indexPath.section == 4) {
+            let chooseTimeVC = ChooseNotificationTimeViewController()
+            navigationController?.pushViewController(chooseTimeVC, animated: true)
+        }
     }
 }

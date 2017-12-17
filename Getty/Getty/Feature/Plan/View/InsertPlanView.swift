@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol InsertPlanViewDelegate: class {
+    
+    /// 选中cell事件
+    ///
+    /// - Parameter indexPath: indexPath
+    func handleSelectedRow(indexPath: IndexPath)
+}
+
 class InsertPlanView: UIView {
 
     let tableView: UITableView = {
@@ -15,16 +23,20 @@ class InsertPlanView: UIView {
         let tableView = UITableView (frame: CGRect.zero, style: .grouped)
         tableView.separatorColor = Constant.Color.kTableBackgroundColor
         tableView.backgroundColor = Constant.Color.kTableBackgroundColor
-        tableView.tableFooterView = UIView()
         
         return tableView
     }()
+    
+    var delegate: InsertPlanViewDelegate?
+    
+    let titleArray: NSArray = ["计划标题", "开始时间", "结束时间", "持续次数", "提醒选项(默认每天提醒，点击修改 )"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         
         addSubview(tableView)
         
@@ -55,28 +67,27 @@ extension InsertPlanView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+
         let headerView = UIView (frame: CGRect (x: 0, y: 0, width: Constant.Size.kScreenWidth, height: 44))
-        
+
         let headerLabel = UILabel (frame: CGRect (x: 20, y: 15, width: Constant.Size.kScreenWidth - 40, height: 20))
         headerLabel.textColor = Constant.Color.kDescColor
         headerLabel.font = Constant.Font.kFontTiny
-        headerLabel.text = "文字测试"
-        
+        headerLabel.text = titleArray.object(at: section) as? String
+
         headerView.addSubview(headerLabel)
-        
+
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if (indexPath.section != 0) {
-//            let datePicker = DatePickerAlertView ()
-//            datePicker.show()
-            let listPicker = ListAlertView ()
-            listPicker.show()
-        }
+        delegate?.handleSelectedRow(indexPath: indexPath)
     }
 }
 

@@ -21,11 +21,14 @@ class ListAlertView: UIView {
     
     let titleLabel: UILabel = {
         
-        let label = UILabel (frame: CGRect (x: 0, y: 0, width: Constant.Size.kScreenWidth, height: 35))
+        let label = UILabel (frame: CGRect (x: 0,
+                                            y: 0,
+                                            width: Constant.Size.kScreenWidth,
+                                            height: 35))
         label.textAlignment = .center
         label.font = Constant.Font.kFontSmall
         label.textColor = Constant.Color.kTitleColor
-        label.text = "请选择"
+        label.text = "请选择持续次数"
         
         return label
     }()
@@ -63,14 +66,20 @@ class ListAlertView: UIView {
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0.3)
-            self.tableView.frame = CGRect (x: 0, y: (Constant.Size.kScreenHeight - self.tableView.frame.height), width: Constant.Size.kScreenWidth, height: self.tableView.frame.height)
+            self.tableView.frame = CGRect (x: 0,
+                                           y: (Constant.Size.kScreenHeight - self.tableView.frame.height),
+                                           width: Constant.Size.kScreenWidth,
+                                           height: self.tableView.frame.height)
         }) { (finished) in
         }
     }
     
     func dismiss() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.tableView.frame = CGRect (x: 0, y: Constant.Size.kScreenHeight, width: Constant.Size.kScreenWidth, height: self.tableView.frame.height)
+            self.tableView.frame = CGRect (x: 0,
+                                           y: Constant.Size.kScreenHeight,
+                                           width: Constant.Size.kScreenWidth,
+                                           height: self.tableView.frame.height)
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0)
         }) { (finished) in
             self.removeFromSuperview()

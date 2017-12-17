@@ -15,7 +15,10 @@ class DatePickerAlertView: UIView {
     
     let contentView: UIView = {
         
-        let view = UIView (frame: CGRect (x: 0, y: (Constant.Size.kScreenHeight + kContentHeight), width: Constant.Size.kScreenWidth, height: kContentHeight))
+        let view = UIView (frame: CGRect (x: 0,
+                                          y: (Constant.Size.kScreenHeight + kContentHeight),
+                                          width: Constant.Size.kScreenWidth,
+                                          height: kContentHeight))
         view.backgroundColor = UIColor.white
         
         return view
@@ -23,7 +26,10 @@ class DatePickerAlertView: UIView {
     
     let pickerView: UIDatePicker = {
         
-        let pickerView = UIDatePicker (frame: CGRect (x: 0, y: 60, width: Constant.Size.kScreenWidth, height: (kContentHeight - 60)))
+        let pickerView = UIDatePicker (frame: CGRect (x: 0,
+                                                      y: 60,
+                                                      width: Constant.Size.kScreenWidth,
+                                                      height: (kContentHeight - 60)))
         pickerView.datePickerMode = .time
         pickerView.addTarget(self, action: #selector(pickerViewValueDidChanged), for: .valueChanged)
         
@@ -32,7 +38,10 @@ class DatePickerAlertView: UIView {
     
     let titleLabel: UILabel = {
         
-        let label = UILabel (frame: CGRect (x: 70, y: 5, width: Constant.Size.kScreenWidth - 140, height: 40))
+        let label = UILabel (frame: CGRect (x: 70,
+                                            y: 5,
+                                            width: Constant.Size.kScreenWidth - 140,
+                                            height: 40))
         label.textAlignment = .center
         label.textColor = Constant.Color.kTitleColor
         label.font = Constant.Font.kFontSmall
@@ -101,14 +110,20 @@ class DatePickerAlertView: UIView {
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0.3)
-            self.contentView.frame = CGRect (x: 0, y: (Constant.Size.kScreenHeight - DatePickerAlertView.kContentHeight), width: Constant.Size.kScreenWidth, height: DatePickerAlertView.kContentHeight)
+            self.contentView.frame = CGRect (x: 0,
+                                             y: (Constant.Size.kScreenHeight - DatePickerAlertView.kContentHeight),
+                                             width: Constant.Size.kScreenWidth,
+                                             height: DatePickerAlertView.kContentHeight)
         }) { (finished) in
         }
     }
     
     func dismiss() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.contentView.frame = CGRect (x: 0, y: (Constant.Size.kScreenHeight + DatePickerAlertView.kContentHeight), width: Constant.Size.kScreenWidth, height: DatePickerAlertView.kContentHeight)
+            self.contentView.frame = CGRect (x: 0,
+                                             y: (Constant.Size.kScreenHeight + DatePickerAlertView.kContentHeight),
+                                             width: Constant.Size.kScreenWidth,
+                                             height: DatePickerAlertView.kContentHeight)
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0)
         }) { (finished) in
             self.removeFromSuperview()

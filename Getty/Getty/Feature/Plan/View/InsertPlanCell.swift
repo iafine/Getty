@@ -33,7 +33,7 @@ class InsertPlanCell: UITableViewCell {
         let label = UILabel()
         label.font = Constant.Font.kFontSmall
         label.textColor = Constant.Color.kTitleColor
-        label.text = "请选择时间"
+        label.text = "请选择"
         
         return label
     }()

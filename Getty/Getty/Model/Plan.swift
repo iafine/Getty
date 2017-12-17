@@ -10,4 +10,15 @@ import UIKit
 
 class Plan: NSObject {
 
+    var planID: NSInteger?
+    
+    var planName: String?
+    
+    var startDate: String?
+    
+    var endDate: String?
+    
+    var durationTimes: NSInteger?
+    
+    var notificationWeeks: String?
 }

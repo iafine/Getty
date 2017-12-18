@@ -1,5 +1,5 @@
 //
-//  InsertPlanViewController.swift
+//  PlanInsertViewController.swift
 //  Getty
 //
 //  Created by Hyyy on 2017/12/13.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class InsertPlanViewController: UIViewController {
+class PlanInsertViewController: UIViewController {
 
-    let insertView: InsertPlanView = {
+    let insertView: PlanInsertView = {
         
-        let view = InsertPlanView (frame: CGRect (x: 0,
+        let view = PlanInsertView (frame: CGRect (x: 0,
                                                   y: 64,
                                                   width: Constant.Size.kScreenWidth,
                                                   height: Constant.Size.kScreenHeight - 64))
@@ -41,7 +41,7 @@ class InsertPlanViewController: UIViewController {
     }
 }
 
-extension InsertPlanViewController: InsertPlanViewDelegate {
+extension PlanInsertViewController: InsertPlanViewDelegate {
     func handleSelectedRow(indexPath: IndexPath) {
         if (indexPath.section == 1 || indexPath.section == 2) {
             let datePicker = DatePickerAlertView ()
@@ -50,7 +50,7 @@ extension InsertPlanViewController: InsertPlanViewDelegate {
             let listPicker = ListAlertView()
             listPicker.show()
         } else if (indexPath.section == 4) {
-            let chooseTimeVC = ChooseNotificationTimeViewController()
+            let chooseTimeVC = PlanChooseWeeksViewController()
             navigationController?.pushViewController(chooseTimeVC, animated: true)
         }
     }

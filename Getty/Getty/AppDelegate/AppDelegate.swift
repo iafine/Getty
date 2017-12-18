@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow (frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        window?.rootViewController = MainViewController ()
+        
+        let navVC = UINavigationController (rootViewController: PlanDetailViewController())
+        window?.rootViewController = navVC
+//        window?.rootViewController = MainViewController ()
         window?.makeKeyAndVisible()
     
         themeAppearance()

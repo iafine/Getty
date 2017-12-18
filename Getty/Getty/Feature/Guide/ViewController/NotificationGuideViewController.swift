@@ -60,10 +60,10 @@ class NotificationGuideViewController: UIViewController {
         view.addSubview(descLabel)
         view.addSubview(notificationButton)
         
-        subViewLayout()
+        subViewsLayout()
     }
 
-    func subViewLayout() {
+    func subViewsLayout() {
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(view.snp.top).offset(80)
             make.left.equalTo(view.snp.left).offset(30)

@@ -16,7 +16,7 @@ protocol InsertPlanViewDelegate: class {
     func handleSelectedRow(indexPath: IndexPath)
 }
 
-class InsertPlanView: UIView {
+class PlanInsertView: UIView {
 
     let tableView: UITableView = {
         
@@ -57,7 +57,7 @@ class InsertPlanView: UIView {
     }
 }
 
-extension InsertPlanView: UITableViewDelegate {
+extension PlanInsertView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
@@ -91,7 +91,7 @@ extension InsertPlanView: UITableViewDelegate {
     }
 }
 
-extension InsertPlanView: UITableViewDataSource {
+extension PlanInsertView: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
@@ -101,13 +101,13 @@ extension InsertPlanView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return InsertPlanCell.cellHeight()
+        return PlanInsertCell.cellHeight()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellStyle: InsertPlanCellStyle = indexPath.section == 0 ? .edit : .label
-        let cell = InsertPlanCell.cellWithTableView(tableView: tableView, style: cellStyle)
+        let cell = PlanInsertCell.cellWithTableView(tableView: tableView, style: cellStyle)
         return cell
     }
 }

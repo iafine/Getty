@@ -13,7 +13,7 @@ enum InsertPlanCellStyle: Int {
     case edit
 }
 
-class InsertPlanCell: UITableViewCell {
+class PlanInsertCell: UITableViewCell {
     
     let textField: UITextField = {
         
@@ -58,11 +58,11 @@ class InsertPlanCell: UITableViewCell {
     ///
     /// - Parameter tableView: tableView
     /// - Returns: cell
-    class func cellWithTableView(tableView: UITableView, style: InsertPlanCellStyle) -> InsertPlanCell {
+    class func cellWithTableView(tableView: UITableView, style: InsertPlanCellStyle) -> PlanInsertCell {
         
-        var cell: InsertPlanCell? = tableView.dequeueReusableCell(withIdentifier: InsertPlanCell.cellID()) as? InsertPlanCell
+        var cell: PlanInsertCell? = tableView.dequeueReusableCell(withIdentifier: PlanInsertCell.cellID()) as? PlanInsertCell
         if (cell == nil) {
-            cell = InsertPlanCell()
+            cell = PlanInsertCell()
             
             cell?.cellStyle = style
             cell?.initCellUI()

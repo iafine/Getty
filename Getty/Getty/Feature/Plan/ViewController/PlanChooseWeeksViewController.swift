@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseNotificationTimeViewController: UIViewController {
+class PlanChooseWeeksViewController: UIViewController {
 
     let tableView: UITableView = {
         
@@ -42,7 +42,7 @@ class ChooseNotificationTimeViewController: UIViewController {
     }
 }
 
-extension ChooseNotificationTimeViewController: UITableViewDelegate {
+extension PlanChooseWeeksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
@@ -74,7 +74,7 @@ extension ChooseNotificationTimeViewController: UITableViewDelegate {
     }
 }
 
-extension ChooseNotificationTimeViewController: UITableViewDataSource {
+extension PlanChooseWeeksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -10,7 +10,7 @@
 		680E40511FE3BC3D002A1109 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40501FE3BC3D002A1109 /* SettingViewController.swift */; };
 		680E40541FE3BE3E002A1109 /* DatePickerAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40531FE3BE3E002A1109 /* DatePickerAlertView.swift */; };
 		680E40561FE3CDC4002A1109 /* ListAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40551FE3CDC4002A1109 /* ListAlertView.swift */; };
-		680E40581FE4DF57002A1109 /* ChooseNotificationTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40571FE4DF57002A1109 /* ChooseNotificationTimeViewController.swift */; };
+		680E40581FE4DF57002A1109 /* PlanChooseWeeksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40571FE4DF57002A1109 /* PlanChooseWeeksViewController.swift */; };
 		68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B3C61FDF6C5B00E984D1 /* AppDelegate.swift */; };
 		68A4B3CC1FDF6C5B00E984D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68A4B3CA1FDF6C5B00E984D1 /* Main.storyboard */; };
 		68A4B3CE1FDF6C5B00E984D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A4B3CD1FDF6C5B00E984D1 /* Assets.xcassets */; };
@@ -20,17 +20,17 @@
 		68A4B4001FDF700C00E984D1 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B3FF1FDF700C00E984D1 /* Plan.swift */; };
 		68A4B4041FDF706E00E984D1 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4031FDF706E00E984D1 /* DatabaseManager.swift */; };
 		68A4B4071FDF709300E984D1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4061FDF709300E984D1 /* Constant.swift */; };
-		68A4B4081FDF831500E984D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68A4B4091FDF831500E984D1 /* SnapKit.framework */; };
 		68A4B4171FDFBC5C00E984D1 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4161FDFBC5C00E984D1 /* NotificationManager.swift */; };
 		68A4B42A1FE0F54B00E984D1 /* NotificationGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4201FE0F54B00E984D1 /* NotificationGuideViewController.swift */; };
 		68A4B42B1FE0F54B00E984D1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4231FE0F54B00E984D1 /* HomeView.swift */; };
 		68A4B42C1FE0F54B00E984D1 /* HomePlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4241FE0F54B00E984D1 /* HomePlanCell.swift */; };
 		68A4B42D1FE0F54B00E984D1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4261FE0F54B00E984D1 /* HomeViewController.swift */; };
 		68A4B42E1FE0F54B00E984D1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4291FE0F54B00E984D1 /* MainViewController.swift */; };
-		68A4B4321FE0F75100E984D1 /* InsertPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4311FE0F75100E984D1 /* InsertPlanViewController.swift */; };
-		68A4B4351FE0F81D00E984D1 /* InsertPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4341FE0F81D00E984D1 /* InsertPlanView.swift */; };
+		68A4B4321FE0F75100E984D1 /* PlanInsertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4311FE0F75100E984D1 /* PlanInsertViewController.swift */; };
+		68A4B4351FE0F81D00E984D1 /* PlanInsertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B4341FE0F81D00E984D1 /* PlanInsertView.swift */; };
+		68DC745E1FE7942100C2B611 /* PlanCalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC745D1FE7942100C2B611 /* PlanCalendarItemCell.swift */; };
 		68E1F55D1FE67B34008CDF9B /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E1F55C1FE67B34008CDF9B /* PlanDetailViewController.swift */; };
-		68FDE83B1FE26A4A00509CE3 /* InsertPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FDE83A1FE26A4A00509CE3 /* InsertPlanCell.swift */; };
+		68FDE83B1FE26A4A00509CE3 /* PlanInsertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FDE83A1FE26A4A00509CE3 /* PlanInsertCell.swift */; };
 		6D320DF6603E676C7A46C924 /* Pods_Getty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819CCD7F46C5AFF151144E53 /* Pods_Getty.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +56,7 @@
 		680E40501FE3BC3D002A1109 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		680E40531FE3BE3E002A1109 /* DatePickerAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerAlertView.swift; sourceTree = "<group>"; };
 		680E40551FE3CDC4002A1109 /* ListAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlertView.swift; sourceTree = "<group>"; };
-		680E40571FE4DF57002A1109 /* ChooseNotificationTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNotificationTimeViewController.swift; sourceTree = "<group>"; };
+		680E40571FE4DF57002A1109 /* PlanChooseWeeksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanChooseWeeksViewController.swift; sourceTree = "<group>"; };
 		68A4B3C31FDF6C5B00E984D1 /* Getty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Getty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A4B3C61FDF6C5B00E984D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68A4B3CB1FDF6C5B00E984D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,10 +80,11 @@
 		68A4B4241FE0F54B00E984D1 /* HomePlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePlanCell.swift; sourceTree = "<group>"; };
 		68A4B4261FE0F54B00E984D1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		68A4B4291FE0F54B00E984D1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		68A4B4311FE0F75100E984D1 /* InsertPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanViewController.swift; sourceTree = "<group>"; };
-		68A4B4341FE0F81D00E984D1 /* InsertPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanView.swift; sourceTree = "<group>"; };
+		68A4B4311FE0F75100E984D1 /* PlanInsertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanInsertViewController.swift; sourceTree = "<group>"; };
+		68A4B4341FE0F81D00E984D1 /* PlanInsertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanInsertView.swift; sourceTree = "<group>"; };
+		68DC745D1FE7942100C2B611 /* PlanCalendarItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCalendarItemCell.swift; sourceTree = "<group>"; };
 		68E1F55C1FE67B34008CDF9B /* PlanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
-		68FDE83A1FE26A4A00509CE3 /* InsertPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertPlanCell.swift; sourceTree = "<group>"; };
+		68FDE83A1FE26A4A00509CE3 /* PlanInsertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanInsertCell.swift; sourceTree = "<group>"; };
 		819CCD7F46C5AFF151144E53 /* Pods_Getty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Getty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		970A36EB926A31AC26746ABB /* Pods-Getty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Getty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Getty/Pods-Getty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68A4B4081FDF831500E984D1 /* SnapKit.framework in Frameworks */,
 				6D320DF6603E676C7A46C924 /* Pods_Getty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,8 +321,8 @@
 		68A4B4301FE0F72200E984D1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				68A4B4311FE0F75100E984D1 /* InsertPlanViewController.swift */,
-				680E40571FE4DF57002A1109 /* ChooseNotificationTimeViewController.swift */,
+				68A4B4311FE0F75100E984D1 /* PlanInsertViewController.swift */,
+				680E40571FE4DF57002A1109 /* PlanChooseWeeksViewController.swift */,
 				68E1F55C1FE67B34008CDF9B /* PlanDetailViewController.swift */,
 			);
 			path = ViewController;
@@ -331,8 +331,9 @@
 		68A4B4331FE0F7BA00E984D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				68A4B4341FE0F81D00E984D1 /* InsertPlanView.swift */,
-				68FDE83A1FE26A4A00509CE3 /* InsertPlanCell.swift */,
+				68A4B4341FE0F81D00E984D1 /* PlanInsertView.swift */,
+				68FDE83A1FE26A4A00509CE3 /* PlanInsertCell.swift */,
+				68DC745D1FE7942100C2B611 /* PlanCalendarItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -553,20 +554,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				680E40581FE4DF57002A1109 /* ChooseNotificationTimeViewController.swift in Sources */,
+				680E40581FE4DF57002A1109 /* PlanChooseWeeksViewController.swift in Sources */,
 				68A4B4001FDF700C00E984D1 /* Plan.swift in Sources */,
 				68A4B42C1FE0F54B00E984D1 /* HomePlanCell.swift in Sources */,
+				68DC745E1FE7942100C2B611 /* PlanCalendarItemCell.swift in Sources */,
 				68A4B42B1FE0F54B00E984D1 /* HomeView.swift in Sources */,
 				68A4B4041FDF706E00E984D1 /* DatabaseManager.swift in Sources */,
-				68FDE83B1FE26A4A00509CE3 /* InsertPlanCell.swift in Sources */,
+				68FDE83B1FE26A4A00509CE3 /* PlanInsertCell.swift in Sources */,
 				680E40511FE3BC3D002A1109 /* SettingViewController.swift in Sources */,
 				68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */,
 				68E1F55D1FE67B34008CDF9B /* PlanDetailViewController.swift in Sources */,
 				68A4B42D1FE0F54B00E984D1 /* HomeViewController.swift in Sources */,
-				68A4B4351FE0F81D00E984D1 /* InsertPlanView.swift in Sources */,
+				68A4B4351FE0F81D00E984D1 /* PlanInsertView.swift in Sources */,
 				680E40541FE3BE3E002A1109 /* DatePickerAlertView.swift in Sources */,
 				68A4B4171FDFBC5C00E984D1 /* NotificationManager.swift in Sources */,
-				68A4B4321FE0F75100E984D1 /* InsertPlanViewController.swift in Sources */,
+				68A4B4321FE0F75100E984D1 /* PlanInsertViewController.swift in Sources */,
 				68A4B42A1FE0F54B00E984D1 /* NotificationGuideViewController.swift in Sources */,
 				680E40561FE3CDC4002A1109 /* ListAlertView.swift in Sources */,
 				68A4B4071FDF709300E984D1 /* Constant.swift in Sources */,
@@ -741,6 +743,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2DXV7QR3FC;
 				INFOPLIST_FILE = Getty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.getty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -761,6 +764,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2DXV7QR3FC;
 				INFOPLIST_FILE = Getty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyyy.getty;
 				PRODUCT_NAME = "$(TARGET_NAME)";

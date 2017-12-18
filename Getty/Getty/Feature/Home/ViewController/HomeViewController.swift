@@ -36,9 +36,14 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewDelegate {
-    func addButtonHasClicked() {
-        let insertVC = InsertPlanViewController()
+    func handleAddButtonClickedEvent() {
+        let insertVC = PlanInsertViewController()
         let insertNav = UINavigationController (rootViewController: insertVC)
         present(insertNav, animated: true, completion: nil)
+    }
+    
+    func handleItemClickedEvent() {
+        let detailVC = PlanDetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

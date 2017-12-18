@@ -10,9 +10,11 @@ import UIKit
 
 protocol HomeViewDelegate: class {
     
-    
     /// 加号点击事件
-    func addButtonHasClicked()
+    func handleAddButtonClickedEvent()
+    
+    /// cell点击事件
+    func handleItemClickedEvent()
 }
 
 class HomeView: UIView {
@@ -92,7 +94,7 @@ class HomeView: UIView {
             self.addButton.transform = CGAffineTransform.identity
         }) { (finished) in
             // 传递点击新增按钮事件
-            self.delegate?.addButtonHasClicked()
+            self.delegate?.handleAddButtonClickedEvent()
         }
     }
 }
@@ -112,6 +114,8 @@ extension HomeView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // 传递点击事件给外部调用
+        delegate?.handleItemClickedEvent()
     }
 }
 

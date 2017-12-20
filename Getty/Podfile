@@ -5,4 +5,5 @@ use_frameworks!
 target 'Getty' do
     pod 'SnapKit'
     pod 'JTAppleCalendar'
+    pod 'RealmSwift'
 end

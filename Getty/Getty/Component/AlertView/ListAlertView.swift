@@ -35,7 +35,6 @@ class ListAlertView: UIView {
     
     let titleArray: NSArray = ["15次", "30次", "60次", "90次"]
 
-    
     init() {
         super.init(frame: Constant.Size.kScreenBounds)
         

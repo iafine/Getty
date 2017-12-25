@@ -114,7 +114,7 @@ class DatePickerAlertView: UIView {
                                              y: (Constant.Size.kScreenHeight - DatePickerAlertView.kContentHeight),
                                              width: Constant.Size.kScreenWidth,
                                              height: DatePickerAlertView.kContentHeight)
-        }) { (finished) in
+        }) { (_) in
         }
     }
     
@@ -125,7 +125,7 @@ class DatePickerAlertView: UIView {
                                              width: Constant.Size.kScreenWidth,
                                              height: DatePickerAlertView.kContentHeight)
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0)
-        }) { (finished) in
+        }) { (_) in
             self.removeFromSuperview()
         }
     }

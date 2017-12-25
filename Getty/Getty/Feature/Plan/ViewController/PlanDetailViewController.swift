@@ -20,8 +20,11 @@ class PlanDetailViewController: UIViewController {
         calendarView.isPagingEnabled = true
         calendarView.backgroundColor = UIColor.white
         
-        calendarView.register(PlanCalendarItemCell.self, forCellWithReuseIdentifier: NSStringFromClass(PlanCalendarItemCell.self))
-        calendarView.register(JTAppleCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: NSStringFromClass(JTAppleCollectionReusableView.self))
+        calendarView.register(PlanCalendarItemCell.self,
+                              forCellWithReuseIdentifier: NSStringFromClass(PlanCalendarItemCell.self))
+        calendarView.register(JTAppleCollectionReusableView.self,
+                              forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                              withReuseIdentifier: NSStringFromClass(JTAppleCollectionReusableView.self))
         
         return calendarView
     }()
@@ -81,9 +84,10 @@ extension PlanDetailViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        let cell: PlanCalendarItemCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: NSStringFromClass(PlanCalendarItemCell.self), for: indexPath) as! PlanCalendarItemCell
+        guard let cell: PlanCalendarItemCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: NSStringFromClass(PlanCalendarItemCell.self), for: indexPath) as? PlanCalendarItemCell else {
+            return PlanCalendarItemCell()
+        }
         cell.titleLabel.text = cellState.text
-        
         return cell
     }
 }

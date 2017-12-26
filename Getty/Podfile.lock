@@ -1,5 +1,9 @@
 PODS:
   - JTAppleCalendar (7.1.4)
+  - MarqueeLabel/Swift (3.1.4)
+  - NotificationBannerSwift (1.5.3):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 4.0)
   - Realm (3.0.2):
     - Realm/Headers (= 3.0.2)
   - Realm/Headers (3.0.2)
@@ -10,17 +14,20 @@ PODS:
 
 DEPENDENCIES:
   - JTAppleCalendar
+  - NotificationBannerSwift
   - RealmSwift
   - SnapKit
   - SwiftLint
 
 SPEC CHECKSUMS:
   JTAppleCalendar: aaeee95e939e0b0a381fb51eb77738bd26bb10f6
+  MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
+  NotificationBannerSwift: 0a6f482ddbafb9555668e592245af0da7871178e
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
 
-PODFILE CHECKSUM: 98ffe99e1fcaee36a38d0dfba78673cbf3309c4a
+PODFILE CHECKSUM: e650806f86a86330d818dbcd994dc97e97bc075f
 
 COCOAPODS: 1.3.1

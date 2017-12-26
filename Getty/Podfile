@@ -7,4 +7,5 @@ target 'Getty' do
     pod 'JTAppleCalendar'
     pod 'RealmSwift'
     pod 'SwiftLint'
+    pod 'NotificationBannerSwift'
 end

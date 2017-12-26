@@ -27,9 +27,11 @@ class PlanInsertView: UIView {
         return tableView
     }()
     
-    var delegate: InsertPlanViewDelegate?
+    weak var delegate: InsertPlanViewDelegate?
     
     let titleArray: NSArray = ["计划标题", "开始时间", "结束时间", "持续次数", "提醒选项(默认每天提醒，点击修改 )"]
+    
+    var insertPlan: Plan = Plan()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,6 +56,11 @@ class PlanInsertView: UIView {
             make.right.equalTo(self.snp.right)
             make.bottom.equalTo(self.snp.bottom)
         }
+    }
+    
+    func reloadData(plan: Plan) {
+        insertPlan = plan
+        tableView.reloadData()
     }
 }
 

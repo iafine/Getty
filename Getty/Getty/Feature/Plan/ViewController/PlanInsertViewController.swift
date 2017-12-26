@@ -20,12 +20,20 @@ class PlanInsertViewController: UIViewController {
         return view
     }()
     
+    let plan: Plan = Plan()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "添加"
-        navigationItem.leftBarButtonItem = UIBarButtonItem (image: UIImage (named: "close"), style: .done, target: self, action: #selector(handleCloseButtonEvent))
-        navigationItem.rightBarButtonItem = UIBarButtonItem (title: "完成", style: .done, target: self, action: #selector(handleFinishButtonEvent))
+        navigationItem.leftBarButtonItem = UIBarButtonItem (image: UIImage (named: "close"),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(handleCloseButtonEvent))
+        navigationItem.rightBarButtonItem = UIBarButtonItem (title: "完成",
+                                                             style: .done,
+                                                             target: self,
+                                                             action: #selector(handleFinishButtonEvent))
         
         insertView.delegate = self
         

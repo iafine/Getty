@@ -1,4 +1,5 @@
 PODS:
+  - IQKeyboardManagerSwift (5.0.7)
   - JTAppleCalendar (7.1.4)
   - MarqueeLabel/Swift (3.1.4)
   - NotificationBannerSwift (1.5.3):
@@ -13,6 +14,7 @@ PODS:
   - SwiftLint (0.24.0)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
   - JTAppleCalendar
   - NotificationBannerSwift
   - RealmSwift
@@ -20,6 +22,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
   JTAppleCalendar: aaeee95e939e0b0a381fb51eb77738bd26bb10f6
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
   NotificationBannerSwift: 0a6f482ddbafb9555668e592245af0da7871178e
@@ -28,6 +31,6 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
 
-PODFILE CHECKSUM: e650806f86a86330d818dbcd994dc97e97bc075f
+PODFILE CHECKSUM: e5b749b61606d67a2c160a4990a7578ce799cc66
 
 COCOAPODS: 1.3.1

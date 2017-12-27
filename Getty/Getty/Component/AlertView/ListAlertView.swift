@@ -63,7 +63,7 @@ class ListAlertView: UIView {
     func show() {
         UIApplication.shared.keyWindow?.addSubview(self)
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0.3)
             self.tableView.frame = CGRect (x: 0,
                                            y: (Constant.Size.kScreenHeight - self.tableView.frame.height),
@@ -74,7 +74,7 @@ class ListAlertView: UIView {
     }
     
     func dismiss() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.tableView.frame = CGRect (x: 0,
                                            y: Constant.Size.kScreenHeight,
                                            width: Constant.Size.kScreenWidth,

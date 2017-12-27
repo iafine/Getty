@@ -115,6 +115,34 @@ extension PlanInsertView: UITableViewDataSource {
         
         let cellStyle: InsertPlanCellStyle = indexPath.section == 0 ? .edit : .label
         let cell = PlanInsertCell.cellWithTableView(tableView: tableView, style: cellStyle)
+        
+        switch indexPath.section {
+        case 0:
+            if self.insertPlan.planName.count == 0 {
+                cell.textField.text = ""
+                cell.textField.isUserInteractionEnabled = true
+            } else {
+                cell.textField.text = self.insertPlan.planName
+                cell.textField.isUserInteractionEnabled = false
+            }
+    
+        case 1:
+            cell.titleLabel.text = self.insertPlan.startDate == nil ? "请选择" : Date.string(from: self.insertPlan.startDate, format: "HH:mm")
+            
+        case 2:
+            cell.titleLabel.text = self.insertPlan.endDate == nil ? "请选择" : Date.string(from: self.insertPlan.endDate, format: "HH:mm")
+            
+        case 3:
+            cell.titleLabel.text = self.insertPlan.durationTimes == 0 ? "请选择" :  String(describing: self.insertPlan.durationTimes)
+            
+        case 4:
+            cell.titleLabel.text = self.insertPlan.notificationWeeks.count == 0 ? "请选择" : self.insertPlan.notificationWeeks
+            
+        default:
+            cell.titleLabel.text = ""
+        }
+        
         return cell
     }
 }
+

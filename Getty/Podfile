@@ -8,4 +8,5 @@ target 'Getty' do
     pod 'RealmSwift'
     pod 'SwiftLint'
     pod 'NotificationBannerSwift'
+    pod 'IQKeyboardManagerSwift'
 end

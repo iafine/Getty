@@ -7,24 +7,22 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow (frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
-        
-        let navVC = UINavigationController (rootViewController: PlanDetailViewController())
-        window?.rootViewController = navVC
-//        window?.rootViewController = MainViewController ()
+        window?.rootViewController = MainViewController ()
         window?.makeKeyAndVisible()
     
         themeAppearance()
+        keyboardManager()
         
         return true
     }
@@ -75,6 +73,11 @@ extension AppDelegate {
         
         // UITextField
         UITextField.appearance().tintColor = Constant.Color.kMainColor
+    }
+    
+    func keyboardManager() {
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
     }
 }
 

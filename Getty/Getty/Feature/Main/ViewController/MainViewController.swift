@@ -28,10 +28,10 @@ class MainViewController: UIViewController {
         view.addSubview(homeNavVC.view)
         
         let hasRegisterdNotification = UserDefaults.standard.bool(forKey: Constant.Cache.kHasRegisterdNotificationKey)
-        if (hasRegisterdNotification) {
+        if hasRegisterdNotification {
             // 如果还没有同意通知权限，那么显示通知开启引导页面
             NotificationManager.manager.registerLocalNotificationCompleteHandler(completeHandler: { (granted, error) in
-                if (!granted) {
+                if !granted {
                     self.addNotAllowNotificationPage()
                 }
             })

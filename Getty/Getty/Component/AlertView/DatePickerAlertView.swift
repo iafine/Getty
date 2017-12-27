@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol DatePickerAlertViewDelegate: class {
+    
+    /// 选中日期事件
+    func datePickerDidSelected(pickerView: DatePickerAlertView, date: Date)
+}
+
 class DatePickerAlertView: UIView {
     
     /// 弹框尺寸定义
     static let kContentHeight: CGFloat = 260
+    
+    weak var delegate: DatePickerAlertViewDelegate?
     
     let contentView: UIView = {
         
@@ -74,7 +82,7 @@ class DatePickerAlertView: UIView {
     }()
     
     @objc func pickerViewValueDidChanged() {
-        
+        titleLabel.text = Date.string(from: pickerView.date, format: "HH:mm")
     }
     
     @objc func handleCancelButtonEvent() {
@@ -82,6 +90,7 @@ class DatePickerAlertView: UIView {
     }
     
     @objc func handleFinishButtonEvent() {
+        delegate?.datePickerDidSelected(pickerView: self, date: pickerView.date)
         dismiss()
     }
     
@@ -108,7 +117,7 @@ class DatePickerAlertView: UIView {
     func show() {
         UIApplication.shared.keyWindow?.addSubview(self)
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.backgroundColor = UIColor (red: 0, green: 0, blue: 0, alpha: 0.3)
             self.contentView.frame = CGRect (x: 0,
                                              y: (Constant.Size.kScreenHeight - DatePickerAlertView.kContentHeight),
@@ -119,7 +128,7 @@ class DatePickerAlertView: UIView {
     }
     
     func dismiss() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
             self.contentView.frame = CGRect (x: 0,
                                              y: (Constant.Size.kScreenHeight + DatePickerAlertView.kContentHeight),
                                              width: Constant.Size.kScreenWidth,

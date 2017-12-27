@@ -51,15 +51,36 @@ class PlanInsertViewController: UIViewController {
 
 extension PlanInsertViewController: InsertPlanViewDelegate {
     func handleSelectedRow(indexPath: IndexPath) {
-        if (indexPath.section == 1 || indexPath.section == 2) {
+        if indexPath.section == 1 {
             let datePicker = DatePickerAlertView ()
+            datePicker.tag = 1001
+            datePicker.delegate = self
             datePicker.show()
-        } else if (indexPath.section == 3) {
+        } else if indexPath.section == 2 {
+            let datePicker = DatePickerAlertView ()
+            datePicker.tag = 1002
+            datePicker.delegate = self
+            datePicker.show()
+        } else if indexPath.section == 3 {
             let listPicker = ListAlertView()
             listPicker.show()
-        } else if (indexPath.section == 4) {
+        } else if indexPath.section == 4 {
             let chooseTimeVC = PlanChooseWeeksViewController()
             navigationController?.pushViewController(chooseTimeVC, animated: true)
         }
+    }
+}
+
+extension PlanInsertViewController: DatePickerAlertViewDelegate {
+    func datePickerDidSelected(pickerView: DatePickerAlertView, date: Date) {
+        if pickerView.tag == 1001 {
+            // 开始时间
+            plan.startDate = date;
+        } else {
+            // 结束时间
+            plan.endDate = date;
+        }
+        
+        insertView.reloadData(plan: plan)
     }
 }

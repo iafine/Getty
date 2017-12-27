@@ -10,15 +10,15 @@ import UIKit
 
 class Plan: NSObject {
 
-    var planID: NSInteger?
+    var planID: Int = 0
     
-    var planName: String?
+    var planName: String = ""
     
-    var startDate: String?
+    var startDate: Date? = nil
     
-    var endDate: String?
+    var endDate: Date? = nil
     
-    var durationTimes: NSInteger?
+    var durationTimes: Int = 0
     
-    var notificationWeeks: String?
+    var notificationWeeks: String = ""
 }

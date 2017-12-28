@@ -12,6 +12,7 @@
 		680E40561FE3CDC4002A1109 /* ListAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40551FE3CDC4002A1109 /* ListAlertView.swift */; };
 		680E40581FE4DF57002A1109 /* PlanChooseWeeksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E40571FE4DF57002A1109 /* PlanChooseWeeksViewController.swift */; };
 		68A1CF1D1FF32AC1001E6F2B /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A1CF1C1FF32AC1001E6F2B /* DateUtil.swift */; };
+		68A1CF671FF4ED3C001E6F2B /* TipUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A1CF661FF4ED3C001E6F2B /* TipUtil.swift */; };
 		68A4B3C71FDF6C5B00E984D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4B3C61FDF6C5B00E984D1 /* AppDelegate.swift */; };
 		68A4B3CC1FDF6C5B00E984D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68A4B3CA1FDF6C5B00E984D1 /* Main.storyboard */; };
 		68A4B3CE1FDF6C5B00E984D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A4B3CD1FDF6C5B00E984D1 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		680E40551FE3CDC4002A1109 /* ListAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlertView.swift; sourceTree = "<group>"; };
 		680E40571FE4DF57002A1109 /* PlanChooseWeeksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanChooseWeeksViewController.swift; sourceTree = "<group>"; };
 		68A1CF1C1FF32AC1001E6F2B /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		68A1CF661FF4ED3C001E6F2B /* TipUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipUtil.swift; sourceTree = "<group>"; };
 		68A4B3C31FDF6C5B00E984D1 /* Getty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Getty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68A4B3C61FDF6C5B00E984D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68A4B3CB1FDF6C5B00E984D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				68A1CF1C1FF32AC1001E6F2B /* DateUtil.swift */,
+				68A1CF661FF4ED3C001E6F2B /* TipUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				68A4B42C1FE0F54B00E984D1 /* HomePlanCell.swift in Sources */,
 				68DC745E1FE7942100C2B611 /* PlanCalendarItemCell.swift in Sources */,
 				68A4B42B1FE0F54B00E984D1 /* HomeView.swift in Sources */,
+				68A1CF671FF4ED3C001E6F2B /* TipUtil.swift in Sources */,
 				68A4B4041FDF706E00E984D1 /* DatabaseManager.swift in Sources */,
 				68FDE83B1FE26A4A00509CE3 /* PlanInsertCell.swift in Sources */,
 				680E40511FE3BC3D002A1109 /* SettingViewController.swift in Sources */,

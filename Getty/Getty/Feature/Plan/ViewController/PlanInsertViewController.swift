@@ -55,11 +55,18 @@ extension PlanInsertViewController: InsertPlanViewDelegate {
             let datePicker = DatePickerAlertView ()
             datePicker.tag = 1001
             datePicker.delegate = self
+            
             datePicker.show()
         } else if indexPath.section == 2 {
+            // 如果开始时间未选择，直接return
+            if plan.startDate == nil {
+                TipUtil.showDangerTip(title: "开始时间不能为空")
+                return
+            }
             let datePicker = DatePickerAlertView ()
             datePicker.tag = 1002
             datePicker.delegate = self
+            
             datePicker.show()
         } else if indexPath.section == 3 {
             let listPicker = ListAlertView()

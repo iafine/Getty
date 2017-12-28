@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol ListAlertViewDelegate: class {
+    
+    /// 列表选中事件
+    func listViewDidSelected(title: String, value: Int)
+    
+}
+
 class ListAlertView: UIView {
 
     let tableView: UITableView = {
@@ -35,6 +42,10 @@ class ListAlertView: UIView {
     
     let titleArray: NSArray = ["15次", "30次", "60次", "90次"]
 
+    let valueArray: NSArray = [15, 30, 60, 90]
+    
+    weak var delegate: ListAlertViewDelegate?
+    
     init() {
         super.init(frame: Constant.Size.kScreenBounds)
         
@@ -102,6 +113,14 @@ extension ListAlertView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        guard let title = titleArray.object(at: indexPath.row) as? String else {
+            return
+        }
+        guard let value = valueArray.object(at: indexPath.row) as? Int else {
+            return
+        }
+        
+        delegate?.listViewDidSelected(title: title, value: value)
         dismiss()
     }
 }

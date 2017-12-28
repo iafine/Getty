@@ -23,7 +23,7 @@ class PlanChooseWeeksViewController: UIViewController {
         return tableView
     }()
     
-    let titleArray: NSArray = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"]
+    let titleArray: NSArray = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
     
     let selectedArray: NSMutableArray = [1, 0, 1, 0, 1, 0, 1]
     

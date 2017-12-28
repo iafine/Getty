@@ -22,8 +22,8 @@ class PlanInsertCell: UITableViewCell {
         textField.textAlignment = .left
         textField.font = Constant.Font.kFontSmall
         textField.textColor = Constant.Color.kTitleColor
-        textField.addTarget(self, action: #selector(textFieldDidChanged), for: .valueChanged)
         textField.placeholder = "请输入标题"
+        textField.returnKeyType = .done
         
         return textField
     }()
@@ -72,7 +72,7 @@ class PlanInsertCell: UITableViewCell {
     }
     
     func initCellUI() {
-        if (cellStyle == .edit) {
+        if cellStyle == .edit {
             contentView.addSubview(textField)
         } else {
             contentView.addSubview(titleLabel)
@@ -80,7 +80,7 @@ class PlanInsertCell: UITableViewCell {
     }
     
     func initCellLayout() {
-        if (cellStyle == .edit) {
+        if cellStyle == .edit {
             textField.snp.makeConstraints({ (make) in
                 make.top.equalTo(contentView.snp.top)
                 make.left.equalTo(contentView.snp.left).offset(20)
@@ -95,8 +95,5 @@ class PlanInsertCell: UITableViewCell {
                 make.bottom.equalTo(contentView.snp.bottom)
             })
         }
-    }
-    
-    @objc func textFieldDidChanged() {
     }
 }

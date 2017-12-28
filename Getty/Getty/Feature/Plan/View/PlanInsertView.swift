@@ -11,9 +11,11 @@ import UIKit
 protocol InsertPlanViewDelegate: class {
     
     /// 选中cell事件
-    ///
-    /// - Parameter indexPath: indexPath
     func handleSelectedRow(indexPath: IndexPath)
+    
+    /// 标题修改事件
+    func handlePlanNameDidSelected(planName: String)
+    
 }
 
 class PlanInsertView: UIView {
@@ -118,12 +120,11 @@ extension PlanInsertView: UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
+            cell.textField.addTarget(self, action: #selector(textFieldDidChanged(textField:)), for: .editingChanged)
             if self.insertPlan.planName.count == 0 {
                 cell.textField.text = ""
-                cell.textField.isUserInteractionEnabled = true
             } else {
                 cell.textField.text = self.insertPlan.planName
-                cell.textField.isUserInteractionEnabled = false
             }
     
         case 1:
@@ -133,16 +134,22 @@ extension PlanInsertView: UITableViewDataSource {
             cell.titleLabel.text = self.insertPlan.endDate == nil ? "请选择" : Date.string(from: self.insertPlan.endDate, format: "HH:mm")
             
         case 3:
-            cell.titleLabel.text = self.insertPlan.durationTimes == 0 ? "请选择" :  String(describing: self.insertPlan.durationTimes)
+            cell.titleLabel.text = self.insertPlan.durationTimes == 0 ? "请选择" :  String (format: "%d次", self.insertPlan.durationTimes)
             
         case 4:
-            cell.titleLabel.text = self.insertPlan.notificationWeeks.count == 0 ? "请选择" : self.insertPlan.notificationWeeks
+            cell.titleLabel.text = self.insertPlan.notificationWeeks.count == 0 ? "请选择" : self.insertPlan.weeksFormat()
             
         default:
             cell.titleLabel.text = ""
         }
         
         return cell
+    }
+    
+    @objc func textFieldDidChanged(textField: UITextField) {
+        insertPlan.planName = textField.text!
+        
+        delegate?.handlePlanNameDidSelected(planName: insertPlan.planName)
     }
 }
 

@@ -50,6 +50,7 @@ class PlanInsertViewController: UIViewController {
 }
 
 extension PlanInsertViewController: InsertPlanViewDelegate {
+    
     func handleSelectedRow(indexPath: IndexPath) {
         if indexPath.section == 1 {
             let datePicker = DatePickerAlertView ()
@@ -70,24 +71,42 @@ extension PlanInsertViewController: InsertPlanViewDelegate {
             datePicker.show()
         } else if indexPath.section == 3 {
             let listPicker = ListAlertView()
+            listPicker.delegate = self
             listPicker.show()
         } else if indexPath.section == 4 {
             let chooseTimeVC = PlanChooseWeeksViewController()
             navigationController?.pushViewController(chooseTimeVC, animated: true)
         }
     }
+    
+    func handlePlanNameDidSelected(planName: String) {
+        plan.planName = planName
+    }
 }
 
 extension PlanInsertViewController: DatePickerAlertViewDelegate {
+    
     func datePickerDidSelected(pickerView: DatePickerAlertView, date: Date) {
         if pickerView.tag == 1001 {
             // 开始时间
-            plan.startDate = date;
+            plan.startDate = date
         } else {
-            // 结束时间
-            plan.endDate = date;
+            // 如果开始时间大于结束时间，给出提示
+            if plan.startDate! > date {
+                TipUtil.showDangerTip(title: "结束时间必须大于开始时间")
+                return
+            }
+            plan.endDate = date
         }
         
+        insertView.reloadData(plan: plan)
+    }
+}
+
+extension PlanInsertViewController: ListAlertViewDelegate {
+    
+    func listViewDidSelected(title: String, value: Int) {
+        plan.durationTimes = value
         insertView.reloadData(plan: plan)
     }
 }

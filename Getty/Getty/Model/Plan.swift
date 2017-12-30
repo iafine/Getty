@@ -6,21 +6,20 @@
 //  Copyright © 2017年 Getty. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RealmSwift
 
-class Plan: NSObject {
+class Plan: Object {
 
-    var planID: Int = 0
+    @objc dynamic var planName: String = ""
     
-    var planName: String = ""
+    @objc dynamic var startDate: Date?
     
-    var startDate: Date? = nil
+    @objc dynamic var endDate: Date?
     
-    var endDate: Date? = nil
+    @objc dynamic var durationTimes: Int = 0
     
-    var durationTimes: Int = 0
-    
-    var notificationWeeks: String = "周一,周二,周三,周四,周五,周六,周日"
+    @objc dynamic var notificationWeeks: String = "星期一,星期二,星期三,星期四,星期五,星期六,星期日"
 }
 
 extension Plan {
@@ -28,22 +27,22 @@ extension Plan {
         let weekArray = notificationWeeks.components(separatedBy: ",")
         
         // 每天
-        if weekArray.contains("周一") &&
-            weekArray.contains("周二") &&
-            weekArray.contains("周三") &&
-            weekArray.contains("周四") &&
-            weekArray.contains("周五") &&
-            weekArray.contains("周六") &&
-            weekArray.contains("周日") {
+        if weekArray.contains("星期一") &&
+            weekArray.contains("星期二") &&
+            weekArray.contains("星期三") &&
+            weekArray.contains("星期四") &&
+            weekArray.contains("星期五") &&
+            weekArray.contains("星期六") &&
+            weekArray.contains("星期日") {
             return "每天"
         }
         
         // 工作日
-        if weekArray.contains("周一") &&
-            weekArray.contains("周二") &&
-            weekArray.contains("周三") &&
-            weekArray.contains("周四") &&
-            weekArray.contains("周五") {
+        if weekArray.contains("星期一") &&
+            weekArray.contains("星期二") &&
+            weekArray.contains("星期三") &&
+            weekArray.contains("星期四") &&
+            weekArray.contains("星期五") {
             return "工作日"
         }
         

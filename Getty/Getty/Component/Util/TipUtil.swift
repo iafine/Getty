@@ -18,4 +18,11 @@ class TipUtil: NSObject {
         banner.autoDismiss = true
         banner.show()
     }
+    
+    static func showInfoTip(title: String) {
+        let banner = StatusBarNotificationBanner(title: title, style: .info)
+        banner.duration = 1.5
+        banner.autoDismiss = true
+        banner.show()
+    }
 }

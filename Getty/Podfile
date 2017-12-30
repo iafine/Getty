@@ -6,7 +6,6 @@ target 'Getty' do
     pod 'SnapKit'
     pod 'JTAppleCalendar'
     pod 'RealmSwift'
-    pod 'SwiftLint'
     pod 'NotificationBannerSwift'
     pod 'IQKeyboardManagerSwift'
 end

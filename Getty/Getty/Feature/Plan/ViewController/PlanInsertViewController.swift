@@ -75,6 +75,7 @@ extension PlanInsertViewController: InsertPlanViewDelegate {
             listPicker.show()
         } else if indexPath.section == 4 {
             let chooseTimeVC = PlanChooseWeeksViewController()
+            chooseTimeVC.weeksString = plan.notificationWeeks
             navigationController?.pushViewController(chooseTimeVC, animated: true)
         }
     }
@@ -91,12 +92,18 @@ extension PlanInsertViewController: DatePickerAlertViewDelegate {
             // 开始时间
             plan.startDate = date
         } else {
-            // 如果开始时间大于结束时间，给出提示
+            // FIXME: 这里需要优化，如果开始时间和结束时间的时、分相等的话，也是要给出警告提示的。
+            
+            // 如果开始时间大于等于结束时间，给出提示
             if plan.startDate! > date {
                 TipUtil.showDangerTip(title: "结束时间必须大于开始时间")
                 return
             }
             plan.endDate = date
+            
+            // 提示计划共持续时间
+            let minutes = Date.minutesInterval(startDate: plan.startDate!, endDate: plan.endDate!)
+            TipUtil.showInfoTip(title: String (format: "本计划每次执行%d分钟", minutes))
         }
         
         insertView.reloadData(plan: plan)

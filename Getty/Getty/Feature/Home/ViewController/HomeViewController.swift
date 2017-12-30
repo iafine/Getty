@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HomeViewController: UIViewController {
 
     let homeView: HomeView = {
         
-        let view = HomeView (frame: CGRect (x: 0, y: 64, width: Constant.Size.kScreenWidth, height: Constant.Size.kScreenHeight - 64))
+        let view = HomeView (frame: CGRect (x: 0,
+                                            y: 64,
+                                            width: Constant.Size.kScreenWidth,
+                                            height: Constant.Size.kScreenHeight - 64))
         return view
     }()
     

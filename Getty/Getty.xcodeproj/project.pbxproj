@@ -383,7 +383,6 @@
 				68A4B3C11FDF6C5B00E984D1 /* Resources */,
 				3B0F4D3555CD42DC3F9D6C34 /* [CP] Embed Pods Frameworks */,
 				F9E457B3A13EA00D5A1D40DB /* [CP] Copy Pods Resources */,
-				68FAAE401FF0DB6800E73A56 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -556,19 +555,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Getty/Pods-Getty-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		68FAAE401FF0DB6800E73A56 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		F9E457B3A13EA00D5A1D40DB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

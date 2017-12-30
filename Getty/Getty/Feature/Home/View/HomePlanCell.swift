@@ -19,7 +19,7 @@ class HomePlanCell: UITableViewCell {
         return view
     }()
     
-    let titleLabel: UIView = {
+    let titleLabel: UILabel = {
         
         let label = UILabel()
         label.font = Constant.Font.kFontMedium
@@ -31,7 +31,7 @@ class HomePlanCell: UITableViewCell {
         return label
     }()
     
-    let timeLabel: UIView = {
+    let timeLabel: UILabel = {
         
         let label = UILabel()
         label.font = Constant.Font.kFontSmall
@@ -42,7 +42,7 @@ class HomePlanCell: UITableViewCell {
         return label
     }()
     
-    let descLabel: UIView = {
+    let descLabel: UILabel = {
         
         let label = UILabel()
         label.font = Constant.Font.kFontSmall
@@ -53,6 +53,14 @@ class HomePlanCell: UITableViewCell {
         
         return label
     }()
+    
+    var cellData: Plan? {
+        didSet {
+            titleLabel.text = cellData?.planName
+            timeLabel.text = Date.string(from: cellData?.startDate, format: "MM:hh")
+            descLabel.text = String (format: "计划一共执行%d次，每次持续120分钟", (cellData?.durationTimes)!)
+        }
+    }
     
     /// Cell ID
     ///

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol HomeViewDelegate: class {
     
@@ -50,8 +51,10 @@ class HomeView: UIView {
     
     var lastOffsetY: CGFloat = 0
     
-    var delegate: HomeViewDelegate?
+    weak var delegate: HomeViewDelegate?
     
+    var dataArray: Results<Plan>?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -125,7 +128,10 @@ extension HomeView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        guard let count = dataArray?.count else {
+            return 0
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -134,6 +140,10 @@ extension HomeView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HomePlanCell = HomePlanCell.cellWithTableView(tableView: tableView)
+        guard let plan = dataArray?[indexPath.row] else {
+            return cell
+        }
+        cell.cellData = plan
         return cell
     }
     

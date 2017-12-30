@@ -29,4 +29,14 @@ extension Date {
         
         return dateformatter.date(from: from)
     }
+    
+    /// 计算两个时间之间差，返回分钟数
+    static func minutesInterval(startDate: Date, endDate: Date) -> Int {
+        // 对时间进行加工处理
+        let startDate = Date.date(from: Date.string(from: startDate, format: "yyyy-MM-dd HH:mm"), format: "yyyy-MM-dd HH:mm")
+        let endDate = Date.date(from: Date.string(from: endDate, format: "yyyy-MM-dd HH:mm"), format: "yyyy-MM-dd HH:mm")
+        let timeInterval = endDate?.timeIntervalSince(startDate!)
+        
+        return Int(timeInterval! / 60)
+    }
 }

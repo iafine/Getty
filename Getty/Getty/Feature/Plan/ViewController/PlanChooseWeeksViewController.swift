@@ -13,6 +13,11 @@ struct WeekStruct {
     var value: String
 }
 
+protocol PlanChooseWeeksViewControllerDelegate: class {
+    // 完成选择日期回调
+    func chooseWeeksDidCompleted(weekString: String);
+}
+
 class PlanChooseWeeksViewController: UIViewController {
 
     let tableView: UITableView = {
@@ -36,6 +41,8 @@ class PlanChooseWeeksViewController: UIViewController {
     
     var weeksString: String = ""
     
+    weak var delegate: PlanChooseWeeksViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,6 +63,13 @@ class PlanChooseWeeksViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         view.addSubview(tableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let str = dataArray.componentsJoined(by: ",")
+        delegate?.chooseWeeksDidCompleted(weekString: str)
     }
 }
 

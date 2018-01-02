@@ -45,6 +45,25 @@ class PlanInsertViewController: UIViewController {
     }
     
     @objc func handleFinishButtonEvent() {
+        // 校验相关参数
+        if plan.planName.count == 0 {
+            TipUtil.showDangerTip(title: "计划名称不能为空")
+            return
+        }
+        if plan.startDate == nil {
+            TipUtil.showDangerTip(title: "开始时间不能为空")
+            return
+        }
+        if plan.endDate == nil {
+            TipUtil.showDangerTip(title: "结束时间不能为空")
+            return
+        }
+        if plan.durationTimes == 0 {
+            TipUtil.showDangerTip(title: "计划次数不能为空")
+        }
+        
+        // TODO: 相关数据操作
+        
         dismiss(animated: true, completion: nil)
     }
 }
@@ -76,6 +95,7 @@ extension PlanInsertViewController: InsertPlanViewDelegate {
         } else if indexPath.section == 4 {
             let chooseTimeVC = PlanChooseWeeksViewController()
             chooseTimeVC.weeksString = plan.notificationWeeks
+            chooseTimeVC.delegate = self
             navigationController?.pushViewController(chooseTimeVC, animated: true)
         }
     }
@@ -114,6 +134,14 @@ extension PlanInsertViewController: ListAlertViewDelegate {
     
     func listViewDidSelected(title: String, value: Int) {
         plan.durationTimes = value
+        insertView.reloadData(plan: plan)
+    }
+}
+
+extension PlanInsertViewController: PlanChooseWeeksViewControllerDelegate {
+    
+    func chooseWeeksDidCompleted(weekString: String) {
+        plan.notificationWeeks = weekString
         insertView.reloadData(plan: plan)
     }
 }
